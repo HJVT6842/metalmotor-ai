@@ -2,6 +2,7 @@ import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Media } from "@/components/ui/Media";
 import { ArrowRightIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { getMediaById } from "@/data/media";
 import { PRODUCTS } from "@/data/products";
 import { SITE } from "@/data/site";
 import { buildWhatsAppUrl, quotationMessage } from "@/lib/whatsapp";
@@ -30,16 +31,17 @@ export function Products() {
             SITE.whatsappNumber,
             quotationMessage(product.name),
           );
+          const media = getMediaById(product.mediaId);
           return (
             <StaggerItem key={product.slug}>
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-steel-900/50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/40 hover:shadow-[0_0_40px_-12px_rgba(249,115,22,0.45)]">
                 <div className="relative h-52 overflow-hidden">
                   <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
                     <Media
-                      src={product.image}
-                      alt={product.name}
+                      src={media?.src ?? ""}
+                      alt={media?.alt ?? product.name}
                       index={i}
-                      status="reference"
+                      status={media?.status ?? "reference"}
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-steel-900/80 to-transparent" />

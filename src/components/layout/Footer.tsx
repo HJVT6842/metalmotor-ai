@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { NAV_LINKS, SITE } from "@/data/site";
@@ -96,7 +98,12 @@ export function Footer() {
           <p>
             © {year} {SITE.legalName}. Todos los derechos reservados.
           </p>
-          <p>Corte Láser CNC · Fabricación Metálica · {SITE.address.city}, Chile</p>
+          <div className="flex items-center gap-4">
+            <Link href="/creditos" className="hover:text-steel-300">
+              Créditos de imágenes
+            </Link>
+            <span>{SITE.address.city}, Chile</span>
+          </div>
         </Container>
       </div>
     </footer>

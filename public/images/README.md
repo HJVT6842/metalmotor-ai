@@ -25,17 +25,27 @@ public/images/
 
 ## ¿De dónde salen las imágenes referenciales actuales?
 
-Son **SVG generados localmente** por `scripts/gen-reference-svgs.mjs`
-(propiedad de Metal Motor, uso comercial libre, sin atribución). Para
-regenerarlas:
+Son **fotografías industriales reales** obtenidas de **Wikimedia Commons** con
+licencias de uso comercial (CC0, CC BY, CC BY-SA, dominio público). Se descargan
+con:
 
 ```bash
-node scripts/gen-reference-svgs.mjs
+node scripts/fetch-reference-photos.mjs
 ```
 
-> Si en el futuro descargas fotos de stock con licencia comercial permisiva
-> (p. ej. **Unsplash** / **Pexels**), guárdalas en `reference/<categoría>/` y
-> completa los campos `credit`, `source` y `license` en `src/data/media.ts`.
+El script:
+- busca por categoría (corte láser, soldadura, celosías, etc.),
+- filtra a licencias de uso comercial y descarta diagramas/ilustraciones,
+- descarga la versión 1600 px a `reference/<categoría>/`,
+- genera `src/data/reference-manifest.ts` con la **atribución** (autor, licencia,
+  enlace al original) de cada imagen.
+
+La atribución completa se muestra en la página **/creditos** del sitio (requerido
+por las licencias CC BY / CC BY-SA).
+
+> Estas imágenes NO son trabajos de Metal Motor: se muestran con la insignia
+> **“Imagen referencial”**. Reemplázalas por fotos propias siguiendo los pasos
+> de abajo.
 
 ## Cómo reemplazar una imagen por una foto propia (real)
 

@@ -1,16 +1,23 @@
+import { REFERENCE_MANIFEST } from "@/data/reference-manifest";
+
 /**
  * Central media catalogue.
  *
  * LEGAL / HONESTY RULES (enforced in UI):
- * - `status: "reference"` assets are illustrative industrial visuals, NOT photos
- *   of work performed by Metal Motor. They render with an "Imagen referencial"
- *   badge and must NEVER be presented as completed client work.
- * - `status: "real"` assets are the company's own authorized photos and render
- *   with a "Trabajo realizado" badge.
+ * - `status: "reference"` assets are real industrial photographs sourced from
+ *   Wikimedia Commons under commercial-use licenses (attribution recorded per
+ *   asset and shown on /creditos). They illustrate capabilities and are NOT
+ *   photos of work performed by Metal Motor → "Imagen referencial" badge.
+ * - `status: "real"` assets are the company's own authorized photos → "Trabajo
+ *   realizado" badge.
  *
- * The current reference set is locally generated SVG (license: own, free for
- * commercial use). To swap in a real photo: drop the file at `replacementPath`,
- * point `src` to it, and change `status` to "real" (see public/images/README.md).
+ * The reference src/credit/license/source come from the auto-generated
+ * `reference-manifest.ts` (run `node scripts/fetch-reference-photos.mjs`).
+ *
+ * TO REPLACE ANY IMAGE WITH YOUR OWN PHOTO:
+ *   1. Drop the file at the descriptor's `replacementPath` (under /images/real).
+ *   2. In the descriptor below set `src: "<that path>"` and `status: "real"`.
+ *   The badge flips to "Trabajo realizado" automatically (see README).
  */
 
 export type MediaStatus = "reference" | "real";
@@ -21,217 +28,230 @@ export type MediaAsset = {
   readonly category: string;
   readonly src: string;
   readonly alt: string;
-  /** Author/source when downloaded from a stock provider; omit for own assets. */
   readonly credit?: string;
   readonly source?: string;
   readonly license: string;
-  /** Where the asset is used in the UI. */
+  readonly licenseUrl?: string;
   readonly usage: string;
   readonly status: MediaStatus;
-  /** Path where the owner's real photo should be placed to replace this asset. */
   readonly replacementPath: string;
 };
 
-/** License note shared by all locally-generated reference SVGs. */
-const GEN_LICENSE =
-  "Recurso visual generado por Metal Motor (SVG) · uso comercial libre · sin atribución requerida";
-const GEN_CREDIT = "Metal Motor (generado)";
+type Descriptor = {
+  readonly id: string;
+  readonly title: string;
+  readonly category: string;
+  readonly alt: string;
+  readonly usage: string;
+  readonly replacementPath: string;
+  /** Set these two to swap in your own real photo (status becomes "real"). */
+  readonly src?: string;
+  readonly status?: MediaStatus;
+};
 
-export const HERO_MEDIA: readonly MediaAsset[] = [
+/** Merge a descriptor with its reference-manifest entry (or an own-photo override). */
+function build(d: Descriptor): MediaAsset {
+  const ref = REFERENCE_MANIFEST[d.id];
+  const isReal = d.status === "real" && Boolean(d.src);
+
+  if (isReal) {
+    return {
+      id: d.id,
+      title: d.title,
+      category: d.category,
+      alt: d.alt,
+      src: d.src as string,
+      license: "Fotografía propia · Metal Motor Services SpA",
+      usage: d.usage,
+      status: "real",
+      replacementPath: d.replacementPath,
+    };
+  }
+
+  return {
+    id: d.id,
+    title: d.title,
+    category: d.category,
+    alt: d.alt,
+    src: d.src ?? ref?.src ?? "",
+    credit: ref ? `${ref.credit} · Wikimedia Commons` : undefined,
+    source: ref?.source,
+    license: ref?.license ?? "Imagen referencial",
+    licenseUrl: ref?.licenseUrl || undefined,
+    usage: d.usage,
+    status: "reference",
+    replacementPath: d.replacementPath,
+  };
+}
+
+const HERO: readonly Descriptor[] = [
   {
     id: "hero-laser",
     title: "Corte láser CNC",
     category: "Hero",
-    src: "/images/reference/hero/hero-laser.svg",
-    alt: "Representación de corte láser CNC de fibra sobre placa de acero",
-    credit: GEN_CREDIT,
-    license: GEN_LICENSE,
+    alt: "Máquina de corte láser CNC de fibra en operación (imagen referencial)",
     usage: "hero",
-    status: "reference",
     replacementPath: "/images/real/workshop/hero-laser.webp",
   },
   {
     id: "hero-workshop",
     title: "Taller industrial",
     category: "Hero",
-    src: "/images/reference/hero/hero-workshop.svg",
-    alt: "Representación de un taller de fabricación metálica con maquinaria",
-    credit: GEN_CREDIT,
-    license: GEN_LICENSE,
+    alt: "Taller de mecanizado metálico con torno (imagen referencial)",
     usage: "hero",
-    status: "reference",
     replacementPath: "/images/real/workshop/hero-workshop.webp",
   },
   {
     id: "hero-structure",
     title: "Estructura metálica",
     category: "Hero",
-    src: "/images/reference/hero/hero-structure.svg",
-    alt: "Representación de una estructura metálica fabricada",
-    credit: GEN_CREDIT,
-    license: GEN_LICENSE,
+    alt: "Fabricación de estructura metálica de gran escala (imagen referencial)",
     usage: "hero",
-    status: "reference",
     replacementPath: "/images/real/workshop/hero-structure.webp",
   },
 ];
 
-type ServiceSeed = {
-  readonly id: string;
-  readonly title: string;
-  readonly file: string;
-  readonly alt: string;
-};
-
-const SERVICE_SEEDS: readonly ServiceSeed[] = [
+const SERVICE: readonly Descriptor[] = [
   {
     id: "svc-corte-laser",
     title: "Corte Láser CNC",
-    file: "cnc-laser-cutting",
-    alt: "Representación de corte láser CNC de fibra en acero",
+    category: "Corte Láser",
+    alt: "Corte láser CNC de fibra sobre metal (imagen referencial)",
+    usage: "service:corte-laser",
+    replacementPath: "/images/real/portfolio/corte-laser.webp",
   },
   {
     id: "svc-paneles",
     title: "Paneles Decorativos",
-    file: "decorative-panels",
-    alt: "Representación de panel metálico decorativo perforado",
+    category: "Paneles",
+    alt: "Panel metálico perforado (imagen referencial)",
+    usage: "service:paneles",
+    replacementPath: "/images/real/portfolio/paneles.webp",
   },
   {
     id: "svc-celosias",
     title: "Celosías Metálicas",
-    file: "celosias",
-    alt: "Representación de celosía metálica arquitectónica",
+    category: "Celosías",
+    alt: "Celosía / pantalla metálica decorativa (imagen referencial)",
+    usage: "service:celosias",
+    replacementPath: "/images/real/portfolio/celosias.webp",
   },
   {
     id: "svc-portones",
-    title: "Portones Metálicos",
-    file: "metal-gates",
-    alt: "Representación de portón metálico moderno",
+    title: "Portones",
+    category: "Portones",
+    alt: "Portón metálico (imagen referencial)",
+    usage: "service:portones",
+    replacementPath: "/images/real/portfolio/portones.webp",
   },
   {
     id: "svc-soldadura",
     title: "Soldadura MIG / TIG",
-    file: "welding",
-    alt: "Representación de proceso de soldadura MIG/TIG con arco",
+    category: "Soldadura",
+    alt: "Proceso de soldadura MIG/TIG con arco (imagen referencial)",
+    usage: "service:soldadura",
+    replacementPath: "/images/real/portfolio/soldadura.webp",
   },
   {
     id: "svc-plegado",
     title: "Plegado CNC",
-    file: "cnc-bending",
-    alt: "Representación de plegado CNC de plancha metálica",
+    category: "Plegado",
+    alt: "Plegadora CNC (press brake) (imagen referencial)",
+    usage: "service:plegado",
+    replacementPath: "/images/real/portfolio/plegado.webp",
   },
   {
     id: "svc-fabricacion",
     title: "Fabricación Industrial",
-    file: "industrial-fabrication",
-    alt: "Representación de fabricación industrial metálica",
+    category: "Fabricación",
+    alt: "Fabricación metálica industrial (imagen referencial)",
+    usage: "service:fabricacion",
+    replacementPath: "/images/real/portfolio/fabricacion.webp",
   },
   {
     id: "svc-cad",
     title: "Diseño CAD",
-    file: "cad-design",
-    alt: "Representación de modelo CAD 3D para fabricación metálica",
+    category: "Diseño CAD",
+    alt: "Diseño CAD e ingeniería (imagen referencial)",
+    usage: "service:cad",
+    replacementPath: "/images/real/portfolio/cad.webp",
   },
 ];
 
-export const SERVICE_MEDIA: readonly MediaAsset[] = SERVICE_SEEDS.map((s) => ({
-  id: s.id,
-  title: s.title,
-  category: s.title,
-  src: `/images/reference/services/${s.file}.svg`,
-  alt: s.alt,
-  credit: GEN_CREDIT,
-  license: GEN_LICENSE,
-  usage: `service:${s.file}`,
-  status: "reference" as const,
-  replacementPath: `/images/real/portfolio/${s.file}.webp`,
-}));
-
-type ProductSeed = {
-  readonly id: string;
-  readonly title: string;
-  readonly file: string;
-  readonly alt: string;
-};
-
-const PRODUCT_SEEDS: readonly ProductSeed[] = [
+const PRODUCT: readonly Descriptor[] = [
   {
     id: "prod-celosias",
     title: "Celosías Decorativas",
-    file: "celosias-decorativas",
-    alt: "Representación de celosías decorativas metálicas",
+    category: "Celosías Decorativas",
+    alt: "Celosía decorativa metálica (imagen referencial)",
+    usage: "product:celosias",
+    replacementPath: "/images/real/products/celosias.webp",
   },
   {
     id: "prod-paneles",
     title: "Paneles Metálicos",
-    file: "paneles-metalicos",
-    alt: "Representación de paneles metálicos decorativos",
+    category: "Paneles Metálicos",
+    alt: "Panel metálico perforado (imagen referencial)",
+    usage: "product:paneles",
+    replacementPath: "/images/real/products/paneles.webp",
   },
   {
     id: "prod-portones",
     title: "Portones",
-    file: "portones",
-    alt: "Representación de portón metálico a medida",
+    category: "Portones",
+    alt: "Portón metálico (imagen referencial)",
+    usage: "product:portones",
+    replacementPath: "/images/real/products/portones.webp",
   },
   {
     id: "prod-rejas",
     title: "Rejas Modernas",
-    file: "rejas-modernas",
-    alt: "Representación de rejas metálicas de diseño moderno",
+    category: "Rejas",
+    alt: "Reja metálica (imagen referencial)",
+    usage: "product:rejas",
+    replacementPath: "/images/real/products/rejas.webp",
   },
   {
     id: "prod-piezas",
     title: "Piezas Industriales",
-    file: "piezas-industriales",
-    alt: "Representación de piezas industriales metálicas de precisión",
+    category: "Piezas",
+    alt: "Pieza metálica mecanizada CNC (imagen referencial)",
+    usage: "product:piezas",
+    replacementPath: "/images/real/products/piezas.webp",
   },
   {
     id: "prod-custom",
     title: "Fabricación a Medida",
-    file: "fabricacion-a-medida",
-    alt: "Representación de fabricación metálica a medida",
+    category: "A Medida",
+    alt: "Fabricación metálica a medida (imagen referencial)",
+    usage: "product:custom",
+    replacementPath: "/images/real/products/custom.webp",
   },
 ];
 
-export const PRODUCT_MEDIA: readonly MediaAsset[] = PRODUCT_SEEDS.map((p) => ({
-  id: p.id,
-  title: p.title,
-  category: p.title,
-  src: `/images/reference/products/${p.file}.svg`,
-  alt: p.alt,
-  credit: GEN_CREDIT,
-  license: GEN_LICENSE,
-  usage: `product:${p.file}`,
-  status: "reference" as const,
-  replacementPath: `/images/real/products/${p.file}.webp`,
-}));
-
-export const WORKSHOP_MEDIA: readonly MediaAsset[] = [
+const WORKSHOP: readonly Descriptor[] = [
   {
     id: "workshop-machinery",
     title: "Maquinaria de taller",
     category: "Taller",
-    src: "/images/reference/workshop/workshop-machinery.svg",
-    alt: "Representación de maquinaria de taller de fabricación metálica",
-    credit: GEN_CREDIT,
-    license: GEN_LICENSE,
+    alt: "Maquinaria de taller metalúrgico (imagen referencial)",
     usage: "workshop",
-    status: "reference",
-    replacementPath: "/images/real/workshop/workshop-machinery.webp",
+    replacementPath: "/images/real/workshop/machinery.webp",
   },
   {
     id: "workshop-atmosphere",
     title: "Ambiente de taller",
     category: "Taller",
-    src: "/images/reference/workshop/workshop-atmosphere.svg",
-    alt: "Representación del ambiente industrial de un taller metálico",
-    credit: GEN_CREDIT,
-    license: GEN_LICENSE,
+    alt: "Ambiente de taller metalúrgico con torno y banco (imagen referencial)",
     usage: "workshop",
-    status: "reference",
-    replacementPath: "/images/real/workshop/workshop-atmosphere.webp",
+    replacementPath: "/images/real/workshop/atmosphere.webp",
   },
 ];
+
+export const HERO_MEDIA: readonly MediaAsset[] = HERO.map(build);
+export const SERVICE_MEDIA: readonly MediaAsset[] = SERVICE.map(build);
+export const PRODUCT_MEDIA: readonly MediaAsset[] = PRODUCT.map(build);
+export const WORKSHOP_MEDIA: readonly MediaAsset[] = WORKSHOP.map(build);
 
 export const ALL_MEDIA: readonly MediaAsset[] = [
   ...HERO_MEDIA,

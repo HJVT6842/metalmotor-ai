@@ -1,10 +1,9 @@
 import type { Product } from "@/types";
 
 /**
- * Premium product line for the product showcase.
- * `image` points at a generated reference visual (see src/data/media.ts and
- * public/images/reference/products). Replace with a real photo under
- * /images/real/products and the card upgrades automatically.
+ * Premium product line for the product showcase. Imagery comes from the media
+ * catalogue via `mediaId` (see src/data/media.ts → PRODUCT_MEDIA), which carries
+ * the reference photo, status badge and attribution.
  */
 export const PRODUCTS: readonly Product[] = [
   {
@@ -12,7 +11,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Celosías Decorativas",
     description:
       "Control solar y privacidad con diseño arquitectónico, a medida para tu fachada.",
-    image: "/images/reference/products/celosias-decorativas.svg",
+    mediaId: "prod-celosias",
     tags: ["Fachadas", "A medida"],
   },
   {
@@ -20,7 +19,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Paneles Metálicos",
     description:
       "Paneles perforados y grabados para revestimientos interiores y exteriores.",
-    image: "/images/reference/products/paneles-metalicos.svg",
+    mediaId: "prod-paneles",
     tags: ["Decorativo", "Termolacado"],
   },
   {
@@ -28,7 +27,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Portones",
     description:
       "Portones modernos, robustos y seguros, fabricados para durar décadas.",
-    image: "/images/reference/products/portones.svg",
+    mediaId: "prod-portones",
     tags: ["Seguridad", "Residencial / Industrial"],
   },
   {
@@ -36,7 +35,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Rejas Modernas",
     description:
       "Rejas de diseño contemporáneo que combinan estética y protección.",
-    image: "/images/reference/products/rejas-modernas.svg",
+    mediaId: "prod-rejas",
     tags: ["Diseño", "Exterior"],
   },
   {
@@ -44,7 +43,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Piezas Industriales",
     description:
       "Componentes y repuestos de precisión para mantención y producción.",
-    image: "/images/reference/products/piezas-industriales.svg",
+    mediaId: "prod-piezas",
     tags: ["Precisión", "Repuestos"],
   },
   {
@@ -52,7 +51,7 @@ export const PRODUCTS: readonly Product[] = [
     name: "Fabricación a Medida",
     description:
       "¿Tienes un plano o una idea? La transformamos en una pieza real.",
-    image: "/images/reference/products/fabricacion-a-medida.svg",
+    mediaId: "prod-custom",
     tags: ["Custom", "Llave en mano"],
   },
 ] as const;
