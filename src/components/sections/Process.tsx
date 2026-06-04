@@ -1,55 +1,54 @@
+import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { ServiceGlyph } from "@/components/ui/icons";
+import { PROCESS } from "@/data/process";
 
-const STEPS = [
-  {
-    n: "01",
-    title: "Envías tu idea o plano",
-    body: "Comparte tu archivo CAD, un boceto o simplemente describe tu proyecto por WhatsApp.",
-  },
-  {
-    n: "02",
-    title: "Cotizamos y asesoramos",
-    body: "Revisamos factibilidad, material y plazos, y te entregamos una cotización clara.",
-  },
-  {
-    n: "03",
-    title: "Fabricamos con precisión",
-    body: "Cortamos, plegamos y soldamos con maquinaria CNC y control de calidad.",
-  },
-  {
-    n: "04",
-    title: "Entregamos tu pieza",
-    body: "Coordinamos la entrega o retiro de tu producto terminado, listo para instalar.",
-  },
-] as const;
-
-/** Simple 4-step "how it works" timeline. */
+/** Visual 6-step timeline from plan to delivery. */
 export function Process() {
   return (
-    <Section id="proceso" className="bg-white">
+    <Section id="proceso" className="bg-steel-950">
       <SectionHeading
-        eyebrow="Cómo trabajamos"
-        title="Un proceso simple, de la idea a la pieza"
+        eyebrow="Proceso"
+        title={
+          <>
+            De la idea a la pieza,{" "}
+            <span className="text-gradient-brand">en 6 pasos</span>
+          </>
+        }
+        description="Un flujo claro y trazable, con control en cada etapa."
       />
 
-      <ol className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {STEPS.map((step) => (
-          <li
-            key={step.n}
-            className="relative rounded-2xl border border-steel-200 bg-steel-50 p-6"
-          >
-            <span className="text-3xl font-extrabold text-brand-500">
-              {step.n}
-            </span>
-            <h3 className="mt-3 text-lg font-bold text-steel-900">
-              {step.title}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-steel-600">
-              {step.body}
-            </p>
-          </li>
+      <Stagger
+        className="relative mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6"
+        stagger={0.1}
+      >
+        {PROCESS.map((step) => (
+          <StaggerItem key={step.step}>
+            <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-steel-900/50 p-6 transition-colors duration-300 hover:border-brand-500/40">
+              <span
+                aria-hidden
+                className="absolute -right-2 -top-3 text-7xl font-black text-white/5 transition-colors group-hover:text-brand-500/10"
+              >
+                {step.step}
+              </span>
+              <div className="relative">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 ring-1 ring-inset ring-brand-500/30">
+                  <ServiceGlyph name={step.icon} className="h-5 w-5" />
+                </div>
+                <p className="mt-4 text-xs font-bold uppercase tracking-wider text-brand-400">
+                  Paso {step.step}
+                </p>
+                <h3 className="mt-1 text-base font-bold text-white">
+                  {step.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-steel-400">
+                  {step.description}
+                </p>
+              </div>
+            </div>
+          </StaggerItem>
         ))}
-      </ol>
+      </Stagger>
     </Section>
   );
 }

@@ -19,18 +19,46 @@ export type ServiceIcon =
   | "lattice"
   | "fold"
   | "weld"
-  | "cad";
-
-export type CatalogItem = {
-  readonly slug: string;
-  readonly name: string;
-  readonly category: string;
-  readonly description: string;
-  /** Material / finish tags shown as chips. */
-  readonly tags: readonly string[];
-};
+  | "cad"
+  | "fabrication"
+  | "gate"
+  | "parts"
+  | "industrial"
+  | "reverse";
 
 export type NavLink = {
   readonly label: string;
   readonly href: string;
+};
+
+export type Product = {
+  readonly slug: string;
+  readonly name: string;
+  readonly description: string;
+  readonly image: string;
+  readonly tags: readonly string[];
+};
+
+export type Testimonial = {
+  readonly name: string;
+  readonly role: string;
+  readonly company: string;
+  readonly location: string;
+  readonly quote: string;
+  /** 1–5. */
+  readonly rating: number;
+};
+
+export type ProcessStep = {
+  readonly step: number;
+  readonly title: string;
+  readonly description: string;
+  readonly icon: ServiceIcon;
+};
+
+export type Stat = {
+  readonly value: number;
+  readonly prefix?: string;
+  readonly suffix?: string;
+  readonly label: string;
 };

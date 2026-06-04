@@ -39,7 +39,8 @@ export const SITE = {
 
 export const NAV_LINKS: readonly NavLink[] = [
   { label: "Servicios", href: "#servicios" },
-  { label: "Catálogo", href: "#catalogo" },
+  { label: "Portafolio", href: "#portafolio" },
+  { label: "Productos", href: "#productos" },
   { label: "Proceso", href: "#proceso" },
   { label: "Contacto", href: "#contacto" },
 ] as const;

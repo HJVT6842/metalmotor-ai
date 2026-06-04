@@ -5,7 +5,6 @@ import { useState, type FormEvent } from "react";
 import { SERVICES } from "@/data/services";
 
 type Status = "idle" | "submitting" | "success" | "error";
-
 type FieldErrors = Partial<Record<string, string[]>>;
 
 const INITIAL = {
@@ -16,6 +15,10 @@ const INITIAL = {
   message: "",
   company: "", // honeypot
 };
+
+const FIELD_CLASS =
+  "w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white placeholder:text-steel-500 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30";
+const LABEL_CLASS = "mb-1.5 block text-sm font-medium text-steel-300";
 
 /** Public lead capture form. Posts JSON to /api/contact. */
 export function ContactForm() {
@@ -64,17 +67,17 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-brand-200 bg-brand-50 p-8 text-center">
-        <h3 className="text-xl font-bold text-steel-900">
+      <div className="rounded-2xl border border-brand-500/30 bg-brand-500/10 p-8 text-center">
+        <h3 className="text-xl font-bold text-white">
           ¡Gracias! Recibimos tu solicitud.
         </h3>
-        <p className="mt-2 text-steel-600">
+        <p className="mt-2 text-steel-300">
           Te contactaremos a la brevedad. Si es urgente, escríbenos por WhatsApp.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-4 text-sm font-semibold text-brand-700 underline"
+          className="mt-4 text-sm font-semibold text-brand-400 underline"
         >
           Enviar otra solicitud
         </button>
@@ -128,10 +131,7 @@ export function ContactForm() {
           errors={fieldErrors.phone}
         />
         <div>
-          <label
-            htmlFor="service"
-            className="mb-1.5 block text-sm font-medium text-steel-700"
-          >
+          <label htmlFor="service" className={LABEL_CLASS}>
             Servicio de interés (opcional)
           </label>
           <select
@@ -139,11 +139,13 @@ export function ContactForm() {
             name="service"
             value={values.service}
             onChange={(e) => update("service", e.target.value)}
-            className="w-full rounded-lg border border-steel-300 bg-white px-3 py-2.5 text-sm text-steel-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+            className={FIELD_CLASS}
           >
-            <option value="">Selecciona un servicio</option>
+            <option value="" className="bg-steel-900">
+              Selecciona un servicio
+            </option>
             {SERVICES.map((s) => (
-              <option key={s.slug} value={s.title}>
+              <option key={s.slug} value={s.title} className="bg-steel-900">
                 {s.title}
               </option>
             ))}
@@ -152,11 +154,8 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="message"
-          className="mb-1.5 block text-sm font-medium text-steel-700"
-        >
-          Mensaje <span className="text-brand-600">*</span>
+        <label htmlFor="message" className={LABEL_CLASS}>
+          Mensaje <span className="text-brand-400">*</span>
         </label>
         <textarea
           id="message"
@@ -166,17 +165,17 @@ export function ContactForm() {
           value={values.message}
           onChange={(e) => update("message", e.target.value)}
           placeholder="Cuéntanos qué necesitas: material, medidas, cantidad, plazos…"
-          className="w-full rounded-lg border border-steel-300 bg-white px-3 py-2.5 text-sm text-steel-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+          className={FIELD_CLASS}
         />
         {fieldErrors.message?.[0] ? (
-          <p className="mt-1 text-sm text-red-600">{fieldErrors.message[0]}</p>
+          <p className="mt-1 text-sm text-red-400">{fieldErrors.message[0]}</p>
         ) : null}
       </div>
 
       {status === "error" && errorMsg ? (
         <p
           role="alert"
-          className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700"
+          className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-300 ring-1 ring-inset ring-red-500/30"
         >
           {errorMsg}
         </p>
@@ -185,7 +184,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="inline-flex w-full items-center justify-center rounded-lg bg-brand-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-6 py-3.5 text-base font-semibold text-white shadow-[0_0_30px_-8px_rgba(249,115,22,0.6)] transition-all hover:from-brand-400 hover:to-brand-500 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === "submitting" ? "Enviando…" : "Enviar solicitud"}
       </button>
@@ -214,11 +213,8 @@ function Field({
 }: FieldProps) {
   return (
     <div>
-      <label
-        htmlFor={name}
-        className="mb-1.5 block text-sm font-medium text-steel-700"
-      >
-        {label} {required ? <span className="text-brand-600">*</span> : null}
+      <label htmlFor={name} className={LABEL_CLASS}>
+        {label} {required ? <span className="text-brand-400">*</span> : null}
       </label>
       <input
         id={name}
@@ -227,10 +223,10 @@ function Field({
         required={required}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-steel-300 bg-white px-3 py-2.5 text-sm text-steel-900 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+        className={FIELD_CLASS}
       />
       {errors?.[0] ? (
-        <p className="mt-1 text-sm text-red-600">{errors[0]}</p>
+        <p className="mt-1 text-sm text-red-400">{errors[0]}</p>
       ) : null}
     </div>
   );

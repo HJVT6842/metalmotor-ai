@@ -111,6 +111,42 @@ export function ServiceGlyph({ name, ...props }: IconProps & { name: ServiceIcon
           <path d="M3 9h18M9 9v12M3 15h6" />
         </svg>
       );
+    case "fabrication":
+      return (
+        <svg {...base(props)}>
+          <path d="M3 21h18M5 21V8l5-3 5 3v13M9 21v-5h2v5" />
+          <path d="M15 12h4v9" />
+        </svg>
+      );
+    case "gate":
+      return (
+        <svg {...base(props)}>
+          <path d="M3 21V6M21 21V6M3 6l9-3 9 3M3 21h18" />
+          <path d="M7 21V9M11 21V9M15 21V9" />
+        </svg>
+      );
+    case "parts":
+      return (
+        <svg {...base(props)}>
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" />
+        </svg>
+      );
+    case "industrial":
+      return (
+        <svg {...base(props)}>
+          <path d="M3 21h18M4 21V11l5 3V11l5 3V8l5 3v10" />
+          <path d="M7 21v-3M12 21v-3M17 21v-3" />
+        </svg>
+      );
+    case "reverse":
+      return (
+        <svg {...base(props)}>
+          <path d="M3 12a9 9 0 1 0 3-6.7" />
+          <path d="M3 4v4h4" />
+          <circle cx="12" cy="12" r="2.2" />
+        </svg>
+      );
     default:
       return null;
   }

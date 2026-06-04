@@ -1,20 +1,22 @@
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 
+import { cn } from "@/lib/cn";
+
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
-    "bg-brand-600 text-white shadow-sm hover:bg-brand-700 focus-visible:outline-brand-600",
+    "bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-[0_0_30px_-8px_rgba(249,115,22,0.6)] hover:shadow-[0_0_40px_-6px_rgba(249,115,22,0.8)] hover:from-brand-400 hover:to-brand-500 focus-visible:outline-brand-500",
   secondary:
-    "bg-steel-900 text-white hover:bg-steel-800 focus-visible:outline-steel-900",
+    "bg-white text-steel-900 hover:bg-steel-100 focus-visible:outline-white",
   ghost:
-    "bg-transparent text-steel-800 ring-1 ring-inset ring-steel-300 hover:bg-steel-100 focus-visible:outline-steel-400",
+    "bg-white/5 text-white ring-1 ring-inset ring-white/15 backdrop-blur-sm hover:bg-white/10 focus-visible:outline-white/40",
 };
 
 const SIZE_CLASSES: Record<Size, string> = {
-  md: "px-4 py-2.5 text-sm",
-  lg: "px-6 py-3 text-base",
+  md: "px-5 py-2.5 text-sm",
+  lg: "px-7 py-3.5 text-base",
 };
 
 type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -23,10 +25,7 @@ type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   readonly children: ReactNode;
 };
 
-/**
- * Anchor styled as a button. All primary CTAs are links (WhatsApp, anchors),
- * so an anchor-based button keeps semantics correct and is keyboard-friendly.
- */
+/** Anchor styled as a button — all primary CTAs are links (WhatsApp/anchors). */
 export function LinkButton({
   variant = "primary",
   size = "md",
@@ -36,7 +35,12 @@ export function LinkButton({
 }: LinkButtonProps) {
   return (
     <a
-      className={`inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]} ${className}`}
+      className={cn(
+        "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+        VARIANT_CLASSES[variant],
+        SIZE_CLASSES[size],
+        className,
+      )}
       {...rest}
     >
       {children}
