@@ -7,6 +7,7 @@ import { Services } from "@/components/sections/Services";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Trust } from "@/components/sections/Trust";
 import { WhatsAppSection } from "@/components/sections/WhatsAppSection";
+import { Workshop } from "@/components/sections/Workshop";
 
 /** Landing page: composed from independent, self-contained sections. */
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Portfolio />
       <Products />
       <Process />
+      <Workshop />
       <Testimonials />
       <WhatsAppSection />
       <ContactSection />
