@@ -38,3 +38,42 @@ export function getSupabaseServerEnv(): EnvResult {
   const missing = parsed.error.issues.map((issue) => String(issue.path[0]));
   return { ok: false, missing: [...new Set(missing)] };
 }
+
+/**
+ * Notifications (Resend email) configuration.
+ *
+ * Only RESEND_API_KEY is mandatory; recipient and sender fall back to safe
+ * defaults so the value is never hardcoded in business logic. Missing key →
+ * the email channel reports itself unconfigured and is skipped (graceful: the
+ * lead is still captured). Sender defaults to Resend's verified onboarding
+ * address until the metalmotor.cl domain is verified in Resend.
+ */
+const DEFAULT_TO_EMAIL = "jantonio.vasquez.t@gmail.com";
+const DEFAULT_FROM_EMAIL = "onboarding@resend.dev";
+
+export type NotificationsEnv = {
+  readonly resendApiKey: string;
+  readonly toEmail: string;
+  readonly fromEmail: string;
+};
+
+export type NotificationsEnvResult =
+  | { readonly ok: true; readonly env: NotificationsEnv }
+  | { readonly ok: false; readonly missing: readonly string[] };
+
+export function getNotificationsEnv(): NotificationsEnvResult {
+  const resendApiKey = process.env.RESEND_API_KEY?.trim();
+  if (!resendApiKey) {
+    return { ok: false, missing: ["RESEND_API_KEY"] };
+  }
+
+  return {
+    ok: true,
+    env: {
+      resendApiKey,
+      toEmail: process.env.NOTIFICATIONS_TO_EMAIL?.trim() || DEFAULT_TO_EMAIL,
+      fromEmail:
+        process.env.NOTIFICATIONS_FROM_EMAIL?.trim() || DEFAULT_FROM_EMAIL,
+    },
+  };
+}
