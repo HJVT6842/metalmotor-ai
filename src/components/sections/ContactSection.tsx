@@ -2,7 +2,14 @@ import { ContactForm } from "@/components/ContactForm";
 import { WhatsAppCta } from "@/components/WhatsAppCta";
 import { Reveal } from "@/components/animations/Reveal";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { CheckIcon } from "@/components/ui/icons";
 import { SITE } from "@/data/site";
+
+const CONTACT_BENEFITS = [
+  "Respuesta en menos de 24 horas",
+  "Cotización sin compromiso",
+  "Asesoría técnica y diseño CAD",
+] as const;
 
 /** Contact section: lead form + direct contact details. */
 export function ContactSection() {
@@ -32,6 +39,18 @@ export function ContactSection() {
             <div className="mt-5">
               <WhatsAppCta label="Escribir por WhatsApp" />
             </div>
+
+            <ul className="mt-6 space-y-2.5">
+              {CONTACT_BENEFITS.map((benefit) => (
+                <li
+                  key={benefit}
+                  className="flex items-start gap-2 text-sm text-steel-200"
+                >
+                  <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
 
             <dl className="mt-8 space-y-4 text-sm">
               <div>

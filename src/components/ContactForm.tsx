@@ -188,6 +188,11 @@ export function ContactForm() {
       >
         {status === "submitting" ? "Enviando…" : "Enviar solicitud"}
       </button>
+
+      <p className="text-xs text-steel-500">
+        Te respondemos dentro de 24 horas · Cotización sin compromiso · No
+        compartimos tus datos.
+      </p>
     </form>
   );
 }

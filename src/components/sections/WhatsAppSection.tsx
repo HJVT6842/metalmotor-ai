@@ -44,6 +44,20 @@ export function WhatsAppSection() {
           <p className="mt-5 text-sm font-medium text-white/80">
             o llámanos: {SITE.phoneDisplay}
           </p>
+
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-semibold text-white/90">
+            {[
+              "Respuesta en 24 h",
+              "Cotización sin compromiso",
+              "Asesoría técnica incluida",
+              "+500 proyectos fabricados",
+            ].map((chip) => (
+              <li key={chip} className="inline-flex items-center gap-2">
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-white" />
+                {chip}
+              </li>
+            ))}
+          </ul>
         </Reveal>
       </Container>
     </section>

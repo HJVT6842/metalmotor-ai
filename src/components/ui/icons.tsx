@@ -64,6 +64,71 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function ClockIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
+
+export function ShieldCheckIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  );
+}
+
+export function HeadsetIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M4 13v-1a8 8 0 0 1 16 0v1" />
+      <path d="M4 14a2 2 0 0 1 2-2h1v5H6a2 2 0 0 1-2-2zM20 14a2 2 0 0 0-2-2h-1v5h1a2 2 0 0 0 2-2z" />
+      <path d="M20 16v1a4 4 0 0 1-4 4h-3" />
+    </svg>
+  );
+}
+
+export function GaugeIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 13l4-3" />
+      <path d="M4 18a9 9 0 1 1 16 0" />
+      <circle cx="12" cy="13" r="1.4" />
+    </svg>
+  );
+}
+
+export function BadgeIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="12" cy="9" r="6" />
+      <path d="M9 14l-1 7 4-2 4 2-1-7" />
+    </svg>
+  );
+}
+
+export function TruckIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M3 6h11v9H3zM14 9h4l3 3v3h-7z" />
+      <circle cx="7" cy="18" r="1.6" />
+      <circle cx="17.5" cy="18" r="1.6" />
+    </svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
 /** Maps a ServiceIcon key to a decorative line icon. */
 export function ServiceGlyph({ name, ...props }: IconProps & { name: ServiceIcon }) {
   switch (name) {
