@@ -79,7 +79,8 @@ export function Media({
           fill
           sizes={sizes}
           priority={priority}
-          className={cn("object-cover", className)}
+          quality={82}
+          className={cn("object-cover object-center", className)}
         />
       ) : (
         <Poster label={alt} index={index} className={className} />

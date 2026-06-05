@@ -31,7 +31,7 @@ export function Portfolio() {
   return (
     <section
       id="portafolio"
-      className="scroll-mt-20 border-y border-white/5 bg-steel-900/40 py-20 sm:py-24 lg:py-28"
+      className="scroll-mt-20 border-y border-white/5 bg-steel-950 py-20 sm:py-24 lg:py-28"
     >
       <Container>
         <SectionHeading
@@ -72,7 +72,7 @@ export function Portfolio() {
 
         <motion.div
           layout
-          className="mt-10 grid auto-rows-[210px] grid-cols-2 gap-4 sm:auto-rows-[240px] lg:grid-cols-3"
+          className="mt-10 grid auto-rows-[220px] grid-cols-2 gap-4 sm:auto-rows-[260px] lg:grid-cols-3"
         >
           <AnimatePresence mode="popLayout">
             {items.map((item, i) => (
@@ -87,7 +87,7 @@ export function Portfolio() {
                 transition={{ duration: 0.4 }}
                 aria-label={`Ampliar: ${item.title}`}
                 className={cn(
-                  "group relative overflow-hidden rounded-2xl border border-white/10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
+                  "group relative overflow-hidden rounded-2xl border border-white/10 text-left transition-all duration-300 hover:border-brand-500/40 hover:shadow-[0_0_40px_-12px_rgba(249,115,22,0.5)] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500",
                   TALL.has(item.id) && "row-span-2",
                 )}
               >
@@ -99,7 +99,7 @@ export function Portfolio() {
                     status={item.status}
                   />
                 </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/20 to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/35 to-transparent" />
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-90 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <span className="text-xs font-semibold uppercase tracking-wider text-brand-400">
                     {item.category}

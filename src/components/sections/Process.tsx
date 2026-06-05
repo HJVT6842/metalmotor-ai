@@ -6,7 +6,7 @@ import { PROCESS } from "@/data/process";
 /** Visual 6-step timeline from plan to delivery. */
 export function Process() {
   return (
-    <Section id="proceso" className="bg-steel-950">
+    <Section id="proceso" className="bg-steel-900/40">
       <SectionHeading
         eyebrow="Proceso"
         title={

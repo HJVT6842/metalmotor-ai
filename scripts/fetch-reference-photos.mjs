@@ -10,7 +10,7 @@
  * not Metal Motor's own work. Replace any image by dropping a file at the
  * asset's replacementPath and flipping status to "real" (see media.ts / README).
  */
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,19 +28,21 @@ const dirForId = (id) =>
         ? "products"
         : "workshop";
 
-/** Each topic fills one or more asset slots from the same search relevance. */
+// NOTE: the 3 hero images are managed separately by scripts/fetch-hero-photos.mjs
+// (CNC laser-cutting scenes). This script preserves their manifest entries on
+// regeneration and does not fetch them here.
 const TOPICS = [
   {
     queries: ["fiber laser cutting metal", "laser cutting steel sheet", "cnc laser cutting"],
-    slots: ["hero-laser", "svc-corte-laser"],
+    slots: ["svc-corte-laser"],
   },
   {
     queries: ["metalworking lathe machine", "industrial milling machine", "machine tool factory", "cnc machining center"],
-    slots: ["hero-workshop", "workshop-machinery", "workshop-atmosphere"],
+    slots: ["workshop-machinery", "workshop-atmosphere"],
   },
   {
     queries: ["steel structure fabrication", "steel fabrication welding factory", "steel beam construction"],
-    slots: ["hero-structure", "svc-fabricacion"],
+    slots: ["svc-fabricacion"],
   },
   {
     queries: ["perforated metal panel facade", "perforated sheet metal", "metal cladding facade"],
@@ -198,6 +200,24 @@ for (const topic of TOPICS) {
       `✓ ${slot.padEnd(20)} ${String(Math.round(bytes / 1024)).padStart(4)}KB  ${c.license.padEnd(16)} ${c.title.slice(0, 50)}`,
     );
     await new Promise((r) => setTimeout(r, 200));
+  }
+}
+
+// Preserve entries managed elsewhere (e.g. hero-* from fetch-hero-photos.mjs).
+const manifestPath = join(ROOT, "src/data/reference-manifest.ts");
+if (existsSync(manifestPath)) {
+  try {
+    const txt = readFileSync(manifestPath, "utf8");
+    const start = txt.indexOf("= {");
+    const end = txt.lastIndexOf("} as const");
+    if (start >= 0 && end > start) {
+      const prev = JSON.parse(txt.slice(start + 2, end + 1));
+      for (const [k, v] of Object.entries(prev)) {
+        if (!(k in manifest)) manifest[k] = v;
+      }
+    }
+  } catch {
+    console.warn("Could not merge existing manifest; writing fresh.");
   }
 }
 

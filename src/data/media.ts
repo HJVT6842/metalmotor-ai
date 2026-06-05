@@ -84,30 +84,31 @@ function build(d: Descriptor): MediaAsset {
   };
 }
 
+// Order = hero crossfade order. All frames are real CNC laser-cutting machines.
 const HERO: readonly Descriptor[] = [
+  {
+    id: "hero-structure",
+    title: "Máquina de corte láser CNC",
+    category: "Hero",
+    alt: "Máquina de corte láser CNC cortando metal (imagen referencial)",
+    usage: "hero",
+    replacementPath: "/images/real/workshop/hero-corte-laser-1.webp",
+  },
+  {
+    id: "hero-workshop",
+    title: "Corte láser en operación",
+    category: "Hero",
+    alt: "Corte láser CNC en operación sobre chapa metálica (imagen referencial)",
+    usage: "hero",
+    replacementPath: "/images/real/workshop/hero-corte-laser-2.webp",
+  },
   {
     id: "hero-laser",
     title: "Corte láser CNC",
     category: "Hero",
-    alt: "Máquina de corte láser CNC de fibra en operación (imagen referencial)",
+    alt: "Máquina de corte láser CNC en operación (imagen referencial)",
     usage: "hero",
-    replacementPath: "/images/real/workshop/hero-laser.webp",
-  },
-  {
-    id: "hero-workshop",
-    title: "Taller industrial",
-    category: "Hero",
-    alt: "Taller de mecanizado metálico con torno (imagen referencial)",
-    usage: "hero",
-    replacementPath: "/images/real/workshop/hero-workshop.webp",
-  },
-  {
-    id: "hero-structure",
-    title: "Estructura metálica",
-    category: "Hero",
-    alt: "Fabricación de estructura metálica de gran escala (imagen referencial)",
-    usage: "hero",
-    replacementPath: "/images/real/workshop/hero-structure.webp",
+    replacementPath: "/images/real/workshop/hero-corte-laser-3.webp",
   },
 ];
 

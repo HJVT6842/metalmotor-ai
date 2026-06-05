@@ -14,9 +14,9 @@ export type ReferenceManifestEntry = {
 export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
   "hero-laser": {
     "src": "/images/reference/hero/hero-laser.jpg",
-    "title": "CNC Laser Cutting Head in Use at Martin Guitar Factory.jpg",
+    "title": "CNC Laser Cutting Machine in Operation at Martin Guitar Factory.jpg",
     "credit": "Henrysz",
-    "source": "https://commons.wikimedia.org/wiki/File:CNC_Laser_Cutting_Head_in_Use_at_Martin_Guitar_Factory.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:CNC_Laser_Cutting_Machine_in_Operation_at_Martin_Guitar_Factory.jpg",
     "license": "CC BY 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
   },
@@ -30,9 +30,9 @@ export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
   },
   "hero-workshop": {
     "src": "/images/reference/hero/hero-workshop.jpg",
-    "title": "Metal lathe used to produce flywheels.JPG",
-    "credit": "Work With Sounds",
-    "source": "https://commons.wikimedia.org/wiki/File:Metal_lathe_used_to_produce_flywheels.JPG",
+    "title": "Laser Cutting.jpg",
+    "credit": "Framos123",
+    "source": "https://commons.wikimedia.org/wiki/File:Laser_Cutting.jpg",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
   },
@@ -53,12 +53,12 @@ export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
   },
   "hero-structure": {
-    "src": "/images/reference/hero/hero-structure.png",
-    "title": "Large-scale heavy steel structure fabrication workshop in Suzhou.png",
-    "credit": "Leadingtopunion",
-    "source": "https://commons.wikimedia.org/wiki/File:Large-scale_heavy_steel_structure_fabrication_workshop_in_Suzhou.png",
-    "license": "CC0",
-    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+    "src": "/images/reference/hero/hero-structure.jpg",
+    "title": "CNC Laser Cutting Machine.jpg",
+    "credit": "S zillayali",
+    "source": "https://commons.wikimedia.org/wiki/File:CNC_Laser_Cutting_Machine.jpg",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
   },
   "svc-fabricacion": {
     "src": "/images/reference/services/svc-fabricacion.jpg",

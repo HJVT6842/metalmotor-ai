@@ -10,7 +10,7 @@ import { buildWhatsAppUrl, quotationMessage } from "@/lib/whatsapp";
 /** Premium product cards with hover animation and a per-product WhatsApp CTA. */
 export function Products() {
   return (
-    <Section id="productos" className="bg-steel-950">
+    <Section id="productos" className="bg-steel-900/40">
       <SectionHeading
         eyebrow="Productos"
         title={
@@ -49,7 +49,7 @@ export function Products() {
 
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="text-xl font-bold text-white">{product.name}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-steel-400">
+                  <p className="mt-2 text-sm leading-relaxed text-steel-400">
                     {product.description}
                   </p>
 
@@ -68,7 +68,7 @@ export function Products() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-400 transition-colors hover:text-brand-300"
+                    className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-brand-400 transition-colors hover:text-brand-300"
                   >
                     <WhatsAppIcon className="h-4 w-4" />
                     Cotizar

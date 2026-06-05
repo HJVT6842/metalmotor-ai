@@ -21,7 +21,7 @@ export function Workshop() {
   return (
     <section
       id="taller"
-      className="relative scroll-mt-20 overflow-hidden bg-steel-900/40 py-20 sm:py-24 lg:py-28"
+      className="relative scroll-mt-20 overflow-hidden bg-steel-950 py-20 sm:py-24 lg:py-28"
     >
       <div className="bg-grid absolute inset-0 opacity-40" aria-hidden />
       <div

@@ -25,16 +25,18 @@ for (const vp of VIEWPORTS) {
   });
   const page = await ctx.newPage();
   await page.goto(base, { waitUntil: "load", timeout: 60000 });
-  // Trigger scroll-reveal animations across the whole page.
+  // Trigger scroll-reveal (whileInView, once) across the whole page, slowly
+  // enough for IntersectionObserver + state updates to settle. Stay at the
+  // bottom — a fullPage screenshot still captures everything and triggered
+  // reveals persist.
   await page.evaluate(async () => {
-    const step = window.innerHeight * 0.8;
+    const step = Math.round(window.innerHeight * 0.55);
     const total = document.body.scrollHeight;
     for (let y = 0; y <= total; y += step) {
       window.scrollTo(0, y);
-      await new Promise((r) => setTimeout(r, 180));
+      await new Promise((r) => setTimeout(r, 420));
     }
-    window.scrollTo(0, 0);
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((r) => setTimeout(r, 1000));
   });
   await page.screenshot({ path: `${OUT}/${label}-${vp.name}.png`, fullPage: true });
   console.log(`✓ ${OUT}/${label}-${vp.name}.png`);

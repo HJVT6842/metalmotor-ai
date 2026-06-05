@@ -19,7 +19,11 @@ export function Footer() {
   const whatsappHref = buildWhatsAppUrl(SITE.whatsappNumber, quotationMessage());
 
   return (
-    <footer className="border-t border-white/10 bg-steel-950">
+    <footer className="bg-steel-950">
+      <div
+        aria-hidden
+        className="h-1 w-full bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600"
+      />
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-1">
           <Logo variant="horizontal" />

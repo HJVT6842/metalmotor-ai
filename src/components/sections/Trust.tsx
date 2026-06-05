@@ -15,7 +15,7 @@ const CREDENTIALS = [
 /** Credibility band: animated counters + credential chips. */
 export function Trust() {
   return (
-    <section className="relative overflow-hidden bg-steel-900/40 py-16">
+    <section className="relative overflow-hidden border-y border-white/5 bg-steel-900/40 py-20">
       <div className="bg-grid absolute inset-0 opacity-50" aria-hidden />
       <Container className="relative">
         <dl className="grid grid-cols-2 gap-8 lg:grid-cols-4">
