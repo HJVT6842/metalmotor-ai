@@ -19,53 +19,53 @@ type Reason = {
 
 const REASONS: readonly Reason[] = [
   {
-    icon: GaugeIcon,
-    title: "Precisión CNC",
-    description:
-      "Corte láser de fibra y plegado CNC para tolerancias exactas y repetibles.",
-  },
-  {
     icon: ClockIcon,
-    title: "Respuesta en 24 horas",
+    title: "Cotización rápida",
     description:
-      "Cotizamos rápido para que tu proyecto avance sin esperas innecesarias.",
-  },
-  {
-    icon: HeadsetIcon,
-    title: "Asesoría técnica y CAD",
-    description:
-      "Te ayudamos a optimizar tu diseño para fabricación y ahorrar material.",
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Calidad industrial",
-    description:
-      "Control de calidad y terminaciones profesionales en cada pieza.",
+      "Respondemos la mayoría de las solicitudes en menos de 24 horas.",
   },
   {
     icon: BadgeIcon,
-    title: "Fabricación a medida",
+    title: "Fabricación personalizada",
     description:
-      "Desde una pieza única hasta producción en serie, según lo que necesites.",
+      "Desde una pieza única hasta producción en serie, según tu proyecto.",
+  },
+  {
+    icon: GaugeIcon,
+    title: "Corte de precisión",
+    description:
+      "Corte láser de fibra y plegado CNC para tolerancias exactas.",
+  },
+  {
+    icon: HeadsetIcon,
+    title: "Atención directa",
+    description:
+      "Hablas directo con quienes fabrican tu pedido, sin intermediarios.",
   },
   {
     icon: TruckIcon,
-    title: "Cumplimiento de plazos",
+    title: "Entrega comprometida",
     description:
       "Plazos claros y entrega coordinada: despacho o retiro de tu pedido.",
   },
+  {
+    icon: ShieldCheckIcon,
+    title: "Asesoría técnica",
+    description:
+      "Te ayudamos a optimizar tu diseño CAD para fabricación y ahorro de material.",
+  },
 ];
 
-/** "Por qué elegirnos" — differentiators that build commercial trust. */
+/** "Por qué nuestros clientes nos eligen" — trust section placed before the form. */
 export function WhyUs() {
   return (
-    <Section id="por-que-elegirnos" className="bg-steel-950">
+    <Section id="confianza" className="bg-steel-900/40">
       <SectionHeading
-        eyebrow="Por qué elegirnos"
+        eyebrow="Confianza"
         title={
           <>
-            Una fábrica que cumple,{" "}
-            <span className="text-gradient-brand">de principio a fin</span>
+            Por qué nuestros clientes{" "}
+            <span className="text-gradient-brand">nos eligen</span>
           </>
         }
         description="Tecnología, oficio y respuesta rápida para que tu proyecto salga perfecto."

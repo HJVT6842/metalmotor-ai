@@ -27,21 +27,21 @@ const PARTICLES = [
 ] as const;
 
 const headlineWords = [
-  { text: "Corte", grad: false },
+  { text: "Celosías,", grad: false },
+  { text: "Portones", grad: false },
+  { text: "y", grad: false },
+  { text: "Corte", grad: true },
   { text: "Láser", grad: true },
   { text: "CNC", grad: true },
-  { text: "y", grad: false },
-  { text: "Fabricación", grad: false },
-  { text: "Metálica", grad: false },
-  { text: "de", grad: false },
-  { text: "Precisión", grad: true },
+  { text: "a", grad: false },
+  { text: "Medida", grad: false },
 ] as const;
 
 export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[88vh] items-center overflow-hidden bg-steel-950 sm:min-h-[92vh]"
+      className="relative flex min-h-[74vh] items-center overflow-hidden bg-steel-950 sm:min-h-[78vh]"
     >
       {/* Crossfading reference banner (parallax + Ken Burns) */}
       <HeroBanner />

@@ -31,15 +31,6 @@ export type NavLink = {
   readonly href: string;
 };
 
-export type Product = {
-  readonly slug: string;
-  readonly name: string;
-  readonly description: string;
-  /** Id of the media asset in src/data/media.ts (PRODUCT_MEDIA). */
-  readonly mediaId: string;
-  readonly tags: readonly string[];
-};
-
 export type Testimonial = {
   readonly name: string;
   readonly role: string;

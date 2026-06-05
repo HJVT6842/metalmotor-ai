@@ -8,30 +8,13 @@ import { getMediaById } from "@/data/media";
 type Featured = {
   readonly mediaId: string;
   readonly name: string;
-  readonly blurb: string;
 };
 
 const FEATURED: readonly Featured[] = [
-  {
-    mediaId: "prod-celosias",
-    name: "Celosías Decorativas",
-    blurb: "Control solar, privacidad y diseño arquitectónico a medida.",
-  },
-  {
-    mediaId: "prod-paneles",
-    name: "Paneles Metálicos",
-    blurb: "Revestimientos perforados para fachadas e interiores.",
-  },
-  {
-    mediaId: "prod-portones",
-    name: "Portones",
-    blurb: "Portones robustos y seguros, fabricados para durar.",
-  },
-  {
-    mediaId: "svc-corte-laser",
-    name: "Corte Láser CNC",
-    blurb: "Corte de precisión en acero, inoxidable y aluminio.",
-  },
+  { mediaId: "prod-celosias", name: "Celosías Decorativas" },
+  { mediaId: "prod-paneles", name: "Paneles Metálicos" },
+  { mediaId: "prod-portones", name: "Portones" },
+  { mediaId: "svc-corte-laser", name: "Corte Láser CNC" },
 ];
 
 /**
@@ -64,7 +47,7 @@ export function FeaturedProducts() {
                 <a
                   href="#contacto"
                   aria-label={`Solicitar ${item.name}`}
-                  className="relative block h-60 overflow-hidden sm:h-64"
+                  className="relative block h-72 overflow-hidden sm:h-80"
                 >
                   <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
                     <Media
@@ -81,25 +64,20 @@ export function FeaturedProducts() {
                   </h3>
                 </a>
 
-                <div className="flex flex-1 flex-col p-5">
-                  <p className="text-sm leading-relaxed text-steel-400">
-                    {item.blurb}
-                  </p>
-                  <div className="mt-auto flex flex-col gap-2 pt-5">
-                    <WhatsAppCta
-                      label="Cotizar por WhatsApp"
-                      service={item.name}
-                      size="md"
-                      className="w-full"
-                    />
-                    <a
-                      href="#contacto"
-                      className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-brand-400 transition-colors hover:text-brand-300"
-                    >
-                      Solicitar presupuesto
-                      <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </a>
-                  </div>
+                <div className="flex flex-col gap-2 p-4">
+                  <WhatsAppCta
+                    label="Cotizar por WhatsApp"
+                    service={item.name}
+                    size="md"
+                    className="w-full"
+                  />
+                  <a
+                    href="#contacto"
+                    className="inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-brand-400 transition-colors hover:text-brand-300"
+                  >
+                    Solicitar presupuesto
+                    <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </a>
                 </div>
               </article>
             </StaggerItem>

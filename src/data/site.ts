@@ -38,10 +38,10 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS: readonly NavLink[] = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Portafolio", href: "#portafolio" },
-  { label: "Productos", href: "#productos" },
+  { label: "Productos", href: "#destacados" },
+  { label: "Fabricamos", href: "#fabricamos" },
+  { label: "Capacidad", href: "#capacidad" },
+  { label: "Trabajos", href: "#trabajos" },
   { label: "Proceso", href: "#proceso" },
-  { label: "Taller", href: "#taller" },
   { label: "Contacto", href: "#contacto" },
 ] as const;
