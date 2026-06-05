@@ -12,14 +12,6 @@ export type ReferenceManifestEntry = {
 };
 
 export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
-  "hero-laser": {
-    "src": "/images/reference/hero/hero-laser.jpg",
-    "title": "CNC Laser Cutting Machine in Operation at Martin Guitar Factory.jpg",
-    "credit": "Henrysz",
-    "source": "https://commons.wikimedia.org/wiki/File:CNC_Laser_Cutting_Machine_in_Operation_at_Martin_Guitar_Factory.jpg",
-    "license": "CC BY 4.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/4.0"
-  },
   "svc-corte-laser": {
     "src": "/images/reference/services/svc-corte-laser.jpg",
     "title": "CNC Laser Cutting Machine in Operation at Martin Guitar Factory.jpg",
@@ -51,14 +43,6 @@ export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
     "source": "https://commons.wikimedia.org/wiki/File:Taig_metal_lathe,_Drill_press_and_Workbench.jpg",
     "license": "CC BY-SA 2.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0"
-  },
-  "hero-structure": {
-    "src": "/images/reference/hero/hero-structure.jpg",
-    "title": "CNC Laser Cutting Machine.jpg",
-    "credit": "S zillayali",
-    "source": "https://commons.wikimedia.org/wiki/File:CNC_Laser_Cutting_Machine.jpg",
-    "license": "CC BY 3.0",
-    "licenseUrl": "https://creativecommons.org/licenses/by/3.0"
   },
   "svc-fabricacion": {
     "src": "/images/reference/services/svc-fabricacion.jpg",

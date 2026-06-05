@@ -84,31 +84,16 @@ function build(d: Descriptor): MediaAsset {
   };
 }
 
-// Order = hero crossfade order. All frames are real CNC laser-cutting machines.
+// Single, strongest hero frame: a fiber laser actively cutting steel with
+// sparks (high contrast). Parallax + Ken Burns still animate it.
 const HERO: readonly Descriptor[] = [
   {
-    id: "hero-structure",
-    title: "Máquina de corte láser CNC",
-    category: "Hero",
-    alt: "Máquina de corte láser CNC cortando metal (imagen referencial)",
-    usage: "hero",
-    replacementPath: "/images/real/workshop/hero-corte-laser-1.webp",
-  },
-  {
     id: "hero-workshop",
-    title: "Corte láser en operación",
-    category: "Hero",
-    alt: "Corte láser CNC en operación sobre chapa metálica (imagen referencial)",
-    usage: "hero",
-    replacementPath: "/images/real/workshop/hero-corte-laser-2.webp",
-  },
-  {
-    id: "hero-laser",
     title: "Corte láser CNC",
     category: "Hero",
-    alt: "Máquina de corte láser CNC en operación (imagen referencial)",
+    alt: "Corte láser CNC de fibra cortando acero con chispas (imagen referencial)",
     usage: "hero",
-    replacementPath: "/images/real/workshop/hero-corte-laser-3.webp",
+    replacementPath: "/images/real/workshop/hero-corte-laser.webp",
   },
 ];
 

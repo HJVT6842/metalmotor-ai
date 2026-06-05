@@ -1,5 +1,6 @@
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Faq } from "@/components/sections/Faq";
+import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { Hero } from "@/components/sections/Hero";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Process } from "@/components/sections/Process";
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <FeaturedProducts />
       <Trust />
       <Services />
       <WhatWeMake />

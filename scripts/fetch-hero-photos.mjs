@@ -14,21 +14,23 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const UA = "MetalMotorAI-ReferenceFetch/1.0 (https://metalmotor.cl; contacto@metalmotor.cl)";
 const API = "https://commons.wikimedia.org/w/api.php";
 
-const SLOTS = ["hero-laser", "hero-workshop", "hero-structure"];
+// The hero uses a single curated frame (hero-workshop): a fiber laser actively
+// cutting steel with sparks. Re-running re-fetches the top-ranked candidate —
+// verify the result visually before committing, as ranking can vary.
+const SLOTS = ["hero-workshop"];
 const QUERIES = [
-  "cnc laser cutting machine",
+  "fiber laser cutting sparks",
+  "laser cutting steel sparks",
+  "cnc laser cutting metal",
   "fiber laser cutting machine",
-  "laser cutting machine sheet metal",
   "industrial laser cutting steel",
-  "plasma cnc cutting machine",
-  "laser cutter metal",
+  "plasma cnc cutting steel",
 ];
 
 // Exclude diagrams, people-centric and military/handheld scenes.
 const DENY =
-  /annotated|diagram|drawing|schematic|chart|graph|logo|icon|\bmap\b|sign\b|poster|portrait|ceremony|award|conference|meeting|stamp|coin|navy|sailor|airman|soldier|marine\b|army|military|uss |hull|firefighter|fireman|damage control|portable|hand-held|handheld|angle grinder/i;
+  /annotated|diagram|drawing|schematic|chart|graph|logo|icon|\bmap\b|sign\b|poster|portrait|ceremony|award|conference|meeting|stamp|coin|navy|sailor|airman|soldier|marine\b|army|military|uss |hull|firefighter|fireman|damage control|portable|hand-held|handheld|angle grinder|\bman\b|\bwoman\b|worker|people|crowd|operator/i;
 const MACHINE_KW = /laser|cnc|plasma|fiber|fibre/i;
-const SPARK_KW = /spark|cutting|cut |steel|sheet metal|torch/i;
 
 async function fetchRetry(url, opts, tries = 4) {
   let err;
@@ -85,9 +87,10 @@ function candidate(page) {
   const landscape = (ii.width || 0) >= (ii.height || 1);
   const title = page.title.replace(/^File:/, "");
   const machine = MACHINE_KW.test(title) ? 5 : 0;
-  const spark = SPARK_KW.test(title) ? 2 : 0;
+  const spark = /spark/i.test(title) ? 4 : 0;
+  const metal = /steel|sheet metal|\bmetal\b|cutting/i.test(title) ? 1 : 0;
   const score =
-    machine + spark + (landscape ? 3 : -3) + ((ii.width || 0) >= 1920 ? 1 : 0);
+    machine + spark + metal + (landscape ? 3 : -3) + ((ii.width || 0) >= 1920 ? 1 : 0);
   const ext = ii.extmetadata || {};
   return {
     score,
