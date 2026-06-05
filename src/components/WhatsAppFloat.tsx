@@ -2,7 +2,10 @@ import { WhatsAppIcon } from "@/components/ui/icons";
 import { SITE } from "@/data/site";
 import { buildWhatsAppUrl, quotationMessage } from "@/lib/whatsapp";
 
-/** Persistent floating WhatsApp button with attention pulse and hover label. */
+/**
+ * Persistent floating WhatsApp CTA. Round icon on mobile; a labelled pill on
+ * larger screens for maximum conversion visibility. Includes an attention pulse.
+ */
 export function WhatsAppFloat() {
   const href = buildWhatsAppUrl(SITE.whatsappNumber, quotationMessage());
   return (
@@ -11,24 +14,17 @@ export function WhatsAppFloat() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Cotizar por WhatsApp"
-      className="group fixed bottom-5 right-5 z-50 flex items-center gap-0 rounded-full"
+      className="group fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] py-3 pl-3 pr-3 text-white shadow-[0_10px_30px_-6px_rgba(37,211,102,0.7)] transition-transform hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#25D366] sm:pr-5"
     >
-      {/* Hover label (desktop) */}
-      <span className="pointer-events-none mr-0 max-w-0 overflow-hidden whitespace-nowrap rounded-full text-sm font-semibold text-white opacity-0 transition-all duration-300 group-hover:mr-3 group-hover:max-w-[200px] group-hover:opacity-100">
-        <span className="rounded-full bg-steel-900 px-4 py-2 shadow-lg ring-1 ring-white/10">
-          Cotiza por WhatsApp
-        </span>
-      </span>
-
-      <span className="relative flex h-14 w-14 items-center justify-center">
-        {/* Attention pulse */}
+      <span className="relative flex h-8 w-8 items-center justify-center">
         <span
           aria-hidden
-          className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#25D366] opacity-40"
+          className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/40"
         />
-        <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform group-hover:scale-105 group-focus-visible:scale-105">
-          <WhatsAppIcon className="h-7 w-7" />
-        </span>
+        <WhatsAppIcon className="relative h-7 w-7" />
+      </span>
+      <span className="hidden text-sm font-bold sm:inline">
+        Cotizar por WhatsApp
       </span>
     </a>
   );

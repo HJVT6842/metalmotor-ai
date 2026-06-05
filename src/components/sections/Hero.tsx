@@ -41,7 +41,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[92vh] items-center overflow-hidden bg-steel-950"
+      className="relative flex min-h-[88vh] items-center overflow-hidden bg-steel-950 sm:min-h-[92vh]"
     >
       {/* Crossfading reference banner (parallax + Ken Burns) */}
       <HeroBanner />
@@ -102,7 +102,7 @@ export function Hero() {
             Metal Motor Services SpA · Chile
           </motion.span>
 
-          <h1 className="mt-7 text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="mt-6 text-4xl font-extrabold leading-[1.06] tracking-tight text-white sm:mt-8 sm:text-6xl lg:text-7xl">
             {headlineWords.map((w, i) => (
               <motion.span
                 key={i}
@@ -121,7 +121,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.85 }}
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-steel-300 sm:text-xl"
+            className="mt-5 max-w-xl text-lg leading-relaxed text-steel-300 sm:mt-6 sm:max-w-2xl sm:text-xl"
           >
             Transformamos planos e ideas en piezas metálicas de calidad
             industrial.
@@ -131,7 +131,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 1 }}
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
+            className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row"
           >
             <WhatsAppCta label="Cotizar por WhatsApp" size="lg" />
             <LinkButton href="#contacto" variant="ghost" size="lg">
@@ -144,7 +144,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-14 grid max-w-xl grid-cols-3 gap-6"
+            className="mt-12 grid max-w-xl grid-cols-3 gap-4 sm:mt-16 sm:gap-6"
           >
             {STATS.map((s) => (
               <div key={s.label} className="border-l-2 border-brand-500/70 pl-4">

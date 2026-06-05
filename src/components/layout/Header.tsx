@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 import { WhatsAppCta } from "@/components/WhatsAppCta";
@@ -63,32 +64,39 @@ export function Header() {
         </button>
       </Container>
 
-      {open ? (
-        <div
-          id="mobile-menu"
-          className="border-t border-white/10 bg-steel-950/95 backdrop-blur-xl lg:hidden"
-        >
-          <Container className="flex flex-col gap-1 py-4">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-2.5 text-base font-medium text-steel-200 hover:bg-white/5 hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="mt-2">
-              <WhatsAppCta
-                label="Cotizar por WhatsApp"
-                size="md"
-                className="w-full"
-              />
-            </div>
-          </Container>
-        </div>
-      ) : null}
+      <AnimatePresence>
+        {open ? (
+          <motion.div
+            id="mobile-menu"
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-white/10 bg-steel-950/95 backdrop-blur-xl lg:hidden"
+          >
+            <Container className="flex flex-col gap-1 py-4">
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-3 py-3.5 text-base font-medium text-steel-200 transition-colors hover:bg-white/5 hover:text-white active:bg-white/10"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <div className="mt-3">
+                <WhatsAppCta
+                  label="Cotizar por WhatsApp"
+                  size="lg"
+                  className="w-full"
+                />
+              </div>
+            </Container>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
     </header>
   );
 }

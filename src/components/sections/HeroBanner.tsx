@@ -36,12 +36,12 @@ export function HeroBanner() {
           <motion.div
             key={item.id}
             className="absolute inset-0"
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1.16 }}
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1.1 }}
             exit={{ opacity: 0 }}
             transition={{
               opacity: { duration: 1.4 },
-              scale: { duration: 7, ease: "linear" },
+              scale: { duration: 8, ease: "linear" },
             }}
           >
             <Image
@@ -50,20 +50,21 @@ export function HeroBanner() {
               fill
               priority
               sizes="100vw"
-              className="object-cover"
+              quality={82}
+              className="object-cover object-center"
             />
           </motion.div>
         </AnimatePresence>
       </motion.div>
 
-      {/* Readability overlays */}
-      <div className="absolute inset-0 bg-steel-950/72" aria-hidden />
+      {/* Readability overlays — lighter so the real photo reads, text stays AA. */}
+      <div className="absolute inset-0 bg-steel-950/55" aria-hidden />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-steel-950 via-steel-950/70 to-steel-950/20"
+        className="absolute inset-0 bg-gradient-to-r from-steel-950 via-steel-950/60 to-steel-950/15"
         aria-hidden
       />
       <div
-        className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-steel-950 to-transparent"
+        className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-steel-950 to-transparent"
         aria-hidden
       />
 

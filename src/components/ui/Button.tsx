@@ -7,7 +7,7 @@ type Size = "md" | "lg";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
-    "bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-[0_0_30px_-8px_rgba(249,115,22,0.6)] hover:shadow-[0_0_40px_-6px_rgba(249,115,22,0.8)] hover:from-brand-400 hover:to-brand-500 focus-visible:outline-brand-500",
+    "bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-[0_8px_30px_-6px_rgba(249,115,22,0.65)] hover:shadow-[0_10px_44px_-4px_rgba(249,115,22,0.9)] hover:from-brand-400 hover:to-brand-500 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-brand-500",
   secondary:
     "bg-white text-steel-900 hover:bg-steel-100 focus-visible:outline-white",
   ghost:
