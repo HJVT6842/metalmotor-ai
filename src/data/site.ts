@@ -16,7 +16,7 @@ const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "contacto@metalmotor.cl";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://metalmotor.cl";
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.metalmotor.cl";
 
 export const SITE = {
   name: "Metal Motor",
