@@ -34,6 +34,11 @@ export const SITE = {
     region: "Región Metropolitana",
     country: "Chile",
   },
+  /** Ciudades atendidas (SEO local). */
+  serviceCities: ["Santiago", "Buin", "Puente Alto", "Maipú", "San Bernardo"],
+  /** Texto de cobertura para microcopys (SEO local, sin afirmar dirección física). */
+  coverage:
+    "Atendemos Santiago, Buin y toda la Región Metropolitana. Despacho a regiones de Chile.",
   hours: "Lunes a viernes, 9:00 – 18:00 hrs",
 } as const;
 

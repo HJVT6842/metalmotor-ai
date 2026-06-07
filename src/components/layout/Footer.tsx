@@ -6,11 +6,11 @@ import { NAV_LINKS, SITE } from "@/data/site";
 import { buildWhatsAppUrl, quotationMessage } from "@/lib/whatsapp";
 
 const SERVICE_LINKS = [
-  "Corte Láser CNC",
-  "Celosías Metálicas",
-  "Paneles Decorativos",
-  "Soldadura MIG / TIG",
-  "Diseño CAD",
+  { label: "Corte Láser CNC", href: "/corte-laser-cnc" },
+  { label: "Celosías Metálicas", href: "/celosias-metalicas" },
+  { label: "Portones Metálicos", href: "/portones-metalicos" },
+  { label: "Soldadura MIG / TIG", href: "/soldadura-mig-tig" },
+  { label: "Diseño CAD", href: "/diseno-cad" },
 ] as const;
 
 /** Site footer with brand, navigation, services and contact. */
@@ -28,8 +28,10 @@ export function Footer() {
         <div className="lg:col-span-1">
           <Logo variant="horizontal" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-steel-400">
-            {SITE.tagline}. Calidad industrial con acabado profesional en{" "}
-            {SITE.address.country}.
+            {SITE.tagline}. Calidad industrial con acabado profesional.
+          </p>
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-steel-500">
+            {SITE.coverage}
           </p>
         </div>
 
@@ -54,13 +56,13 @@ export function Footer() {
           </h3>
           <ul className="mt-4 space-y-2 text-sm">
             {SERVICE_LINKS.map((service) => (
-              <li key={service}>
-                <a
-                  href="#servicios"
+              <li key={service.href}>
+                <Link
+                  href={service.href}
                   className="text-steel-400 hover:text-white"
                 >
-                  {service}
-                </a>
+                  {service.label}
+                </Link>
               </li>
             ))}
           </ul>

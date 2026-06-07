@@ -72,6 +72,10 @@ export function ContactSection() {
                 </dd>
               </div>
               <div>
+                <dt className="font-semibold text-steel-500">Cobertura</dt>
+                <dd className="text-steel-200">{SITE.coverage}</dd>
+              </div>
+              <div>
                 <dt className="font-semibold text-steel-500">Horario</dt>
                 <dd className="text-steel-200">{SITE.hours}</dd>
               </div>

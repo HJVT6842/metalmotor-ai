@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+import { SERVICE_PAGES } from "@/data/service-pages";
 import { SITE } from "@/data/site";
 import "./globals.css";
 
@@ -20,18 +21,20 @@ const geistMono = Geist_Mono({
 });
 
 const KEYWORDS = [
-  "corte laser cnc chile",
-  "corte laser santiago",
-  "celosias metalicas",
-  "paneles decorativos metalicos",
-  "fabricacion metalica",
-  "corte laser fibra",
+  "corte láser cnc chile",
+  "corte láser cnc santiago",
+  "corte láser cnc buin",
+  "fabricación metálica chile",
+  "fabricación metálica santiago",
+  "celosías metálicas",
+  "paneles decorativos metálicos",
+  "portones metálicos",
   "soldadura mig tig",
-  "servicios cnc chile",
+  "diseño cad industrial",
+  "corte láser fibra",
   "plegado cnc",
-  "diseño cad",
   "ingeniería inversa",
-  "portones y rejas metálicas",
+  "rejas metálicas modernas",
 ];
 
 export const metadata: Metadata = {
@@ -85,6 +88,11 @@ function StructuredData() {
     "Ingeniería Inversa",
   ];
 
+  const areaServed = [
+    ...SITE.serviceCities.map((name) => ({ "@type": "City", name })),
+    { "@type": "Country", name: "Chile" },
+  ];
+
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -97,7 +105,7 @@ function StructuredData() {
         description: SITE.description,
         email: SITE.email,
         knowsAbout: KEYWORDS,
-        areaServed: { "@type": "Country", name: "Chile" },
+        areaServed,
       },
       {
         "@type": "LocalBusiness",
@@ -114,13 +122,24 @@ function StructuredData() {
           addressRegion: SITE.address.region,
           addressCountry: "CL",
         },
-        areaServed: { "@type": "Country", name: "Chile" },
+        areaServed,
         openingHours: "Mo-Fr 09:00-18:00",
         makesOffer: offers.map((name) => ({
           "@type": "Offer",
           itemOffered: { "@type": "Service", name },
         })),
       },
+      // Dedicated service pages as Service entities (internal SEO linking).
+      ...SERVICE_PAGES.map((page) => ({
+        "@type": "Service",
+        "@id": `${SITE.url}/${page.slug}#service`,
+        name: page.name,
+        serviceType: page.name,
+        url: `${SITE.url}/${page.slug}`,
+        description: page.metaDescription,
+        provider: { "@id": `${SITE.url}/#organization` },
+        areaServed,
+      })),
     ],
   };
 
