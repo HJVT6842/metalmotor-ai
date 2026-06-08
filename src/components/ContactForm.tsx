@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 
+import { trackQuoteSubmit } from "@/lib/analytics";
 import { SERVICES } from "@/data/services";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -44,6 +45,7 @@ export function ContactForm() {
       });
 
       if (res.ok) {
+        trackQuoteSubmit({ service: values.service || undefined });
         setStatus("success");
         setValues(INITIAL);
         return;

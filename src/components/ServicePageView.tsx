@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ServiceViewTracker } from "@/components/analytics/ServiceViewTracker";
 import { WhatsAppCta } from "@/components/WhatsAppCta";
 import { Container } from "@/components/ui/Container";
 import { Media } from "@/components/ui/Media";
@@ -52,6 +53,7 @@ export function ServicePageView({ page }: { readonly page: ServicePage }) {
   return (
     <>
       <ServiceJsonLd page={page} />
+      <ServiceViewTracker slug={page.slug} />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-steel-950">
