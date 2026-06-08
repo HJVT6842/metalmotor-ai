@@ -12,6 +12,16 @@ import type { NavLink } from "@/types";
 const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || "56900000000";
 
+/** Formatea un móvil chileno (56 9 XXXX XXXX) para mostrarlo; deriva del WhatsApp. */
+function formatClPhone(raw: string): string {
+  const d = raw.replace(/\D/g, "");
+  if (d.length === 11 && d.startsWith("569")) {
+    const rest = d.slice(3);
+    return `+56 9 ${rest.slice(0, 4)} ${rest.slice(4)}`;
+  }
+  return `+${d}`;
+}
+
 const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || "contacto@metalmotor.cl";
 
@@ -27,7 +37,7 @@ export const SITE = {
     "Metal Motor Services SpA — corte láser CNC de fibra, paneles decorativos, celosías, plegado, soldadura MIG/TIG y diseño CAD. Soluciones metálicas a medida con acabado profesional.",
   url: SITE_URL,
   email: CONTACT_EMAIL,
-  phoneDisplay: "+56 9 0000 0000",
+  phoneDisplay: formatClPhone(WHATSAPP_NUMBER),
   whatsappNumber: WHATSAPP_NUMBER,
   address: {
     city: "Santiago",

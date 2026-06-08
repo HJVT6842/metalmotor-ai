@@ -116,6 +116,7 @@ function StructuredData() {
         image: `${SITE.url}/icon.svg`,
         url: SITE.url,
         email: SITE.email,
+        telephone: `+${SITE.whatsappNumber}`,
         priceRange: "$$",
         parentOrganization: { "@id": `${SITE.url}/#organization` },
         address: {
