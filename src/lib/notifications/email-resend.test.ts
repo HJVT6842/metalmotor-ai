@@ -53,7 +53,7 @@ describe("createEmailChannel (B4)", () => {
 
     expect(deliver).toHaveBeenCalledTimes(1);
     const msg = deliver.mock.calls[0][0];
-    expect(msg.to).toBe("jantonio.vasquez.t@gmail.com");
+    expect(msg.to).toBe("cotizaciones@metalmotor.cl");
     expect(msg.from).toBe("onboarding@resend.dev");
     expect(msg.subject).toContain("Juan Pérez");
     expect(msg.html).toContain("juan@example.com");

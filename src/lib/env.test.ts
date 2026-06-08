@@ -39,7 +39,7 @@ describe("getNotificationsEnv (B1)", () => {
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(result.env.resendApiKey).toBe("re_test_key");
-      expect(result.env.toEmail).toBe("jantonio.vasquez.t@gmail.com");
+      expect(result.env.toEmail).toBe("cotizaciones@metalmotor.cl");
       expect(result.env.fromEmail).toBe("onboarding@resend.dev");
     }
   });
