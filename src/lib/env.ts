@@ -48,7 +48,11 @@ export function getSupabaseServerEnv(): EnvResult {
  * lead is still captured). Sender defaults to Resend's verified onboarding
  * address until the metalmotor.cl domain is verified in Resend.
  */
-const DEFAULT_TO_EMAIL = "jantonio.vasquez.t@gmail.com";
+// Corporate destination for quote/RFQ notifications (Zoho). Override via env.
+const DEFAULT_TO_EMAIL = "cotizaciones@metalmotor.cl";
+// Sender stays on Resend's verified onboarding address until the metalmotor.cl
+// domain is verified in Resend (SPF/DKIM); then set NOTIFICATIONS_FROM_EMAIL
+// to e.g. contacto@metalmotor.cl.
 const DEFAULT_FROM_EMAIL = "onboarding@resend.dev";
 
 export type NotificationsEnv = {
