@@ -28,44 +28,53 @@ export default function CreditosPage() {
         Las imágenes marcadas como <strong>“Imagen referencial”</strong> son
         fotografías con licencia de uso comercial obtenidas de Wikimedia Commons.
         No corresponden a trabajos realizados por Metal Motor Services SpA y se
-        reemplazarán por fotografías propias. A continuación, la atribución de
-        cada autor y licencia.
+        reemplazarán por fotografías propias. Las imágenes referenciales que sean
+        renders propios no requieren atribución de terceros y no se listan aquí.
+        A continuación, la atribución de cada autor y licencia.
       </p>
 
-      <ul className="mt-10 divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-steel-900/50">
-        {unique.map((m) => (
-          <li key={m.source ?? m.id} className="flex flex-col gap-1 p-5 text-sm">
-            <span className="font-semibold text-white">{m.title}</span>
-            <span className="text-steel-400">
-              Autor: {m.credit}
-              {" · "}
-              Licencia:{" "}
-              {m.licenseUrl ? (
+      {unique.length === 0 ? (
+        <p className="mt-10 rounded-2xl border border-white/10 bg-steel-900/50 p-5 text-sm text-steel-300">
+          Actualmente todas las imágenes del sitio son renders propios o
+          fotografías propias de Metal Motor Services SpA; no se requiere
+          atribución de terceros.
+        </p>
+      ) : (
+        <ul className="mt-10 divide-y divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-steel-900/50">
+          {unique.map((m) => (
+            <li key={m.source ?? m.id} className="flex flex-col gap-1 p-5 text-sm">
+              <span className="font-semibold text-white">{m.title}</span>
+              <span className="text-steel-400">
+                Autor: {m.credit}
+                {" · "}
+                Licencia:{" "}
+                {m.licenseUrl ? (
+                  <a
+                    href={m.licenseUrl}
+                    target="_blank"
+                    rel="noopener noreferrer license"
+                    className="text-brand-400 hover:text-brand-300"
+                  >
+                    {m.license}
+                  </a>
+                ) : (
+                  <span>{m.license}</span>
+                )}
+              </span>
+              {m.source ? (
                 <a
-                  href={m.licenseUrl}
+                  href={m.source}
                   target="_blank"
-                  rel="noopener noreferrer license"
-                  className="text-brand-400 hover:text-brand-300"
+                  rel="noopener noreferrer"
+                  className="w-fit text-xs text-steel-500 hover:text-steel-300"
                 >
-                  {m.license}
+                  Ver original en Wikimedia Commons →
                 </a>
-              ) : (
-                <span>{m.license}</span>
-              )}
-            </span>
-            {m.source ? (
-              <a
-                href={m.source}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-fit text-xs text-steel-500 hover:text-steel-300"
-              >
-                Ver original en Wikimedia Commons →
-              </a>
-            ) : null}
-          </li>
-        ))}
-      </ul>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      )}
 
       <p className="mt-8">
         <Link

@@ -47,6 +47,23 @@ por las licencias CC BY / CC BY-SA).
 > **“Imagen referencial”**. Reemplázalas por fotos propias siguiendo los pasos
 > de abajo.
 
+## Renders IA "Industrial Premium" (reemplazo de las imágenes Wikimedia)
+
+Los renders hiperrealistas se integran como **referenciales** (badge "Imagen
+referencial"), NO como "Trabajo realizado". Prompts y tabla en
+`docs/IMAGE-RENDER-PROMPTS.md`. El cableado ya está hecho en
+`src/data/render-manifest.ts`:
+
+1. Genera el render con su prompt y expórtalo a **WebP** (specs más abajo).
+2. Déjalo en la ruta `src` que indica `render-manifest.ts` (bajo
+   `reference/<categoría>/<id>.webp`). Los nombres ya están definidos.
+3. Añade el `id` a `ACTIVE_RENDERS` en `render-manifest.ts`. Eso reemplaza la
+   imagen Wikimedia por el render (ALT SEO y licencia "Render propio" incluidos).
+   La atribución Wikimedia desaparece sola de `/creditos`.
+
+Mientras un `id` no esté en `ACTIVE_RENDERS`, el sitio sigue mostrando la imagen
+Wikimedia actual: nada apunta a archivos inexistentes.
+
 ## Cómo reemplazar una imagen por una foto propia (real)
 
 1. Sube tu foto a la carpeta `real/` correspondiente, usando el nombre indicado

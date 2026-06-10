@@ -1,4 +1,9 @@
 import { REFERENCE_MANIFEST } from "@/data/reference-manifest";
+import {
+  ACTIVE_RENDERS,
+  RENDER_LICENSE,
+  RENDER_MANIFEST,
+} from "@/data/render-manifest";
 
 /**
  * Central media catalogue.
@@ -64,6 +69,24 @@ function build(d: Descriptor): MediaAsset {
       license: "Fotografía propia · Metal Motor Services SpA",
       usage: d.usage,
       status: "real",
+      replacementPath: d.replacementPath,
+    };
+  }
+
+  // AI render opted-in (its .webp exists and the id is in ACTIVE_RENDERS).
+  // It STAYS "reference" → badge "Imagen referencial" (never "Trabajo
+  // realizado"). No credit/source → it is excluded from /creditos automatically.
+  const render = ACTIVE_RENDERS.has(d.id) ? RENDER_MANIFEST[d.id] : undefined;
+  if (render) {
+    return {
+      id: d.id,
+      title: d.title,
+      category: d.category,
+      alt: render.alt,
+      src: render.src,
+      license: RENDER_LICENSE,
+      usage: d.usage,
+      status: "reference",
       replacementPath: d.replacementPath,
     };
   }
@@ -188,6 +211,14 @@ const PRODUCT: readonly Descriptor[] = [
     alt: "Portón metálico (imagen referencial)",
     usage: "product:portones",
     replacementPath: "/images/real/products/portones.webp",
+  },
+  {
+    id: "prod-separadores",
+    title: "Separadores de Ambientes",
+    category: "Separadores",
+    alt: "Separador de ambientes metálico cortado a láser (imagen referencial)",
+    usage: "product:separadores",
+    replacementPath: "/images/real/products/separadores.webp",
   },
   {
     id: "prod-rejas",

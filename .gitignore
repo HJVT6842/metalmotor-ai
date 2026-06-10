@@ -35,6 +35,9 @@ yarn-error.log*
 # ...but keep the placeholder template (no secrets) in version control
 !.env.example
 
+# raw Flux renders (PNG) before WebP conversion — see scripts/generate-renders-flux.mjs
+/renders-output/
+
 # vercel
 .vercel
 
