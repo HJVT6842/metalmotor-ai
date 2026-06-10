@@ -27,12 +27,12 @@ const PARTICLES = [
 ] as const;
 
 const headlineWords = [
-  { text: "Celosías,", grad: false },
-  { text: "Portones", grad: false },
-  { text: "y", grad: false },
   { text: "Corte", grad: true },
   { text: "Láser", grad: true },
   { text: "CNC", grad: true },
+  { text: "y", grad: false },
+  { text: "Fabricación", grad: false },
+  { text: "Metálica", grad: false },
   { text: "a", grad: false },
   { text: "Medida", grad: false },
 ] as const;
@@ -123,8 +123,8 @@ export function Hero() {
             transition={{ duration: 0.6, ease: EASE_OUT, delay: 0.85 }}
             className="mt-5 max-w-xl text-lg leading-relaxed text-steel-300 sm:mt-6 sm:max-w-2xl sm:text-xl"
           >
-            Transformamos planos e ideas en piezas metálicas de calidad
-            industrial.
+            Corte láser CNC de fibra 2000W, plegado, soldadura MIG/TIG y diseño
+            CAD propio. Fabricación 100% interna.
           </motion.p>
 
           <motion.div

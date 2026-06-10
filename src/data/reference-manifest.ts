@@ -12,6 +12,14 @@ export type ReferenceManifestEntry = {
 };
 
 export const REFERENCE_MANIFEST: Record<string, ReferenceManifestEntry> = {
+  "prod-separadores": {
+    "src": "/images/reference/products/prod-separadores.jpg",
+    "title": "Sculpted screen (In Explore) - Flickr - bobarcpics.jpg",
+    "credit": "Rob Deutscher from Melbourne, Australia",
+    "source": "https://commons.wikimedia.org/wiki/File:Sculpted_screen_(In_Explore)_-_Flickr_-_bobarcpics.jpg",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
   "svc-corte-laser": {
     "src": "/images/reference/services/svc-corte-laser.jpg",
     "title": "CNC Laser Cutting Machine in Operation at Martin Guitar Factory.jpg",

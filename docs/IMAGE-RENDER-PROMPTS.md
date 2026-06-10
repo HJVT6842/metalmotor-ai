@@ -8,12 +8,24 @@
 > trabajo realizado. Entra como `status: "reference"` → badge **"Imagen
 > referencial"**. NUNCA se marca como "Trabajo realizado" (eso es solo para fotos
 > propias autorizadas). El test `src/data/media.test.ts` lo verifica.
+>
+> **Principio rector (posicionamiento):** Metal Motor es una maestranza / taller
+> metalmecánico, NO una oficina de arquitectura. Toda imagen refuerza
+> TECNOLOGÍA + FABRICACIÓN + PRODUCTO TERMINADO + PRECISIÓN INDUSTRIAL.
+>
+> **Jerarquía visual (NUNCA invertir):**
+> 1. Producto terminado → 2. Precisión de fabricación → 3. Tecnología → 4. Ambiente de taller.
+>
+> **Prohibido:** foco en casas de lujo, estética de revista de arquitectura,
+> estilo de marketing inmobiliario. El producto se muestra como solución metálica
+> fabricada (encuadre al producto); la edificación, si aparece, es contexto
+> secundario.
 
 ---
 
 ## 1) Auditoría de imágenes actuales
 
-Fuente de verdad: `src/data/media.ts` (17 assets) + `src/data/reference-manifest.ts`
+Fuente de verdad: `src/data/media.ts` (18 assets) + `src/data/reference-manifest.ts`
 (atribución Wikimedia, mostrada en `/creditos`). Todos hoy son `status: "reference"`.
 
 | # | id | Sección / uso | Archivo actual | Fuente actual |
@@ -33,18 +45,19 @@ Fuente de verdad: `src/data/media.ts` (17 assets) + `src/data/reference-manifest
 | 13 | `prod-rejas` | Producto | reference/products/prod-rejas.jpg | Wikimedia |
 | 14 | `prod-piezas` | Producto | reference/products/prod-piezas.png | Wikimedia |
 | 15 | `prod-custom` | Producto | reference/products/prod-custom.jpg | Wikimedia |
-| 16 | `workshop-machinery` | Taller / Capacidad | reference/workshop/workshop-machinery.jpg | Wikimedia |
-| 17 | `workshop-atmosphere` | Taller | reference/workshop/workshop-atmosphere.jpg | Wikimedia |
+| 16 | `prod-separadores` | Producto destacado | reference/products/prod-separadores.jpg | Wikimedia |
+| 17 | `workshop-machinery` | Taller / Capacidad | reference/workshop/workshop-machinery.jpg | Wikimedia |
+| 18 | `workshop-atmosphere` | Taller | reference/workshop/workshop-atmosphere.jpg | Wikimedia |
 
 Secciones del sitio que consumen estos assets:
 - **Hero** (`HeroBanner.tsx`) → #1
-- **Productos destacados** → #10–#12 (+ #13–#15)
+- **Productos destacados** → #10–#12, #16 (+ #13–#15)
 - **Fabricamos / Servicios** → #2–#9
-- **Capacidad productiva / Taller** → #16–#17
-- **Trabajos y proyectos** (`Portfolio.tsx`, `SHOWCASE_MEDIA` = servicios + taller) → #2–#9, #16, #17
+- **Capacidad productiva / Taller** → #17–#18
+- **Trabajos y proyectos** (`Portfolio.tsx`, `SHOWCASE_MEDIA` = servicios + taller) → #2–#9, #17, #18
 
 Propuesta nueva: **+1 asset** `capacity-composition` (composición de capacidad
-productiva) → total 18.
+productiva) → total 19.
 
 ---
 
@@ -52,19 +65,20 @@ productiva) → total 18.
 
 | id | Propuesta de render (Industrial Premium) | Ratio | Destino (queda en reference/) |
 |----|------------------------------------------|-------|-------------------------------|
-| `hero-workshop` | Láser fibra 2000W cortando acero, chispas, taller moderno cinematográfico | 16:9 | reference/hero/hero-workshop.webp |
+| `hero-workshop` | Producto metálico terminado en primer plano, piezas de precisión y láser fibra cortando al fondo | 16:9 | reference/hero/hero-workshop.webp |
 | `svc-corte-laser` | Cabezal láser fibra sobre plancha, chispas, profundidad de campo | 4:3 | reference/services/svc-corte-laser.webp |
-| `svc-paneles` | Panel láser corten retroiluminado, jardín moderno | 4:3 | reference/services/svc-paneles.webp |
-| `svc-celosias` | Celosía negra mate instalada en fachada, luz cálida | 4:3 | reference/services/svc-celosias.webp |
-| `svc-portones` | Portón corredera negro mate, vivienda moderna | 4:3 | reference/services/svc-portones.webp |
+| `svc-paneles` | Detalle de panel corten retroiluminado, patrón de precisión | 4:3 | reference/services/svc-paneles.webp |
+| `svc-celosias` | Detalle de celosía negra mate cortada a láser, patrón de precisión | 4:3 | reference/services/svc-celosias.webp |
+| `svc-portones` | Detalle de portón corredera negro mate, estructura y terminación | 4:3 | reference/services/svc-portones.webp |
 | `svc-soldadura` | Soldadura MIG/TIG real, arco, chispas, primer plano | 4:3 | reference/services/svc-soldadura.webp |
 | `svc-plegado` | Plegadora CNC moderna doblando chapa | 4:3 | reference/services/svc-plegado.webp |
 | `svc-fabricacion` | Ensamblaje metálico estructural profesional | 4:3 | reference/services/svc-fabricacion.webp |
 | `svc-cad` | Pantalla con modelo CAD 3D de pieza metálica | 4:3 | reference/services/svc-cad.webp |
-| `prod-celosias` | Fachada chilena moderna, celosía negra mate, noche cálida | 16:9 | reference/products/prod-celosias.webp |
-| `prod-paneles` | Panel decorativo corten, LED posterior, jardín premium | 16:9 | reference/products/prod-paneles.webp |
-| `prod-portones` | Portón corredera negro mate, casa minimalista premium | 16:9 | reference/products/prod-portones.webp |
-| `prod-rejas` | Reja moderna negra mate, fachada arquitectónica | 1:1 | reference/products/prod-rejas.webp |
+| `prod-celosias` | Primer plano de celosía negra mate cortada a láser, patrón de precisión, luz cálida | 16:9 | reference/products/prod-celosias.webp |
+| `prod-paneles` | Panel metálico cortado a láser retroiluminado, interior comercial | 16:9 | reference/products/prod-paneles.webp |
+| `prod-portones` | Portón corredera negro mate a medida, acceso vehicular, luz de día | 16:9 | reference/products/prod-portones.webp |
+| `prod-separadores` | Separador de ambientes metálico cortado a láser, interior moderno | 16:9 | reference/products/prod-separadores.webp |
+| `prod-rejas` | Detalle frontal de reja negra mate, geometría de corte exacta | 1:1 | reference/products/prod-rejas.webp |
 | `prod-piezas` | Piezas de acero cortadas con precisión, fondo estudio | 1:1 | reference/products/prod-piezas.webp |
 | `prod-custom` | Fabricación metálica a medida, taller premium | 1:1 | reference/products/prod-custom.webp |
 | `workshop-machinery` | Parque de máquinas industrial moderno y ordenado | 16:10 | reference/workshop/workshop-machinery.webp |
@@ -91,24 +105,31 @@ NO brand names. --ar {RATIO} --style raw
 
 ### Hero
 ```
-hero-workshop — Industrial fiber laser cutting head slicing a thick steel plate,
-bright orange sparks flying, modern clean fabrication workshop, cinematic depth,
-dramatic warm key light. + STYLE --ar 16:9
+hero-workshop — Finished laser-cut matte black steel panel in sharp focus in the
+foreground, precision-cut steel parts on a workbench beside it, industrial fiber
+laser cutting with bright orange sparks in the background of a modern clean
+fabrication workshop, cinematic depth, dramatic warm key light. + STYLE --ar 16:9
 ```
 
 ### Productos destacados
 ```
-prod-celosias — Modern Chilean house facade at dusk, large matte black laser-cut
-decorative metal screen (celosía), warm interior glow behind it, high privacy,
-premium architecture, warm night lighting. + STYLE --ar 16:9
+prod-celosias — Close-up of a matte black laser-cut decorative metal screen
+(celosía), camera tight on the precision-cut geometric pattern, warm light
+glowing through the perforations, crisp clean cut edges, blurred neutral
+background. + STYLE --ar 16:9
 
-prod-paneles — Corten steel laser-cut decorative panel as garden feature wall,
-warm LED backlighting through the pattern, modern landscaped garden, premium
-ambience, evening. + STYLE --ar 16:9
+prod-paneles — Laser-cut decorative metal panel with warm backlighting through
+the precision pattern, installed in a modern commercial interior, camera centered
+on the panel, crisp cut edges, softly blurred surroundings. + STYLE --ar 16:9
 
-prod-portones — Matte black sliding gate (portón corredera) at the entrance of a
-modern minimalist home, brushed concrete walls, premium residential, clean lines,
-warm dusk light. + STYLE --ar 16:9
+prod-portones — Custom-fabricated matte black steel sliding gate (portón
+corredera) filling the frame at a vehicle access driveway, daylight, focus on the
+gate structure, clean welds and premium matte finish, blurred neutral
+background. + STYLE --ar 16:9
+
+prod-separadores — Laser-cut metal room divider screen separating a modern
+interior space, matte black steel with a precise geometric pattern, warm interior
+lighting through the perforations, camera centered on the divider. + STYLE --ar 16:9
 ```
 
 ### Fabricamos / Servicios
@@ -116,14 +137,17 @@ warm dusk light. + STYLE --ar 16:9
 svc-corte-laser — Close-up of industrial 2000W fiber laser cutting a steel sheet,
 realistic sparks, modern workshop, cinematic shallow depth of field. + STYLE --ar 4:3
 
-svc-paneles — Laser-cut corten steel decorative panel installed outdoors, warm
-backlight through perforations, modern garden. + STYLE --ar 4:3
+svc-paneles — Detail of a laser-cut corten steel decorative panel, warm backlight
+through the perforated precision pattern, tight framing on the cut edges,
+outdoor setting softly blurred behind. + STYLE --ar 4:3
 
-svc-celosias — Matte black metal celosía screen installed on a modern facade,
-warm lighting, architectural premium look. + STYLE --ar 4:3
+svc-celosias — Close-up detail of a matte black laser-cut metal celosía screen,
+precise pattern geometry, crisp cut edges, warm lighting, shallow depth of
+field. + STYLE --ar 4:3
 
-svc-portones — Matte black metal sliding gate installed at a modern home entrance,
-minimalist, premium finish. + STYLE --ar 4:3
+svc-portones — Detail of a custom-fabricated matte black metal sliding gate,
+focus on the frame structure, clean welds and premium matte finish, minimalist
+context softly blurred. + STYLE --ar 4:3
 
 svc-soldadura — Extreme close-up of professional MIG/TIG welding, bright electric
 arc, sparks, molten weld pool on steel, dark workshop background. + STYLE --ar 4:3
@@ -140,8 +164,9 @@ sheet-metal assembly, engineering workstation, modern office, warm light. + STYL
 
 ### Productos (secundarios)
 ```
-prod-rejas — Modern matte black metal security railing / reja on a contemporary
-home facade, architectural, premium. + STYLE --ar 1:1
+prod-rejas — Frontal detail of a modern matte black metal railing (reja) with
+exact laser-cut geometry, precise repeating pattern, premium powder-coated
+finish, neutral blurred background. + STYLE --ar 1:1
 
 prod-piezas — Set of precision laser-cut steel parts neatly arranged on a clean
 surface, studio product lighting, sharp detail. + STYLE --ar 1:1
@@ -215,7 +240,7 @@ ALT SEO: actualizar el `alt` de cada descriptor con la descripción del render
 "(imagen referencial)".
 
 ### Checklist de cierre
-- [ ] 18 renders generados con la MISMA ancla de estilo.
+- [ ] 19 renders generados con la MISMA ancla de estilo.
 - [ ] Exportados a WebP con pesos objetivo.
 - [ ] Colocados en `public/images/reference/**`.
 - [ ] `src` actualizado en `media.ts` (status sigue "reference").

@@ -73,10 +73,37 @@ const TOPICS = [
     slots: ["prod-piezas"],
   },
   {
+    queries: ["laser cut metal screen", "sculpted metal screen", "decorative metal partition"],
+    slots: ["prod-separadores"],
+  },
+  {
     queries: ["custom metal fabrication", "metal fabrication welding shop", "steel fabrication work"],
     slots: ["prod-custom"],
   },
 ];
+
+// --only id1,id2 fetches just those slots; every other manifest entry is
+// preserved by the merge step at the bottom.
+function parseArgs(argv) {
+  const args = { only: null };
+  for (let i = 0; i < argv.length; i += 1) {
+    if (argv[i] === "--only") args.only = argv[++i].split(",").map((s) => s.trim());
+    else throw new Error(`Unknown flag: ${argv[i]}`);
+  }
+  return args;
+}
+
+const ARGS = parseArgs(process.argv.slice(2));
+const ACTIVE_TOPICS = ARGS.only
+  ? TOPICS.map((t) => ({ ...t, slots: t.slots.filter((s) => ARGS.only.includes(s)) })).filter(
+      (t) => t.slots.length > 0,
+    )
+  : TOPICS;
+if (ARGS.only) {
+  const known = new Set(TOPICS.flatMap((t) => t.slots));
+  const missing = ARGS.only.filter((id) => !known.has(id));
+  if (missing.length > 0) throw new Error(`Unknown ids in --only: ${missing.join(", ")}`);
+}
 
 async function fetchRetry(url, opts, tries = 4) {
   let lastErr;
@@ -179,7 +206,7 @@ async function download(url, destAbs) {
 }
 
 const manifest = {};
-for (const topic of TOPICS) {
+for (const topic of ACTIVE_TOPICS) {
   const cands = await gather(topic.queries, topic.slots.length);
   if (cands.length === 0) throw new Error(`No images for: ${topic.queries[0]}`);
   for (let i = 0; i < topic.slots.length; i++) {
@@ -208,7 +235,9 @@ const manifestPath = join(ROOT, "src/data/reference-manifest.ts");
 if (existsSync(manifestPath)) {
   try {
     const txt = readFileSync(manifestPath, "utf8");
-    const start = txt.indexOf("= {");
+    // Anchor on the const declaration: a bare indexOf("= {") would match the
+    // `export type ... = {` block first and break the JSON.parse below.
+    const start = txt.indexOf("= {", txt.indexOf("REFERENCE_MANIFEST"));
     const end = txt.lastIndexOf("} as const");
     if (start >= 0 && end > start) {
       const prev = JSON.parse(txt.slice(start + 2, end + 1));

@@ -12,9 +12,9 @@ type Featured = {
 
 const FEATURED: readonly Featured[] = [
   { mediaId: "prod-celosias", name: "Celosías Decorativas" },
-  { mediaId: "prod-paneles", name: "Paneles Metálicos" },
   { mediaId: "prod-portones", name: "Portones" },
-  { mediaId: "svc-corte-laser", name: "Corte Láser CNC" },
+  { mediaId: "prod-paneles", name: "Paneles Decorativos" },
+  { mediaId: "prod-separadores", name: "Separadores de Ambientes" },
 ];
 
 /**

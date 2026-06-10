@@ -36,7 +36,7 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
   // Hero
   "hero-workshop": {
     src: "/images/reference/hero/hero-workshop.webp",
-    alt: "Corte láser CNC de fibra cortando una plancha de acero con chispas en taller metalúrgico (imagen referencial)",
+    alt: "Producto metálico terminado, piezas de precisión y corte láser CNC de fibra en taller de fabricación (imagen referencial)",
   },
 
   // Servicios / Fabricamos
@@ -46,15 +46,15 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
   },
   "svc-paneles": {
     src: "/images/reference/services/svc-paneles.webp",
-    alt: "Panel decorativo de acero corten cortado a láser con retroiluminación cálida (imagen referencial)",
+    alt: "Panel decorativo de acero corten cortado a láser con retroiluminación cálida, detalle del patrón (imagen referencial)",
   },
   "svc-celosias": {
     src: "/images/reference/services/svc-celosias.webp",
-    alt: "Celosía metálica negra mate instalada en fachada moderna (imagen referencial)",
+    alt: "Celosía metálica negra mate cortada a láser, detalle del patrón de precisión (imagen referencial)",
   },
   "svc-portones": {
     src: "/images/reference/services/svc-portones.webp",
-    alt: "Portón corredera metálico negro mate en vivienda moderna (imagen referencial)",
+    alt: "Portón corredera metálico negro mate fabricado a medida, detalle de estructura y terminación (imagen referencial)",
   },
   "svc-soldadura": {
     src: "/images/reference/services/svc-soldadura.webp",
@@ -76,19 +76,23 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
   // Productos destacados / secundarios
   "prod-celosias": {
     src: "/images/reference/products/prod-celosias.webp",
-    alt: "Celosía decorativa negra mate en fachada chilena moderna con iluminación cálida nocturna (imagen referencial)",
+    alt: "Celosía decorativa negra mate cortada a láser, primer plano del patrón de precisión con luz cálida (imagen referencial)",
   },
   "prod-paneles": {
     src: "/images/reference/products/prod-paneles.webp",
-    alt: "Panel decorativo de acero corten con LED posterior en jardín moderno premium (imagen referencial)",
+    alt: "Panel decorativo metálico cortado a láser retroiluminado en interior comercial (imagen referencial)",
   },
   "prod-portones": {
     src: "/images/reference/products/prod-portones.webp",
-    alt: "Portón corredera negro mate en casa minimalista premium (imagen referencial)",
+    alt: "Portón corredera negro mate fabricado a medida en acceso vehicular con luz de día (imagen referencial)",
+  },
+  "prod-separadores": {
+    src: "/images/reference/products/prod-separadores.webp",
+    alt: "Separador de ambientes metálico cortado a láser dividiendo un interior moderno (imagen referencial)",
   },
   "prod-rejas": {
     src: "/images/reference/products/prod-rejas.webp",
-    alt: "Reja metálica moderna negra mate en fachada arquitectónica (imagen referencial)",
+    alt: "Detalle frontal de reja metálica moderna negra mate con geometría de corte exacta (imagen referencial)",
   },
   "prod-piezas": {
     src: "/images/reference/products/prod-piezas.webp",

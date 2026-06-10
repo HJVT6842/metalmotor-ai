@@ -213,6 +213,14 @@ const PRODUCT: readonly Descriptor[] = [
     replacementPath: "/images/real/products/portones.webp",
   },
   {
+    id: "prod-separadores",
+    title: "Separadores de Ambientes",
+    category: "Separadores",
+    alt: "Separador de ambientes metálico cortado a láser (imagen referencial)",
+    usage: "product:separadores",
+    replacementPath: "/images/real/products/separadores.webp",
+  },
+  {
     id: "prod-rejas",
     title: "Rejas Modernas",
     category: "Rejas",
