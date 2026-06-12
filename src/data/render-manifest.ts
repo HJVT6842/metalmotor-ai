@@ -46,15 +46,15 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
   },
   "svc-paneles": {
     src: "/images/reference/services/svc-paneles.webp",
-    alt: "Panel decorativo de acero corten cortado a láser con retroiluminación cálida, detalle del patrón (imagen referencial)",
+    alt: "Panel decorativo metálico cortado a láser instalado en quincho exterior moderno (imagen referencial)",
   },
   "svc-celosias": {
     src: "/images/reference/services/svc-celosias.webp",
-    alt: "Celosía metálica negra mate cortada a láser, detalle del patrón de precisión (imagen referencial)",
+    alt: "Celosía metálica de privacidad cortada a láser en cierre perimetral residencial (imagen referencial)",
   },
   "svc-portones": {
     src: "/images/reference/services/svc-portones.webp",
-    alt: "Portón corredera metálico negro mate fabricado a medida, detalle de estructura y terminación (imagen referencial)",
+    alt: "Portón metálico corredera con panel cortado a láser de patrón hexagonal (imagen referencial)",
   },
   "svc-soldadura": {
     src: "/images/reference/services/svc-soldadura.webp",
@@ -128,7 +128,10 @@ export const ACTIVE_RENDERS: ReadonlySet<string> = new Set<string>([
   "prod-paneles",
   "prod-portones",
   "prod-separadores",
+  "svc-celosias",
   "svc-corte-laser",
+  "svc-paneles",
+  "svc-portones",
   // Excepción aprobada (2026-06-12): operador con máscara, sin rostro visible.
   "svc-soldadura",
 ]);
