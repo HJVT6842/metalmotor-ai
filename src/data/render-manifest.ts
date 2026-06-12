@@ -80,11 +80,11 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
   },
   "prod-paneles": {
     src: "/images/reference/products/prod-paneles.webp",
-    alt: "Panel decorativo metálico cortado a láser retroiluminado en interior comercial (imagen referencial)",
+    alt: "Panel decorativo metálico cortado a láser como separador en un living residencial moderno (imagen referencial)",
   },
   "prod-portones": {
     src: "/images/reference/products/prod-portones.webp",
-    alt: "Portón corredera negro mate fabricado a medida en acceso vehicular con luz de día (imagen referencial)",
+    alt: "Portón corredera negro mate fabricado a medida en acceso vehicular al atardecer (imagen referencial)",
   },
   "prod-separadores": {
     src: "/images/reference/products/prod-separadores.webp",
@@ -123,5 +123,12 @@ export const RENDER_MANIFEST: Record<string, RenderEntry> = {
  *   export const ACTIVE_RENDERS = new Set<string>(["hero-workshop"]);
  */
 export const ACTIVE_RENDERS: ReadonlySet<string> = new Set<string>([
-  // "hero-workshop",
+  "hero-workshop",
+  "prod-celosias",
+  "prod-paneles",
+  "prod-portones",
+  "prod-separadores",
+  "svc-corte-laser",
+  // Excepción aprobada (2026-06-12): operador con máscara, sin rostro visible.
+  "svc-soldadura",
 ]);
