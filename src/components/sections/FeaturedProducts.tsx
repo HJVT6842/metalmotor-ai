@@ -2,24 +2,19 @@ import { Stagger, StaggerItem } from "@/components/animations/Stagger";
 import { WhatsAppCta } from "@/components/WhatsAppCta";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Media } from "@/components/ui/Media";
+import { MediaBadge } from "@/components/ui/MediaBadge";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { getMediaById } from "@/data/media";
+import { FEATURED_PRODUCTS } from "@/data/featured-products";
 
-type Featured = {
-  readonly mediaId: string;
-  readonly name: string;
-};
-
-const FEATURED: readonly Featured[] = [
-  { mediaId: "prod-celosias", name: "Celosías Decorativas" },
-  { mediaId: "prod-portones", name: "Portones" },
-  { mediaId: "prod-paneles", name: "Paneles Decorativos" },
-  { mediaId: "prod-separadores", name: "Separadores de Ambientes" },
-];
+const CARD_SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw";
 
 /**
- * Conversion-first featured products, directly below the hero. Large industrial
- * photography, hover zoom, a WhatsApp CTA and a link to the contact form.
+ * Conversion-first featured products, directly below the hero. Each card shows a
+ * main render and, on hover-capable devices, crossfades (+ slight zoom) to a
+ * related second view. The hover layer is display:none on touch, so its lazy
+ * next/image never downloads on mobile; CLS stays 0 (fixed-height container,
+ * both images absolute-filled). A WhatsApp CTA and a contact link complete it.
  */
 export function FeaturedProducts() {
   return (
@@ -39,8 +34,9 @@ export function FeaturedProducts() {
         className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
         stagger={0.08}
       >
-        {FEATURED.map((item, i) => {
+        {FEATURED_PRODUCTS.map((item, i) => {
           const media = getMediaById(item.mediaId);
+          const hover = item.hoverMediaId ? getMediaById(item.hoverMediaId) : undefined;
           return (
             <StaggerItem key={item.mediaId}>
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-steel-900/50 transition-all duration-300 hover:-translate-y-1 hover:border-brand-500/50 hover:shadow-[0_0_44px_-12px_rgba(249,115,22,0.55)]">
@@ -49,17 +45,39 @@ export function FeaturedProducts() {
                   aria-label={`Solicitar ${item.name}`}
                   className="relative block h-72 overflow-hidden sm:h-80"
                 >
-                  <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-110">
+                  {/* Imagen principal */}
+                  <div className="absolute inset-0 z-0 transition-transform duration-500 ease-out motion-safe:group-hover:scale-110">
                     <Media
                       src={media?.src ?? ""}
                       alt={media?.alt ?? item.name}
                       index={i}
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      status={media?.status ?? "reference"}
+                      sizes={CARD_SIZES}
+                      showBadge={false}
                     />
                   </div>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-steel-950 via-steel-950/30 to-transparent" />
-                  <h3 className="absolute inset-x-0 bottom-0 p-4 text-lg font-bold text-white">
+
+                  {/* Segunda vista (crossfade + leve zoom). Solo en dispositivos
+                      con hover real: en táctil queda display:none, por lo que la
+                      imagen lazy de next/image nunca se descarga en mobile. */}
+                  {hover ? (
+                    <div
+                      aria-hidden
+                      className="absolute inset-0 z-10 hidden opacity-0 transition-opacity duration-[400ms] ease-out group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none [@media(hover:hover)]:block"
+                    >
+                      <div className="absolute inset-0 transition-transform duration-500 ease-out motion-safe:group-hover:scale-110">
+                        <Media src={hover.src} alt="" index={i} sizes={CARD_SIZES} showBadge={false} />
+                      </div>
+                    </div>
+                  ) : null}
+
+                  <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-t from-steel-950 via-steel-950/30 to-transparent" />
+
+                  {/* Badge de honestidad — siempre encima, incluso durante el hover. */}
+                  <div className="absolute left-3 top-3 z-30">
+                    <MediaBadge status={media?.status ?? "reference"} />
+                  </div>
+
+                  <h3 className="absolute inset-x-0 bottom-0 z-30 p-4 text-lg font-bold text-white">
                     {item.name}
                   </h3>
                 </a>
