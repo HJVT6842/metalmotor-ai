@@ -1,25 +1,43 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { MediaBadge } from "@/components/ui/MediaBadge";
-import { HERO_MEDIA } from "@/data/media";
+import { getMediaById } from "@/data/media";
+import { HERO_ROTATION_IDS } from "@/data/hero-rotation";
+
+/** Premium crossfade timing: each frame held, then an 800ms fade to the next. */
+const HOLD_MS = 6000;
+const FADE_MS = 800;
+
+/** Resolved once: each rotation id → its active-render media asset. */
+const FRAMES = HERO_ROTATION_IDS.map((id) => getMediaById(id)).filter(
+  (m): m is NonNullable<ReturnType<typeof getMediaById>> => Boolean(m?.src),
+);
 
 /**
- * Full-bleed hero background: crossfading reference banners with a slow Ken
- * Burns zoom and scroll parallax. Heavily overlaid so foreground text stays
- * AA-readable. Carries an "Imagen referencial" badge (honesty rule).
+ * Full-bleed hero background: auto-crossfading reference frames (no slider, no
+ * controls) with a slow Ken Burns zoom and scroll parallax. All frames are
+ * stacked and cross-faded by opacity, so there is no layout shift (CLS 0) and
+ * the crossfade is smooth. Only the entry frame is `priority` (LCP); the rest
+ * load lazily. Heavily overlaid so foreground text stays AA-readable. Carries an
+ * "Imagen referencial" badge (honesty rule). Respects prefers-reduced-motion.
  */
 export function HeroBanner() {
   const ref = useRef<HTMLDivElement>(null);
-  const [i, setI] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setI((p) => (p + 1) % HERO_MEDIA.length), 5500);
+    if (reduceMotion || FRAMES.length <= 1) return;
+    const id = setInterval(
+      () => setCurrent((p) => (p + 1) % FRAMES.length),
+      HOLD_MS + FADE_MS,
+    );
     return () => clearInterval(id);
-  }, []);
+  }, [reduceMotion]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -27,34 +45,35 @@ export function HeroBanner() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
-  const item = HERO_MEDIA[i];
-
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
       <motion.div style={{ y }} className="absolute inset-0" aria-hidden>
-        <AnimatePresence>
-          <motion.div
-            key={item.id}
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 1.06 }}
-            animate={{ opacity: 1, scale: 1.1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              opacity: { duration: 1.4 },
-              scale: { duration: 8, ease: "linear" },
-            }}
-          >
-            <Image
-              src={item.src}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              quality={82}
-              className="object-cover object-center"
-            />
-          </motion.div>
-        </AnimatePresence>
+        {/* Ken Burns: subtle continuous zoom across the whole stack. */}
+        <motion.div
+          className="absolute inset-0"
+          animate={reduceMotion ? undefined : { scale: [1.04, 1.12, 1.04] }}
+          transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {FRAMES.map((frame, idx) => (
+            <motion.div
+              key={frame.id}
+              className="absolute inset-0"
+              initial={false}
+              animate={{ opacity: idx === current ? 1 : 0 }}
+              transition={{ duration: FADE_MS / 1000, ease: "easeInOut" }}
+            >
+              <Image
+                src={frame.src}
+                alt=""
+                fill
+                priority={idx === 0}
+                sizes="100vw"
+                quality={82}
+                className="object-cover object-center"
+              />
+            </motion.div>
+          ))}
+        </motion.div>
       </motion.div>
 
       {/* Readability overlays — lighter so the real photo reads, text stays AA. */}
