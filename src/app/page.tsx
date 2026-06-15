@@ -5,6 +5,7 @@ import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { Hero } from "@/components/sections/Hero";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Process } from "@/components/sections/Process";
+import { ReferentialDisclaimer } from "@/components/sections/ReferentialDisclaimer";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Trust } from "@/components/sections/Trust";
 import { WhatWeCanMake } from "@/components/sections/WhatWeCanMake";
@@ -22,6 +23,7 @@ export default function HomePage() {
     <>
       <Hero />
       <FeaturedProducts />
+      <ReferentialDisclaimer />
       <Trust />
       <WhatWeCanMake />
       <Capacidad />

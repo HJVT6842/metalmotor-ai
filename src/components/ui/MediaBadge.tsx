@@ -1,5 +1,4 @@
-import { mediaBadgeLabel, type MediaStatus } from "@/data/media";
-import { cn } from "@/lib/cn";
+import type { MediaStatus } from "@/data/media";
 
 type MediaBadgeProps = {
   readonly status: MediaStatus;
@@ -7,29 +6,15 @@ type MediaBadgeProps = {
 };
 
 /**
- * Provenance badge. `reference` → "Imagen referencial"; `real` → "Trabajo
- * realizado". This is the single place the honesty rule is rendered.
+ * Per-image provenance badge — intentionally NOT rendered.
+ *
+ * The visible "Imagen referencial" overlay was removed in favour of a single
+ * general disclaimer in the "Trabajos y Proyectos" section (see Portfolio.tsx).
+ * The honesty rule itself still lives in `mediaBadgeLabel` (src/data/media.ts),
+ * and every asset keeps its `status`/credit metadata untouched. This component
+ * is kept as a no-op so existing callers compile without per-card changes; to
+ * restore per-image badges, reinstate the JSX here.
  */
-export function MediaBadge({ status, className }: MediaBadgeProps) {
-  const real = status === "real";
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm",
-        real
-          ? "bg-emerald-500/20 text-emerald-300 ring-1 ring-inset ring-emerald-400/30"
-          : "bg-steel-950/60 text-steel-200 ring-1 ring-inset ring-white/15",
-        className,
-      )}
-    >
-      <span
-        aria-hidden
-        className={cn(
-          "h-1.5 w-1.5 rounded-full",
-          real ? "bg-emerald-400" : "bg-brand-400",
-        )}
-      />
-      {mediaBadgeLabel(status)}
-    </span>
-  );
+export function MediaBadge(_props: MediaBadgeProps): null {
+  return null;
 }
