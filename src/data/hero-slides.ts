@@ -42,8 +42,8 @@ export const HERO_SLIDES: readonly HeroSlide[] = [
  * no missing-file 404). Add an id here ONLY after dropping its mobile .webp.
  */
 export const ACTIVE_MOBILE_HERO: ReadonlySet<string> = new Set<string>([
-  // "hero-workshop",
-  // "hero-celosias",
+  "hero-workshop",
+  "hero-celosias",
 ]);
 
 /** Resolve a slide to its desktop and mobile srcs, with the safe fallback. */
