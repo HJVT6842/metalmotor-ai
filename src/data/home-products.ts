@@ -125,8 +125,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Parrilla armable de acero macizo. Se guarda plana y se monta en segundos.",
     deliveryTime: "7 a 10 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 89990,
     images: imageSet("bbq", "parrilla-desarmable-60x40"),
     featured: true,
   },
@@ -142,8 +142,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Parrilla desarmable cuadrada de acero macizo. Compacta, se guarda plana y se monta en segundos.",
     deliveryTime: "7 a 10 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 69990,
     images: imageSet("bbq", "parrilla-desarmable-300x300"),
     featured: true,
   },
@@ -159,8 +159,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Disco de cocción con tapa y agarraderas. Ideal para exterior.",
     deliveryTime: "7 a 10 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 79990,
     images: imageSet("bbq", "disco-para-asado-48-con-tapa", 4),
     featured: true,
   },
@@ -178,8 +178,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Fogón, parrilla y mesa en una sola pieza. El centro del patio.",
     deliveryTime: "10 a 14 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 189990,
     images: imageSet("fogones-exterior", "fogon-multifuncion-60", 5),
     featured: true,
   },
@@ -195,7 +195,7 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription: "Brasero de líneas limpias para calor y ambiente.",
     deliveryTime: "7 a 10 días hábiles",
     stockStatus: "made_to_order",
-    price: null,
+    price: 99990,
     images: [],
   },
   {
@@ -211,7 +211,7 @@ export const PRODUCTS: readonly Product[] = [
       "Organiza y luce tu leña con una pieza estructural minimalista.",
     deliveryTime: "10 a 14 días hábiles",
     stockStatus: "made_to_order",
-    price: null,
+    price: 129990,
     images: [],
   },
 
@@ -228,8 +228,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Plancha maciza de cocción uniforme para cocina o exterior.",
     deliveryTime: "7 a 10 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 44990,
     images: [],
   },
   {
@@ -245,7 +245,7 @@ export const PRODUCTS: readonly Product[] = [
       "Cubre dos quemadores. Superficie amplia para cocinar en grande.",
     deliveryTime: "7 a 10 días hábiles",
     stockStatus: "made_to_order",
-    price: null,
+    price: 59990,
     images: [],
   },
 
@@ -262,8 +262,8 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription:
       "Set esencial del asador, con acabado y peso profesional.",
     deliveryTime: "5 a 7 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 39990,
     images: [],
   },
   {
@@ -277,8 +277,8 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "70 cm",
     shortDescription: "Atizador robusto para controlar las brasas con precisión.",
     deliveryTime: "5 a 7 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 19990,
     images: [],
   },
   {
@@ -293,7 +293,7 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription: "Rejilla de repuesto o extra para tu parrilla desarmable.",
     deliveryTime: "5 a 7 días hábiles",
     stockStatus: "in_stock",
-    price: null,
+    price: 29990,
     images: [],
   },
 
@@ -311,7 +311,7 @@ export const PRODUCTS: readonly Product[] = [
       "Números y letras cortados a láser. Diseño propio, a tu medida.",
     deliveryTime: "7 a 10 días hábiles",
     stockStatus: "made_to_order",
-    price: null,
+    price: 34990,
     images: imageSet("hogar", "numero-de-casa-personalizado"),
     featured: true,
   },
@@ -327,7 +327,7 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription: "Repisa minimalista de montaje oculto. Líneas puras.",
     deliveryTime: "7 a 10 días hábiles",
     stockStatus: "made_to_order",
-    price: null,
+    price: 32990,
     images: [],
   },
   {
@@ -341,8 +341,8 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "50 × 12 cm",
     shortDescription: "Perchero de líneas limpias, cortado y plegado a medida.",
     deliveryTime: "5 a 7 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
+    stockStatus: "in_stock",
+    price: 27990,
     images: [],
   },
   {
@@ -357,7 +357,7 @@ export const PRODUCTS: readonly Product[] = [
     shortDescription: "Objeto de diseño geométrico para dar calidez al espacio.",
     deliveryTime: "5 a 7 días hábiles",
     stockStatus: "in_stock",
-    price: null,
+    price: 16990,
     images: [],
   },
 ];
