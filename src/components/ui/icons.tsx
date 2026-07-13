@@ -129,6 +129,15 @@ export function ChevronDownIcon(props: IconProps) {
   );
 }
 
+export function ZoomInIcon(props: IconProps) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="11" cy="11" r="7" />
+      <path d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+    </svg>
+  );
+}
+
 /** Maps a ServiceIcon key to a decorative line icon. */
 export function ServiceGlyph({ name, ...props }: IconProps & { name: ServiceIcon }) {
   switch (name) {
