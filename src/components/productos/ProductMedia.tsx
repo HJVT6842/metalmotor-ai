@@ -108,7 +108,7 @@ export function ProductMedia({
         className={cn(
           "absolute inset-0",
           hoverZoom &&
-            "transition-transform duration-700 ease-out motion-safe:group-hover:scale-105",
+            "transition-transform duration-500 ease-out motion-safe:group-hover:scale-110",
         )}
       >
         {showImage ? (

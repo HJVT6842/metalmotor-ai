@@ -14,41 +14,46 @@ type ProductCardProps = {
 };
 
 /**
- * Minimal, product-first card. Aspect-agnostic image, quiet type, availability
- * pill and a hover affordance — no loud badges, no marketplace clutter. The
- * whole card is one link.
+ * Minimal, product-first card. Aspect-agnostic image with a lively hover — the
+ * photo zooms, the frame lifts and lights up, and a "Ver producto" affordance
+ * fades in over the image. Quiet type, availability pill, one link.
  */
 export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const href = `/productos/${product.categorySlug}/${product.slug}`;
   const cover = product.images[0] ?? "";
 
   return (
-    <Link href={href} className="group block">
+    <Link
+      href={href}
+      className="group block transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1"
+    >
       <ProductMedia
         src={cover}
         alt={product.name}
         index={index}
         frame="landscape"
         sizes={CARD_SIZES}
-        className="ring-1 ring-inset ring-white/10 transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-black/40"
+        className="ring-1 ring-inset ring-white/10 transition duration-300 group-hover:ring-brand-500/40 group-hover:shadow-2xl group-hover:shadow-black/50"
         hoverZoom
-      />
-
-      <div className="mt-4 flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <h3 className="truncate text-base font-medium text-white transition-colors group-hover:text-brand-300">
-            {product.name}
-          </h3>
-          <div className="mt-2">
-            <StockPill status={product.stockStatus} />
-          </div>
-        </div>
-        <span
-          className="mt-0.5 shrink-0 text-steel-500 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-brand-400"
+      >
+        <div
+          className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-steel-950/80 via-steel-950/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           aria-hidden
         >
-          <ArrowRightIcon className="h-5 w-5" />
-        </span>
+          <span className="m-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-medium text-white ring-1 ring-inset ring-white/20 backdrop-blur-sm">
+            Ver producto
+            <ArrowRightIcon className="h-3.5 w-3.5" />
+          </span>
+        </div>
+      </ProductMedia>
+
+      <div className="mt-4">
+        <h3 className="truncate text-base font-medium text-white transition-colors group-hover:text-brand-300">
+          {product.name}
+        </h3>
+        <div className="mt-2">
+          <StockPill status={product.stockStatus} />
+        </div>
       </div>
     </Link>
   );
