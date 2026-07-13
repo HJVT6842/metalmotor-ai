@@ -164,22 +164,6 @@ export const PRODUCTS: readonly Product[] = [
     images: imageSet("bbq", "disco-para-asado-48-con-tapa", 4),
     featured: true,
   },
-  {
-    id: "bbq-parrilla-vertical",
-    sku: "MM-BBQ-003",
-    categorySlug: "bbq",
-    slug: "parrilla-vertical-argentina",
-    name: "Parrilla Vertical Argentina",
-    material: "Acero inoxidable",
-    thickness: "3 mm",
-    dimensions: "50 × 90 cm",
-    shortDescription:
-      "Parrilla vertical para cordero y costillar, con recolector de grasa.",
-    deliveryTime: "10 a 14 días hábiles",
-    stockStatus: "made_to_order",
-    price: null,
-    images: [],
-  },
 
   // ── Fogones y Exterior ─────────────────────────────────────────────────────
   {
