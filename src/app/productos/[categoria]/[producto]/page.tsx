@@ -79,11 +79,13 @@ export default async function ProductPage({
         ]}
       />
 
-      <Container className="pb-14 pt-2 sm:pb-16">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <ProductGallery images={product.images} alt={product.name} />
+      <Container className="pb-16 pt-4 sm:pb-20 sm:pt-2">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <ProductGallery images={product.images} alt={product.name} />
+          </div>
 
-          <div className="flex flex-col lg:pt-4">
+          <div className="flex flex-col lg:col-span-5 lg:pt-2">
             {category ? (
               <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.2em] text-brand-400">
                 <span className="h-px w-6 bg-brand-500" aria-hidden />
