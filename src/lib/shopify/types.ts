@@ -15,6 +15,13 @@ export type ProductVariant = {
   readonly id: string;
   readonly title: string;
   readonly availableForSale: boolean;
+  /**
+   * Units in stock from Shopify. `null` when the token lacks the
+   * `unauthenticated_read_product_inventory` scope (the field errors but the
+   * rest of the query still resolves) — callers must treat null as "unknown"
+   * and fall back, never invent a number.
+   */
+  readonly quantityAvailable: number | null;
   readonly price: Money;
 };
 

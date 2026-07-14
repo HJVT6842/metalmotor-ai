@@ -7,7 +7,7 @@ import { ProductBenefits } from "@/components/productos/ProductBenefits";
 import { ProductGallery } from "@/components/productos/ProductGallery";
 import { ProductSpecs } from "@/components/productos/ProductSpecs";
 import { RelatedProducts } from "@/components/productos/RelatedProducts";
-import { StockPill } from "@/components/productos/StockPill";
+import { StockIndicator } from "@/components/productos/StockIndicator";
 import { TrustSeals } from "@/components/productos/TrustSeals";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, ClockIcon } from "@/components/ui/icons";
@@ -112,7 +112,11 @@ export default async function ProductPage({
               <span className="text-3xl font-semibold text-white">
                 {formatPrice(commerce.price)}
               </span>
-              <StockPill status={commerce.stockStatus} />
+              <StockIndicator
+                available={commerce.available}
+                quantityAvailable={commerce.quantityAvailable}
+                fallbackStatus={commerce.stockStatus}
+              />
             </div>
 
             <p className="mt-3 inline-flex items-center gap-2 text-sm text-steel-400">
@@ -121,7 +125,7 @@ export default async function ProductPage({
             </p>
 
             <div className="mt-8">
-              <ProductActions product={product} />
+              <ProductActions product={product} soldOut={!commerce.available} />
             </div>
 
             <p className="mt-4 max-w-md text-xs leading-relaxed text-steel-500">

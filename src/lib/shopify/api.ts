@@ -46,12 +46,16 @@ export async function getProductByHandle(
             id: string;
             title: string;
             availableForSale: boolean;
+            quantityAvailable: number | null;
             price: RawMoney;
           };
         }[];
       };
     } | null;
-  }>(PRODUCT_BY_HANDLE_QUERY, { handle });
+    // Read at the default ISR window, tolerating field-level errors: if the
+    // token can't read `quantityAvailable`, that field comes back null while
+    // price/availability still resolve.
+  }>(PRODUCT_BY_HANDLE_QUERY, { handle }, 300, true);
 
   if (!data.product) return null;
 
@@ -61,6 +65,7 @@ export async function getProductByHandle(
         id: variantNode.id,
         title: variantNode.title,
         availableForSale: variantNode.availableForSale,
+        quantityAvailable: variantNode.quantityAvailable ?? null,
         price: toMoney(variantNode.price),
       }
     : null;

@@ -52,6 +52,7 @@ export async function storefrontFetch<T>(
   query: string,
   variables: Record<string, unknown> = {},
   revalidate: number = DEFAULT_REVALIDATE,
+  tolerateFieldErrors = false,
 ): Promise<T> {
   const result = getShopifyEnv();
   if (!result.ok) {
@@ -100,7 +101,14 @@ export async function storefrontFetch<T>(
 
   if (payload.errors && payload.errors.length > 0) {
     const message = payload.errors.map((e) => e.message).join("; ");
-    throw new ShopifyError("graphql", `Error GraphQL: ${message}`);
+    // Field-level errors (e.g. a field the token can't read) arrive alongside
+    // partial data. For tolerant reads, keep the data and let callers treat the
+    // denied field as unknown — never fail the whole read over one field.
+    if (tolerateFieldErrors && payload.data) {
+      console.warn(`Shopify: campo(s) no accesibles (se ignoran): ${message}`);
+    } else {
+      throw new ShopifyError("graphql", `Error GraphQL: ${message}`);
+    }
   }
 
   if (!payload.data) {
