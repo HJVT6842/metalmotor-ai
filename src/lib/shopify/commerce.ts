@@ -21,9 +21,17 @@ import { isShopifyConfigured } from "./env";
 export type CommerceData = {
   /** CLP amount for `formatPrice`; null → "Precio a confirmar". */
   readonly price: number | null;
-  /** Mapped to the existing pill states — no new visual states introduced. */
+  /** Mapped to the existing pill states — used as the fallback pill. */
   readonly stockStatus: StockStatus;
-  /** Shopify variant id (held for a later cart stage; not displayed yet). */
+  /** Purchasable right now (Shopify `availableForSale`, or local heuristic). */
+  readonly available: boolean;
+  /**
+   * Units in stock from Shopify, or `null` when unknown (token lacks inventory
+   * scope, or local fallback). Drives the dynamic stock indicator; null keeps
+   * the current "Disponible" behavior. Never fabricated.
+   */
+  readonly quantityAvailable: number | null;
+  /** Shopify variant id (used by the cart). */
   readonly variantId: string | null;
   /** Where the numbers came from — useful for logging / debugging. */
   readonly source: "shopify" | "local";
@@ -43,6 +51,8 @@ export async function resolveCommerce(product: Product): Promise<CommerceData> {
   const local: CommerceData = {
     price: product.price,
     stockStatus: product.stockStatus,
+    available: product.stockStatus !== "coming_soon",
+    quantityAvailable: null,
     variantId: null,
     source: "local",
   };
@@ -61,6 +71,8 @@ export async function resolveCommerce(product: Product): Promise<CommerceData> {
     return {
       price: Number.isNaN(amount) ? product.price : Math.round(amount),
       stockStatus: mapStatus(variant.availableForSale, product.stockStatus),
+      available: variant.availableForSale,
+      quantityAvailable: variant.quantityAvailable,
       variantId: variant.id,
       source: "shopify",
     };
