@@ -55,6 +55,8 @@ export type Product = {
   readonly price: number | null;
   /** Future photo paths; empty → gradient placeholder. */
   readonly images: readonly string[];
+  /** Three product-specific benefits for the PDP hero. */
+  readonly benefits: readonly [string, string, string];
   /** Curated highlights on the landing "Productos destacados" block. */
   readonly featured?: boolean;
 };
@@ -135,6 +137,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 89990,
     images: imageSet("bbq", "parrilla-desarmable-60x40"),
+    benefits: [
+      "Se guarda completamente plana",
+      "Armado rápido sin soldaduras",
+      "Disponible para despacho en 24–48 horas",
+    ],
     featured: true,
   },
   {
@@ -152,6 +159,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 69990,
     images: imageSet("bbq", "parrilla-desarmable-30x30"),
+    benefits: [
+      "Compacta y fácil de transportar",
+      "Funciona como parrilla y brasero",
+      "Disponible para despacho en 24–48 horas",
+    ],
     featured: true,
   },
   {
@@ -169,6 +181,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 79990,
     images: imageSet("bbq", "disco-para-asado-48-con-tapa", 4),
+    benefits: [
+      "Amplia superficie de cocción",
+      "Incluye tapa y agarraderas",
+      "Compatible con leña, carbón y brasas",
+    ],
     featured: true,
   },
 
@@ -188,6 +205,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 189990,
     images: imageSet("fogones-exterior", "fogon-multifuncion-60", 5),
+    benefits: [
+      "Funciona como fogón y parrilla",
+      "Estructura desarmable y transportable",
+      "Acero carbono de 5 mm",
+    ],
     featured: true,
   },
   {
@@ -204,6 +226,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 99990,
     images: [],
+    benefits: [
+      "Diseño minimalista de líneas limpias",
+      "Perfecto para calor y ambiente",
+      "Fabricación rápida en 2–5 días",
+    ],
   },
   {
     id: "fogon-lenero-acero",
@@ -220,6 +247,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 129990,
     images: [],
+    benefits: [
+      "Estructura minimalista y resistente",
+      "Organiza tu leña con estilo",
+      "Fabricado por pedido en 5–10 días",
+    ],
   },
 
   // ── Cocina ─────────────────────────────────────────────────────────────────
@@ -238,6 +270,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 44990,
     images: [],
+    benefits: [
+      "Cocción uniforme en cualquier superficie",
+      "Versátil para cocina e interior",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
   {
     id: "cocina-plancha-doble",
@@ -254,6 +291,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 59990,
     images: [],
+    benefits: [
+      "Cubre dos quemadores simultáneamente",
+      "Superficie amplia para cocinar en grande",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
 
   // ── Accesorios BBQ ───────────────────────────────────────────────────────────
@@ -272,6 +314,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 39990,
     images: [],
+    benefits: [
+      "Set esencial del asador profesional",
+      "Acero inoxidable resistente",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
   {
     id: "acc-atizador",
@@ -287,6 +334,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 19990,
     images: [],
+    benefits: [
+      "Acero robusto de 8 mm",
+      "Controla las brasas con precisión",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
   {
     id: "acc-rejilla-60x40",
@@ -302,6 +354,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 29990,
     images: [],
+    benefits: [
+      "Compatible con parrilla desarmable",
+      "Acero al carbono de 6 mm",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
 
   // ── Hogar ────────────────────────────────────────────────────────────────────
@@ -320,6 +377,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 34990,
     images: imageSet("hogar", "numero-de-casa-personalizado"),
+    benefits: [
+      "Cortado a láser con precisión",
+      "Personalizable a tu medida",
+      "Fabricado por pedido en 5–10 días",
+    ],
     featured: true,
   },
   {
@@ -336,6 +398,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 32990,
     images: [],
+    benefits: [
+      "Montaje oculto y minimalista",
+      "Líneas puras de diseño",
+      "Fabricación rápida en 2–5 días",
+    ],
   },
   {
     id: "hogar-perchero-pared",
@@ -351,6 +418,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "made_to_order",
     price: 27990,
     images: [],
+    benefits: [
+      "Cortado y plegado a medida",
+      "Líneas limpias y minimalistas",
+      "Fabricación rápida en 2–5 días",
+    ],
   },
   {
     id: "hogar-portavelas",
@@ -366,6 +438,11 @@ export const PRODUCTS: readonly Product[] = [
     stockStatus: "in_stock",
     price: 16990,
     images: [],
+    benefits: [
+      "Diseño geométrico contemporáneo",
+      "Acero inoxidable duradero",
+      "Disponible para despacho en 24–48 horas",
+    ],
   },
 ];
 
