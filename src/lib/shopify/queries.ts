@@ -1,7 +1,8 @@
 /**
  * GraphQL documents for the Storefront API. Kept as plain strings (no codegen,
- * no extra deps). This stage only reads a product by handle to source its
- * price, availability and variant id — no cart mutations yet.
+ * no extra deps): a product read (price/availability/variant id) plus the Cart
+ * API operations. A shared cart fragment guarantees every mutation returns the
+ * same shape — including `checkoutUrl` — so the mapper handles one form.
  */
 
 /** Resolve a product by handle, exposing its first purchasable variant. */
@@ -24,6 +25,121 @@ export const PRODUCT_BY_HANDLE_QUERY = /* GraphQL */ `
             }
           }
         }
+      }
+    }
+  }
+`;
+
+/** Everything the drawer + checkout need from a cart, in one fragment. */
+export const CART_FRAGMENT = /* GraphQL */ `
+  fragment CartFields on Cart {
+    id
+    checkoutUrl
+    totalQuantity
+    cost {
+      subtotalAmount {
+        amount
+        currencyCode
+      }
+    }
+    lines(first: 100) {
+      edges {
+        node {
+          id
+          quantity
+          cost {
+            totalAmount {
+              amount
+              currencyCode
+            }
+          }
+          merchandise {
+            ... on ProductVariant {
+              id
+              title
+              price {
+                amount
+                currencyCode
+              }
+              image {
+                url
+                altText
+              }
+              product {
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const CART_QUERY = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  query CartById($id: ID!) {
+    cart(id: $id) {
+      ...CartFields
+    }
+  }
+`;
+
+export const CART_CREATE_MUTATION = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  mutation CartCreate($lines: [CartLineInput!]) {
+    cartCreate(input: { lines: $lines }) {
+      cart {
+        ...CartFields
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const CART_LINES_ADD_MUTATION = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+    cartLinesAdd(cartId: $cartId, lines: $lines) {
+      cart {
+        ...CartFields
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const CART_LINES_UPDATE_MUTATION = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  mutation CartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+    cartLinesUpdate(cartId: $cartId, lines: $lines) {
+      cart {
+        ...CartFields
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const CART_LINES_REMOVE_MUTATION = /* GraphQL */ `
+  ${CART_FRAGMENT}
+  mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+      cart {
+        ...CartFields
+      }
+      userErrors {
+        field
+        message
       }
     }
   }
