@@ -129,7 +129,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: "parrilla-desarmable-60x40",
     name: "Parrilla Desarmable 60x40",
     material: "Acero al carbono",
-    thickness: "6 mm",
+    thickness: "3 mm",
     dimensions: "60 × 40 × 25 cm",
     shortDescription:
       "Parrilla armable de acero macizo. Se guarda plana y se monta en segundos.",
@@ -151,7 +151,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: "parrilla-desarmable-30x30",
     name: "Parrilla Desarmable 30x30",
     material: "Acero al carbono",
-    thickness: "6 mm",
+    thickness: "3 mm",
     dimensions: "30 × 30 × 25 cm",
     shortDescription:
       "Parrilla desarmable cuadrada de acero macizo. Compacta, se guarda plana y se monta en segundos.",
@@ -262,7 +262,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: "plancha-de-cocina-40x30",
     name: "Plancha de Cocina 40x30",
     material: "Acero al carbono",
-    thickness: "6 mm",
+    thickness: "3 mm",
     dimensions: "40 × 30 cm",
     shortDescription:
       "Plancha maciza de cocción uniforme para cocina o exterior.",
@@ -283,7 +283,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: "plancha-doble-quemador",
     name: "Plancha Doble Quemador",
     material: "Acero al carbono",
-    thickness: "6 mm",
+    thickness: "3 mm",
     dimensions: "60 × 30 cm",
     shortDescription:
       "Cubre dos quemadores. Superficie amplia para cocinar en grande.",
@@ -347,7 +347,7 @@ export const PRODUCTS: readonly Product[] = [
     slug: "rejilla-adicional-60x40",
     name: "Rejilla Adicional 60x40",
     material: "Acero al carbono",
-    thickness: "6 mm",
+    thickness: "3 mm",
     dimensions: "60 × 40 cm",
     shortDescription: "Rejilla de repuesto o extra para tu parrilla desarmable.",
     deliveryTier: "stock",
@@ -356,7 +356,7 @@ export const PRODUCTS: readonly Product[] = [
     images: [],
     benefits: [
       "Compatible con parrilla desarmable",
-      "Acero al carbono de 6 mm",
+      "Acero al carbono de 3 mm",
       "Disponible para despacho en 24–48 horas",
     ],
   },
