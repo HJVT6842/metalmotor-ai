@@ -19,9 +19,13 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/data/home-products";
+import { resolveCommerce } from "@/lib/shopify/commerce";
 
 // Only known category/product pairs render; anything else 404s.
 export const dynamicParams = false;
+
+// Refresh Shopify-sourced price/availability on an interval (ISR).
+export const revalidate = 300;
 
 export function generateStaticParams() {
   return getAllProducts().map((p) => ({
@@ -66,6 +70,9 @@ export default async function ProductPage({
 
   const category = getCategoryBySlug(categoria);
   const related = getRelatedProducts(product);
+  // Price + availability come from Shopify when the product is linked and the
+  // store is configured; otherwise these fall back to the local editorial data.
+  const commerce = await resolveCommerce(product);
 
   return (
     <>
@@ -103,9 +110,9 @@ export default async function ProductPage({
 
             <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
               <span className="text-3xl font-semibold text-white">
-                {formatPrice(product.price)}
+                {formatPrice(commerce.price)}
               </span>
-              <StockPill status={product.stockStatus} />
+              <StockPill status={commerce.stockStatus} />
             </div>
 
             <p className="mt-3 inline-flex items-center gap-2 text-sm text-steel-400">

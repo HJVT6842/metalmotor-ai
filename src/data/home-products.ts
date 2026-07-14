@@ -59,6 +59,17 @@ export type Product = {
   readonly benefits: readonly [string, string, string];
   /** Curated highlights on the landing "Productos destacados" block. */
   readonly featured?: boolean;
+  /**
+   * Handle of the matching Shopify product (Storefront API). When present AND
+   * Shopify is configured, the product's price, availability and variant id are
+   * sourced live from Shopify (see `resolveCommerce`); everything else on this
+   * record stays local/editorial. When absent (or Shopify unconfigured) the
+   * local values below are used unchanged.
+   *
+   * NOTE: these handles must match the products created in the Shopify admin.
+   * Confirm/adjust them against the real store before going live.
+   */
+  readonly shopifyHandle?: string;
 };
 
 export const CATEGORIES: readonly ProductCategory[] = [
@@ -143,6 +154,7 @@ export const PRODUCTS: readonly Product[] = [
       "Disponible para despacho en 24–48 horas",
     ],
     featured: true,
+    shopifyHandle: "parrilla-desarmable-60-40",
   },
   {
     id: "bbq-parrilla-desarmable-30x30",
@@ -165,6 +177,7 @@ export const PRODUCTS: readonly Product[] = [
       "Disponible para despacho en 24–48 horas",
     ],
     featured: true,
+    shopifyHandle: "parrilla-desarmable-30-30",
   },
   {
     id: "bbq-disco-asado-48-tapa",
@@ -187,6 +200,7 @@ export const PRODUCTS: readonly Product[] = [
       "Compatible con leña, carbón y brasas",
     ],
     featured: true,
+    shopifyHandle: "disco-para-asado-48-cm-con-tapa",
   },
 
   // ── Fogones y Exterior ─────────────────────────────────────────────────────
@@ -211,6 +225,10 @@ export const PRODUCTS: readonly Product[] = [
       "Acero carbono de 5 mm",
     ],
     featured: true,
+    // Local editorial name is "Fogón Multifunción 60"; the Shopify product is
+    // "Fogón Multifunción 65 × 65" (handle below). The handle is what links to
+    // Shopify. The frozen UI name stays unchanged.
+    shopifyHandle: "fogon-multifuncion-65-65",
   },
   {
     id: "fogon-brasero-circular-50",
