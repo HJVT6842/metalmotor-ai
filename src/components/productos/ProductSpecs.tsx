@@ -1,7 +1,7 @@
 import type { ReactNode, SVGProps } from "react";
 
 import { ClockIcon, GaugeIcon } from "@/components/ui/icons";
-import type { Product } from "@/data/home-products";
+import { DELIVERY, type Product } from "@/data/home-products";
 
 type Glyph = (props: SVGProps<SVGSVGElement>) => ReactNode;
 
@@ -43,7 +43,11 @@ export function ProductSpecs({ product }: { readonly product: Product }) {
     { icon: GaugeIcon, label: "Espesor", value: product.thickness },
     { icon: CubeGlyph, label: "Medidas", value: product.dimensions },
     { icon: GaugeIcon, label: "Peso", value: "Por confirmar" },
-    { icon: ClockIcon, label: "Entrega", value: product.deliveryTime },
+    {
+      icon: ClockIcon,
+      label: "Entrega",
+      value: DELIVERY[product.deliveryTier].eta,
+    },
   ];
 
   return (

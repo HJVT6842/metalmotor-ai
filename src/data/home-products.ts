@@ -21,6 +21,13 @@
 
 export type StockStatus = "in_stock" | "made_to_order" | "coming_soon";
 
+/**
+ * Delivery strategy per product. High-rotation items keep permanent stock;
+ * others are fabricated to order at two speeds. Drives the ETA shown on the
+ * ficha automatically — the only source of delivery copy is `DELIVERY` below.
+ */
+export type DeliveryTier = "stock" | "fast" | "special";
+
 export type ProductCategory = {
   readonly slug: string;
   readonly name: string;
@@ -42,7 +49,7 @@ export type Product = {
   readonly thickness: string;
   readonly dimensions: string;
   readonly shortDescription: string;
-  readonly deliveryTime: string;
+  readonly deliveryTier: DeliveryTier;
   readonly stockStatus: StockStatus;
   /** Placeholder price in CLP; null while pricing is pending. */
   readonly price: number | null;
@@ -124,7 +131,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "60 × 40 × 25 cm",
     shortDescription:
       "Parrilla armable de acero macizo. Se guarda plana y se monta en segundos.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 89990,
     images: imageSet("bbq", "parrilla-desarmable-60x40"),
@@ -141,7 +148,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "30 × 30 × 25 cm",
     shortDescription:
       "Parrilla desarmable cuadrada de acero macizo. Compacta, se guarda plana y se monta en segundos.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 69990,
     images: imageSet("bbq", "parrilla-desarmable-30x30"),
@@ -158,7 +165,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "Ø 48 cm",
     shortDescription:
       "Disco de cocción con tapa y agarraderas. Ideal para exterior.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 79990,
     images: imageSet("bbq", "disco-para-asado-48-con-tapa", 4),
@@ -177,8 +184,8 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "60 × 60 × 40 cm",
     shortDescription:
       "Fogón, parrilla y mesa en una sola pieza. El centro del patio.",
-    deliveryTime: "10 a 14 días hábiles",
-    stockStatus: "in_stock",
+    deliveryTier: "special",
+    stockStatus: "made_to_order",
     price: 189990,
     images: imageSet("fogones-exterior", "fogon-multifuncion-60", 5),
     featured: true,
@@ -193,7 +200,7 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "4 mm",
     dimensions: "Ø 50 × 35 cm",
     shortDescription: "Brasero de líneas limpias para calor y ambiente.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "fast",
     stockStatus: "made_to_order",
     price: 99990,
     images: [],
@@ -209,7 +216,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "80 × 40 × 90 cm",
     shortDescription:
       "Organiza y luce tu leña con una pieza estructural minimalista.",
-    deliveryTime: "10 a 14 días hábiles",
+    deliveryTier: "special",
     stockStatus: "made_to_order",
     price: 129990,
     images: [],
@@ -227,7 +234,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "40 × 30 cm",
     shortDescription:
       "Plancha maciza de cocción uniforme para cocina o exterior.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 44990,
     images: [],
@@ -243,8 +250,8 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "60 × 30 cm",
     shortDescription:
       "Cubre dos quemadores. Superficie amplia para cocinar en grande.",
-    deliveryTime: "7 a 10 días hábiles",
-    stockStatus: "made_to_order",
+    deliveryTier: "stock",
+    stockStatus: "in_stock",
     price: 59990,
     images: [],
   },
@@ -261,7 +268,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "Pinza, tenedor y espátula",
     shortDescription:
       "Set esencial del asador, con acabado y peso profesional.",
-    deliveryTime: "5 a 7 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 39990,
     images: [],
@@ -276,7 +283,7 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "8 mm",
     dimensions: "70 cm",
     shortDescription: "Atizador robusto para controlar las brasas con precisión.",
-    deliveryTime: "5 a 7 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 19990,
     images: [],
@@ -291,7 +298,7 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "6 mm",
     dimensions: "60 × 40 cm",
     shortDescription: "Rejilla de repuesto o extra para tu parrilla desarmable.",
-    deliveryTime: "5 a 7 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 29990,
     images: [],
@@ -309,7 +316,7 @@ export const PRODUCTS: readonly Product[] = [
     dimensions: "A medida",
     shortDescription:
       "Números y letras cortados a láser. Diseño propio, a tu medida.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "special",
     stockStatus: "made_to_order",
     price: 34990,
     images: imageSet("hogar", "numero-de-casa-personalizado"),
@@ -325,7 +332,7 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "3 mm",
     dimensions: "60 × 20 cm",
     shortDescription: "Repisa minimalista de montaje oculto. Líneas puras.",
-    deliveryTime: "7 a 10 días hábiles",
+    deliveryTier: "fast",
     stockStatus: "made_to_order",
     price: 32990,
     images: [],
@@ -340,8 +347,8 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "3 mm",
     dimensions: "50 × 12 cm",
     shortDescription: "Perchero de líneas limpias, cortado y plegado a medida.",
-    deliveryTime: "5 a 7 días hábiles",
-    stockStatus: "in_stock",
+    deliveryTier: "fast",
+    stockStatus: "made_to_order",
     price: 27990,
     images: [],
   },
@@ -355,7 +362,7 @@ export const PRODUCTS: readonly Product[] = [
     thickness: "2 mm",
     dimensions: "15 × 15 cm",
     shortDescription: "Objeto de diseño geométrico para dar calidez al espacio.",
-    deliveryTime: "5 a 7 días hábiles",
+    deliveryTier: "stock",
     stockStatus: "in_stock",
     price: 16990,
     images: [],
@@ -367,6 +374,16 @@ export const STOCK_LABEL: Record<StockStatus, string> = {
   in_stock: "Disponible",
   made_to_order: "Fabricación a pedido",
   coming_soon: "Muy pronto",
+};
+
+/** Delivery copy per tier — the single source of the ficha's ETA text. */
+export const DELIVERY: Record<
+  DeliveryTier,
+  { readonly label: string; readonly eta: string }
+> = {
+  stock: { label: "Stock permanente", eta: "24–48 horas" },
+  fast: { label: "Fabricación rápida", eta: "2–5 días hábiles" },
+  special: { label: "Fabricado por pedido", eta: "5–10 días hábiles" },
 };
 
 // ── Accessors (the ONLY surface the UI depends on — Shopify-swap ready) ───────
