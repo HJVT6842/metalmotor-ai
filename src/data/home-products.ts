@@ -131,11 +131,11 @@ export const PRODUCTS: readonly Product[] = [
     featured: true,
   },
   {
-    id: "bbq-parrilla-desarmable-300x300",
+    id: "bbq-parrilla-desarmable-30x30",
     sku: "MM-BBQ-004",
     categorySlug: "bbq",
-    slug: "parrilla-desarmable-300x300",
-    name: "Parrilla Desarmable 300x300",
+    slug: "parrilla-desarmable-30x30",
+    name: "Parrilla Desarmable 30x30",
     material: "Acero al carbono",
     thickness: "6 mm",
     dimensions: "30 × 30 × 25 cm",
@@ -144,7 +144,7 @@ export const PRODUCTS: readonly Product[] = [
     deliveryTime: "7 a 10 días hábiles",
     stockStatus: "in_stock",
     price: 69990,
-    images: imageSet("bbq", "parrilla-desarmable-300x300"),
+    images: imageSet("bbq", "parrilla-desarmable-30x30"),
     featured: true,
   },
   {
