@@ -77,7 +77,7 @@ export function ProductGallery({
       )}
 
       {slots.length > 1 ? (
-        <div className="mt-4 grid grid-cols-4 gap-3 sm:mt-5 sm:grid-cols-5">
+        <div className="mt-4 grid grid-cols-3 gap-4 sm:mt-5 sm:grid-cols-4">
           {slots.map((src, i) => (
             <button
               key={i}
@@ -98,7 +98,7 @@ export function ProductGallery({
                 index={i}
                 frame="square"
                 rounded="rounded-xl"
-                sizes="120px"
+                sizes="140px"
               />
             </button>
           ))}

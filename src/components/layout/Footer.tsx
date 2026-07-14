@@ -5,6 +5,14 @@ import { Logo } from "@/components/ui/Logo";
 import { NAV_LINKS, SITE } from "@/data/site";
 import { buildWhatsAppUrl, quotationMessage } from "@/lib/whatsapp";
 
+const PRODUCT_LINKS = [
+  { label: "BBQ", href: "/productos/bbq" },
+  { label: "Fogones y Exterior", href: "/productos/fogones-exterior" },
+  { label: "Cocina", href: "/productos/cocina" },
+  { label: "Accesorios BBQ", href: "/productos/accesorios-bbq" },
+  { label: "Hogar", href: "/productos/hogar" },
+] as const;
+
 const SERVICE_LINKS = [
   { label: "Corte Láser CNC", href: "/corte-laser-cnc" },
   { label: "Celosías Metálicas", href: "/celosias-metalicas" },
@@ -24,7 +32,7 @@ export function Footer() {
         aria-hidden
         className="h-1 w-full bg-gradient-to-r from-brand-600 via-brand-400 to-brand-600"
       />
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-1">
           <Logo variant="horizontal" />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-steel-400">
@@ -45,6 +53,24 @@ export function Footer() {
                 <a href={link.href} className="text-steel-400 hover:text-white">
                   {link.label}
                 </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            Productos
+          </h3>
+          <ul className="mt-4 space-y-2 text-sm">
+            {PRODUCT_LINKS.map((product) => (
+              <li key={product.href}>
+                <Link
+                  href={product.href}
+                  className="text-steel-400 hover:text-white"
+                >
+                  {product.label}
+                </Link>
               </li>
             ))}
           </ul>

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ProductMedia } from "@/components/productos/ProductMedia";
 import { StockPill } from "@/components/productos/StockPill";
 import { ArrowRightIcon } from "@/components/ui/icons";
-import { type Product } from "@/data/home-products";
+import { formatPrice, type Product } from "@/data/home-products";
 
 const CARD_SIZES = "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw";
 
@@ -51,8 +51,15 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
         <h3 className="truncate text-base font-medium text-white transition-colors group-hover:text-brand-300">
           {product.name}
         </h3>
-        <div className="mt-2">
+        <p className="mt-2 text-sm font-medium text-steel-300">
+          {formatPrice(product.price)}
+        </p>
+        <div className="mt-3 flex items-center justify-between">
           <StockPill status={product.stockStatus} />
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-brand-400 group-hover:text-brand-300">
+            Ver producto
+            <ArrowRightIcon className="h-3 w-3" />
+          </span>
         </div>
       </div>
     </Link>
