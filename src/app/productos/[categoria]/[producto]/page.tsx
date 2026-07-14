@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { Breadcrumbs } from "@/components/productos/Breadcrumbs";
-import { MadeByMetalMotor } from "@/components/productos/MadeByMetalMotor";
 import { ProductActions } from "@/components/productos/ProductActions";
 import { ProductBenefits } from "@/components/productos/ProductBenefits";
 import { ProductGallery } from "@/components/productos/ProductGallery";
 import { ProductSpecs } from "@/components/productos/ProductSpecs";
 import { RelatedProducts } from "@/components/productos/RelatedProducts";
 import { StockPill } from "@/components/productos/StockPill";
+import { TrustSeals } from "@/components/productos/TrustSeals";
 import { Container } from "@/components/ui/Container";
-import { ClockIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, ClockIcon } from "@/components/ui/icons";
 import {
+  DELIVERY,
   formatPrice,
   getAllProducts,
   getCategoryBySlug,
@@ -109,7 +110,7 @@ export default async function ProductPage({
 
             <p className="mt-3 inline-flex items-center gap-2 text-sm text-steel-400">
               <ClockIcon className="h-4 w-4 text-brand-400" />
-              Entrega estimada: {product.deliveryTime}
+              Entrega estimada: {DELIVERY[product.deliveryTier].eta}
             </p>
 
             <div className="mt-8">
@@ -117,8 +118,8 @@ export default async function ProductPage({
             </div>
 
             <p className="mt-4 max-w-md text-xs leading-relaxed text-steel-500">
-              Precio referencial. Confirmamos el valor final y el despacho por
-              WhatsApp.
+              Despachamos a todo Chile. El costo del envío se calcula durante el
+              proceso de compra o puede consultarse directamente por WhatsApp.
             </p>
           </div>
         </div>
@@ -128,7 +129,39 @@ export default async function ProductPage({
         </div>
       </Container>
 
-      <Container className="pb-20 sm:pb-28">
+      <Container className="border-t border-white/10 py-14 sm:py-16">
+        <div className="max-w-3xl">
+          <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+            Fabricado por MetalMotor
+          </h2>
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-steel-300 sm:text-lg">
+            <p>
+              Diseñado y fabricado en Chile mediante corte CNC, plegado de
+              precisión y soldadura MIG/TIG. Construido en acero de alta calidad
+              para durar años.
+            </p>
+            <p>
+              Su diseño armable facilita el transporte, almacenamiento y montaje
+              sin comprometer resistencia ni estabilidad.
+            </p>
+            <p>
+              Cada producto es desarrollado y fabricado íntegramente por
+              MetalMotor.
+            </p>
+          </div>
+          <a
+            href="#"
+            className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand-400 transition-colors hover:text-brand-300"
+          >
+            Conoce nuestro proceso
+            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </div>
+
+        <TrustSeals className="mt-10 max-w-3xl sm:mt-12" />
+      </Container>
+
+      <Container className="border-t border-white/10 py-14 sm:py-16">
         <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
           Especificaciones
         </h2>
@@ -137,7 +170,6 @@ export default async function ProductPage({
         </div>
       </Container>
 
-      <MadeByMetalMotor />
       <RelatedProducts products={related} />
     </>
   );
