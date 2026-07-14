@@ -6,18 +6,21 @@
  * full width inside a `flex-1` slot), so the frozen layout, dimensions and
  * position are preserved.
  *
- * On click: adds the Shopify variant (resolved server-side from the handle),
- * shows a brief inline confirmation, and opens the drawer. Errors surface
- * inline without shifting the button.
+ * UX polish (Sprint 03.5):
+ * - Loading: disabled + spinner + "Agregando…" while Shopify responds, so a
+ *   double-click can't fire two adds.
+ * - Confirmation: for ~1s the label becomes "✓ Producto agregado al carrito"
+ *   (a minimal in-button micro-interaction — no toast library), and the drawer
+ *   opens. Errors surface inline without shifting the button.
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/Button";
-import { CartIcon, CheckIcon } from "@/components/ui/icons";
+import { CartIcon, CheckIcon, SpinnerIcon } from "@/components/ui/icons";
 import { useCart } from "@/context/CartProvider";
 
-const CONFIRM_MS = 1800;
+const CONFIRM_MS = 1200;
 
 export function AddToCartButton({
   handle,
@@ -52,18 +55,23 @@ export function AddToCartButton({
         size="lg"
         className="w-full"
         onClick={onClick}
-        disabled={loading}
+        disabled={loading || confirmed}
         aria-live="polite"
       >
         {confirmed ? (
           <>
             <CheckIcon className="h-5 w-5" />
-            Agregado al carrito
+            Producto agregado al carrito
+          </>
+        ) : loading ? (
+          <>
+            <SpinnerIcon className="h-5 w-5" />
+            Agregando…
           </>
         ) : (
           <>
             <CartIcon className="h-5 w-5" />
-            {loading ? "Agregando…" : "Agregar al carrito"}
+            Agregar al carrito
           </>
         )}
       </Button>

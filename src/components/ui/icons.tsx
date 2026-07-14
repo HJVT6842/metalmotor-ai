@@ -207,6 +207,26 @@ export function MinusIcon(props: IconProps) {
   );
 }
 
+/** Spinning arc for loading states. Pure CSS (`animate-spin`), no dependency. */
+export function SpinnerIcon({ className, ...props }: IconProps) {
+  return (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      aria-hidden
+      className={["animate-spin", className].filter(Boolean).join(" ")}
+      {...props}
+    >
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+    </svg>
+  );
+}
+
 /** Maps a ServiceIcon key to a decorative line icon. */
 export function ServiceGlyph({ name, ...props }: IconProps & { name: ServiceIcon }) {
   switch (name) {

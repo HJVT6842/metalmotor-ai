@@ -78,7 +78,7 @@ export function CartDrawer() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -95,7 +95,7 @@ export function CartDrawer() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="absolute right-0 top-0 flex h-full w-full flex-col bg-steel-950/95 shadow-2xl outline-none ring-1 ring-inset ring-white/10 backdrop-blur-xl sm:max-w-md"
           >
             {/* Header */}
@@ -130,13 +130,20 @@ export function CartDrawer() {
               ) : null}
 
               {isEmpty ? (
-                <div className="flex h-full flex-col items-center justify-center text-center">
-                  <p className="text-base font-medium text-steel-200">
+                <div className="flex h-full flex-col items-center justify-center px-2 text-center">
+                  <p className="text-base font-semibold text-steel-100">
                     Tu carrito está vacío
                   </p>
-                  <p className="mt-2 max-w-xs text-sm text-steel-400">
-                    Agrega productos para continuar con tu compra.
+                  <p className="mt-2 max-w-xs text-sm leading-relaxed text-steel-400">
+                    Explora nuestros productos y agrega tus favoritos.
                   </p>
+                  <button
+                    type="button"
+                    onClick={closeCart}
+                    className="mt-6 inline-flex items-center justify-center rounded-xl bg-white/5 px-6 py-3 text-sm font-semibold text-white ring-1 ring-inset ring-white/15 backdrop-blur-sm transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/40"
+                  >
+                    Seguir comprando
+                  </button>
                 </div>
               ) : (
                 <ul className="flex flex-col gap-5">
@@ -157,12 +164,12 @@ export function CartDrawer() {
                       <div className="flex min-w-0 flex-1 flex-col">
                         <div className="flex items-start justify-between gap-2">
                           <div className="min-w-0">
-                            <p className="truncate text-sm font-semibold text-white">
+                            <p className="line-clamp-2 break-words text-sm font-semibold leading-snug text-white">
                               {line.productTitle}
                             </p>
                             {line.variantTitle &&
                             line.variantTitle !== "Default Title" ? (
-                              <p className="truncate text-xs text-steel-400">
+                              <p className="mt-0.5 line-clamp-1 text-xs text-steel-400">
                                 {line.variantTitle}
                               </p>
                             ) : null}
@@ -226,14 +233,15 @@ export function CartDrawer() {
                     {formatMoney(subtotal)}
                   </span>
                 </div>
-                <p className="mb-4 text-xs text-steel-500">
-                  El envío y los impuestos se calculan en el checkout.
+                <p className="mb-4 text-xs leading-relaxed text-steel-500">
+                  Los costos de despacho e impuestos se calculan durante el
+                  checkout.
                 </p>
                 <button
                   type="button"
                   onClick={onCheckout}
                   disabled={loading || !cart?.checkoutUrl}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-[0_8px_30px_-6px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-7 py-3.5 text-base font-bold tracking-tight text-white shadow-[0_8px_30px_-6px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-500 hover:shadow-[0_10px_44px_-4px_rgba(249,115,22,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading ? "Procesando…" : "Finalizar compra"}
                 </button>
