@@ -44,6 +44,7 @@ const DEFAULT_REVALIDATE = 300;
  * Runs a GraphQL document against the Storefront API.
  *
  * @param revalidate Seconds to cache the response (Next ISR). Defaults to 300.
+ *        Pass `0` for cart mutations — these must never be cached (`no-store`).
  * @throws {ShopifyError} when Shopify is unconfigured, the HTTP call fails, or
  *         the API returns top-level GraphQL errors.
  */
@@ -74,8 +75,11 @@ export async function storefrontFetch<T>(
         Accept: "application/json",
       },
       body: JSON.stringify({ query, variables }),
-      // Time-based revalidation keeps price/availability fresh (ISR).
-      next: { revalidate },
+      // Reads use time-based revalidation (ISR); cart mutations pass 0 → never
+      // cached, so quantities/subtotals always reflect the live cart.
+      ...(revalidate > 0
+        ? { next: { revalidate } }
+        : { cache: "no-store" as const }),
     });
   } catch (cause) {
     throw new ShopifyError(

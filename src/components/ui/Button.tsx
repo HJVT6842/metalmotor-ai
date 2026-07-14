@@ -1,4 +1,8 @@
-import type { AnchorHTMLAttributes, ReactNode } from "react";
+import type {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  ReactNode,
+} from "react";
 
 import { cn } from "@/lib/cn";
 
@@ -19,6 +23,20 @@ const SIZE_CLASSES: Record<Size, string> = {
   lg: "px-7 py-3.5 text-base",
 };
 
+/** Shared base + variant + size classes for both the anchor and button forms. */
+function buttonClasses(
+  variant: Variant,
+  size: Size,
+  className: string,
+): string {
+  return cn(
+    "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    VARIANT_CLASSES[variant],
+    SIZE_CLASSES[size],
+    className,
+  );
+}
+
 type LinkButtonProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   readonly variant?: Variant;
   readonly size?: Size;
@@ -34,16 +52,41 @@ export function LinkButton({
   ...rest
 }: LinkButtonProps) {
   return (
-    <a
+    <a className={buttonClasses(variant, size, className)} {...rest}>
+      {children}
+    </a>
+  );
+}
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  readonly variant?: Variant;
+  readonly size?: Size;
+  readonly children: ReactNode;
+};
+
+/**
+ * Native `<button>` sharing the exact styling of `LinkButton` — used for real
+ * actions (add to cart) that must not navigate. Adds only a disabled affordance
+ * for the loading state; visuals are otherwise identical to the frozen CTAs.
+ */
+export function Button({
+  variant = "primary",
+  size = "md",
+  className = "",
+  type = "button",
+  children,
+  ...rest
+}: ButtonProps) {
+  return (
+    <button
+      type={type}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
-        VARIANT_CLASSES[variant],
-        SIZE_CLASSES[size],
-        className,
+        buttonClasses(variant, size, className),
+        "disabled:cursor-not-allowed disabled:opacity-60",
       )}
       {...rest}
     >
       {children}
-    </a>
+    </button>
   );
 }
