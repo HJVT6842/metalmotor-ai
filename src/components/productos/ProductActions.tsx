@@ -47,7 +47,7 @@ export function ProductActions({
       {canAddToCart ? (
         <AddToCartButton
           handle={product.shopifyHandle as string}
-          className="flex-1"
+          className="flex-1 sm:grow-[65]"
         />
       ) : shopifyActive && soldOut ? (
         <LinkButton
@@ -56,7 +56,7 @@ export function ProductActions({
           rel="noopener noreferrer"
           variant="primary"
           size="lg"
-          className="flex-1"
+          className="flex-1 sm:grow-[65]"
         >
           Consultar disponibilidad
         </LinkButton>
@@ -67,7 +67,7 @@ export function ProductActions({
           rel="noopener noreferrer"
           variant="primary"
           size="lg"
-          className="flex-1"
+          className="flex-1 sm:grow-[65]"
         >
           Comprar ahora
         </LinkButton>
@@ -78,7 +78,7 @@ export function ProductActions({
         rel="noopener noreferrer"
         variant="ghost"
         size="lg"
-        className="flex-1 sm:flex-none sm:whitespace-nowrap"
+        className="flex-1 sm:grow-[35] sm:whitespace-nowrap"
         aria-label="Consultar por WhatsApp"
       >
         <WhatsAppIcon className="h-5 w-5 shrink-0" />

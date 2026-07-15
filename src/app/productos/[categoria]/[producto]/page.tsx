@@ -111,7 +111,7 @@ export default async function ProductPage({
               {product.shortDescription}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <div className="mt-10 flex flex-col items-start gap-3">
               <span className="text-3xl font-semibold text-white">
                 {formatPrice(commerce.price)}
               </span>
@@ -135,8 +135,8 @@ export default async function ProductPage({
             </div>
 
             <p className="mt-4 max-w-md text-xs leading-relaxed text-steel-500">
-              Despachamos a todo Chile. El costo del envío se calcula durante el
-              proceso de compra o puede consultarse directamente por WhatsApp.
+              Despacho a todo Chile. El costo se calcula automáticamente durante
+              el checkout.
             </p>
           </div>
         </div>

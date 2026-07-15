@@ -14,27 +14,28 @@ const TONE: Record<StockTone, { dot: string; text: string; ring: string }> = {
   green: {
     dot: "bg-emerald-400",
     text: "text-emerald-300",
-    ring: "ring-emerald-400/25",
+    ring: "ring-emerald-400/20",
   },
   amber: {
-    dot: "bg-amber-400",
-    text: "text-amber-300",
-    ring: "ring-amber-400/25",
+    // Amarillo menos saturado para un badge más premium (Sprint UI final).
+    dot: "bg-amber-300",
+    text: "text-amber-200",
+    ring: "ring-amber-300/20",
   },
   orange: {
     dot: "bg-orange-400",
     text: "text-orange-300",
-    ring: "ring-orange-400/25",
+    ring: "ring-orange-400/20",
   },
   gray: {
     dot: "bg-steel-400",
     text: "text-steel-300",
-    ring: "ring-white/15",
+    ring: "ring-white/10",
   },
   brand: {
     dot: "bg-brand-400",
     text: "text-brand-300",
-    ring: "ring-brand-400/25",
+    ring: "ring-brand-400/20",
   },
 };
 
@@ -59,7 +60,7 @@ export function StockIndicator({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset",
+        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset",
         t.text,
         t.ring,
         className,

@@ -219,19 +219,19 @@ export function CartDrawer() {
               <div className="border-t border-white/10 px-5 py-4">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="text-sm text-steel-300">Subtotal</span>
-                  <span className="text-lg font-semibold text-white">
+                  <span className="text-2xl font-extrabold text-white">
                     {formatMoney(subtotal)}
                   </span>
                 </div>
                 <p className="mb-4 text-xs leading-relaxed text-steel-500">
-                  Los costos de despacho e impuestos se calculan durante el
-                  checkout.
+                  Despacho a todo Chile. El costo se calcula automáticamente
+                  durante el checkout.
                 </p>
                 <button
                   type="button"
                   onClick={onCheckout}
                   disabled={loading || !cart?.checkoutUrl}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-7 py-3.5 text-base font-bold tracking-tight text-white shadow-[0_8px_30px_-6px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-500 hover:shadow-[0_10px_44px_-4px_rgba(249,115,22,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-7 text-base font-bold tracking-tight text-white shadow-[0_8px_30px_-6px_rgba(249,115,22,0.65)] transition-all duration-300 hover:-translate-y-0.5 hover:from-brand-400 hover:to-brand-500 hover:shadow-[0_10px_44px_-4px_rgba(249,115,22,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {loading ? "Procesando…" : "Finalizar compra"}
                 </button>
