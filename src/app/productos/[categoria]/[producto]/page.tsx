@@ -111,7 +111,7 @@ export default async function ProductPage({
               {product.shortDescription}
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+            <div className="mt-8 flex flex-col items-start gap-3">
               <span className="text-3xl font-semibold text-white">
                 {formatPrice(commerce.price)}
               </span>
