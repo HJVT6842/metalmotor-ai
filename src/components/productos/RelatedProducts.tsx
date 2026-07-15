@@ -11,7 +11,7 @@ export function RelatedProducts({
   if (products.length === 0) return null;
 
   return (
-    <Section className="bg-steel-950">
+    <Section className="border-t border-white/10 bg-steel-950">
       <SectionHeading eyebrow="También te puede gustar" title="Productos relacionados" align="left" />
       <div className="mt-12">
         <ProductGrid products={products} />

@@ -51,17 +51,17 @@ export function ProductSpecs({ product }: { readonly product: Product }) {
   ];
 
   return (
-    <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+    <dl className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-5">
       {specs.map(({ icon: Icon, label, value }) => (
         <div
           key={label}
-          className="rounded-2xl border border-white/10 bg-steel-900/40 p-5 transition-colors hover:border-white/20"
+          className="rounded-2xl border border-white/15 bg-steel-900/40 p-6 transition-colors hover:border-white/25 hover:bg-steel-900/60"
         >
-          <Icon className="h-5 w-5 text-brand-400" />
-          <dt className="mt-4 text-xs uppercase tracking-wider text-steel-400">
+          <Icon className="h-7 w-7 text-brand-400" />
+          <dt className="mt-5 text-xs uppercase tracking-wider text-steel-400">
             {label}
           </dt>
-          <dd className="mt-1 text-sm font-medium text-steel-100">{value}</dd>
+          <dd className="mt-1.5 text-base font-semibold text-white">{value}</dd>
         </div>
       ))}
     </dl>
