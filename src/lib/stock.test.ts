@@ -11,17 +11,17 @@ describe("resolveStockDisplay (Sprint 03.6)", () => {
     });
   });
 
-  it("CASO 2 — stock 2–5: 🔥 Solo quedan X unidades disponibles (ámbar)", () => {
+  it("CASO 2 — stock 2–5: 🔥 Solo quedan X unidades (ámbar)", () => {
     expect(resolveStockDisplay(true, 5, "in_stock")).toEqual({
-      label: "🔥 Solo quedan 5 unidades disponibles",
+      label: "🔥 Solo quedan 5 unidades",
       tone: "amber",
       soldOut: false,
     });
     expect(resolveStockDisplay(true, 3, "in_stock").label).toBe(
-      "🔥 Solo quedan 3 unidades disponibles",
+      "🔥 Solo quedan 3 unidades",
     );
     expect(resolveStockDisplay(true, 2, "in_stock").label).toBe(
-      "🔥 Solo quedan 2 unidades disponibles",
+      "🔥 Solo quedan 2 unidades",
     );
   });
 
