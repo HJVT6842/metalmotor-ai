@@ -79,7 +79,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Parrillas y discos para el asado perfecto",
     description:
       "Parrillas, discos y accesorios en acero, diseñados para durar y pensados para el ritual del asado.",
-    image: "",
+    image: "/images/categorias/bbq.webp",
   },
   {
     slug: "fogones-exterior",
@@ -87,7 +87,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Fuego y acero para tus espacios al aire libre",
     description:
       "Fogones, braseros y leñeros que transforman el patio en un punto de encuentro.",
-    image: "",
+    image: "/images/categorias/fogones-exterior.webp",
   },
   {
     slug: "cocina",
@@ -95,7 +95,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Planchas y utensilios de acero para cocinar",
     description:
       "Piezas de acero robusto que llevan la calidad del taller a tu cocina.",
-    image: "",
+    image: "/images/categorias/cocina.webp",
   },
   {
     slug: "accesorios-bbq",
@@ -103,7 +103,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Los detalles que completan tu asado",
     description:
       "Herramientas, rejillas y complementos fabricados con el mismo acero de nuestras parrillas.",
-    image: "",
+    image: "/images/categorias/accesorios-bbq.webp",
   },
   {
     slug: "hogar",
@@ -111,7 +111,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Diseño en acero para tu espacio",
     description:
       "Piezas de diseño propio, cortadas a láser, que dan carácter a cada rincón.",
-    image: "",
+    image: "/images/categorias/hogar.webp",
   },
 ];
 
