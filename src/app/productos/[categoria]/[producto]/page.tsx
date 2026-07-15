@@ -141,17 +141,17 @@ export default async function ProductPage({
           </div>
         </div>
 
-        <div className="mt-12 sm:mt-16">
+        <div className="mt-16 sm:mt-20">
           <ProductBenefits product={product} />
         </div>
       </Container>
 
-      <Container className="border-t border-white/10 py-14 sm:py-16">
-        <div className="max-w-3xl">
-          <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      <Container className="border-t border-white/10 py-16 sm:py-20">
+        <div className="max-w-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Fabricado por MetalMotor
           </h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-steel-300 sm:text-lg">
+          <div className="mt-6 space-y-5 text-lg leading-relaxed text-steel-300 sm:text-xl">
             <p>
               Diseñado y fabricado en Chile mediante corte CNC, plegado de
               precisión y soldadura MIG/TIG. Construido en acero de alta calidad
@@ -168,21 +168,21 @@ export default async function ProductPage({
           </div>
           <a
             href="#"
-            className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-brand-400 transition-colors hover:text-brand-300"
+            className="group mt-7 inline-flex items-center gap-2 text-base font-semibold text-brand-400 transition-colors hover:text-brand-300"
           >
             Conoce nuestro proceso
-            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
 
-        <TrustSeals className="mt-10 max-w-3xl sm:mt-12" />
+        <TrustSeals className="mt-10 max-w-4xl sm:mt-12" />
       </Container>
 
-      <Container className="border-t border-white/10 py-14 sm:py-16">
-        <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      <Container className="border-t border-white/10 py-16 sm:py-20">
+        <h2 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Especificaciones
         </h2>
-        <div className="mt-6">
+        <div className="mt-8">
           <ProductSpecs product={product} />
         </div>
       </Container>
