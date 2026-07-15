@@ -30,8 +30,8 @@ const STATUS_TONE: Record<StockStatus, StockTone> = {
  * Rules:
  *  - not available for sale        → "Agotado" (gray), soldOut
  *  - quantity unknown (null)       → local status pill (current behavior)
- *  - quantity 1                    → "Última unidad disponible" (orange)
- *  - quantity 2–5                  → "Solo quedan X unidades" (amber)
+ *  - quantity 1                    → "⚠️ Última unidad disponible" (orange)
+ *  - quantity 2–5                  → "🔥 Solo quedan X unidades disponibles" (amber)
  *  - otherwise (>5, or oversell 0) → "Disponible" (green)
  */
 export function resolveStockDisplay(
@@ -51,14 +51,14 @@ export function resolveStockDisplay(
   }
   if (quantityAvailable === 1) {
     return {
-      label: "Última unidad disponible",
+      label: "⚠️ Última unidad disponible",
       tone: "orange",
       soldOut: false,
     };
   }
   if (quantityAvailable >= 2 && quantityAvailable <= 5) {
     return {
-      label: `Solo quedan ${quantityAvailable} unidades`,
+      label: `🔥 Solo quedan ${quantityAvailable} unidades disponibles`,
       tone: "amber",
       soldOut: false,
     };
