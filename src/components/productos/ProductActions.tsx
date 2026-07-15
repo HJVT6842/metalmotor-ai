@@ -78,10 +78,10 @@ export function ProductActions({
         rel="noopener noreferrer"
         variant="ghost"
         size="lg"
-        className="flex-1"
+        className="flex-1 sm:flex-none sm:whitespace-nowrap"
         aria-label="Consultar por WhatsApp"
       >
-        <WhatsAppIcon className="h-5 w-5" />
+        <WhatsAppIcon className="h-5 w-5 shrink-0" />
         WhatsApp
       </LinkButton>
     </div>

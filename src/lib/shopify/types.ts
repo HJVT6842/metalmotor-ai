@@ -50,6 +50,12 @@ export type CartLine = {
   readonly variantId: string;
   readonly variantTitle: string;
   readonly productTitle: string;
+  /**
+   * Product handle (Storefront `merchandise.product.handle`). Read-only display
+   * field: lets the drawer resolve the local editorial thumbnail by handle
+   * before falling back to the Shopify image. Empty string if unavailable.
+   */
+  readonly handle: string;
   readonly unitPrice: Money;
   readonly linePrice: Money;
   readonly image: CartLineImage | null;

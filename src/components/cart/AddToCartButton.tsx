@@ -53,24 +53,24 @@ export function AddToCartButton({
       <Button
         variant="primary"
         size="lg"
-        className="w-full"
+        className="w-full sm:whitespace-nowrap"
         onClick={onClick}
         disabled={loading || confirmed}
         aria-live="polite"
       >
         {confirmed ? (
           <>
-            <CheckIcon className="h-5 w-5" />
-            Producto agregado al carrito
+            <CheckIcon className="h-5 w-5 shrink-0" />
+            Producto agregado
           </>
         ) : loading ? (
           <>
-            <SpinnerIcon className="h-5 w-5" />
+            <SpinnerIcon className="h-5 w-5 shrink-0" />
             Agregando…
           </>
         ) : (
           <>
-            <CartIcon className="h-5 w-5" />
+            <CartIcon className="h-5 w-5 shrink-0" />
             Agregar al carrito
           </>
         )}
