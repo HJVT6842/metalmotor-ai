@@ -166,16 +166,23 @@ export default async function ProductPage({
               MetalMotor.
             </p>
           </div>
+        </div>
+
+        <TrustSeals className="mt-10 sm:mt-12" />
+
+        <div className="mt-10 max-w-4xl sm:mt-12">
+          <p className="text-base font-medium text-steel-200 sm:text-lg">
+            Todo lo que ves se fabrica en nuestro propio taller, de principio a
+            fin: cortamos, plegamos, soldamos y armamos cada pieza en Chile.
+          </p>
           <a
             href="#"
-            className="group mt-7 inline-flex items-center gap-2 text-base font-semibold text-brand-400 transition-colors hover:text-brand-300"
+            className="group mt-4 inline-flex items-center gap-2 text-base font-semibold text-brand-400 transition-colors hover:text-brand-300"
           >
             Conoce nuestro proceso
             <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </a>
         </div>
-
-        <TrustSeals className="mt-10 max-w-4xl sm:mt-12" />
       </Container>
 
       <Container className="border-t border-white/10 py-16 sm:py-20">
