@@ -97,7 +97,7 @@ type RawCartNode = {
           title: string;
           price: RawMoney;
           image: { url: string; altText: string | null } | null;
-          product: { title: string };
+          product: { title: string; handle: string };
         };
       };
     }[];
@@ -116,6 +116,7 @@ function mapCart(node: RawCartNode): Cart {
     variantId: line.merchandise.id,
     variantTitle: line.merchandise.title,
     productTitle: line.merchandise.product.title,
+    handle: line.merchandise.product.handle,
     unitPrice: toMoney(line.merchandise.price),
     linePrice: toMoney(line.cost.totalAmount),
     image: line.merchandise.image

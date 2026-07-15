@@ -68,6 +68,7 @@ export const CART_FRAGMENT = /* GraphQL */ `
               }
               product {
                 title
+                handle
               }
             }
           }

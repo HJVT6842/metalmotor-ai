@@ -13,9 +13,9 @@
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+import { CartLineImage } from "@/components/cart/CartLineImage";
 import { CloseIcon, MinusIcon, PlusIcon, TrashIcon } from "@/components/ui/icons";
 import { useCart } from "@/context/CartProvider";
 import { formatMoney } from "@/lib/shopify/format";
@@ -149,17 +149,7 @@ export function CartDrawer() {
                 <ul className="flex flex-col gap-5">
                   {lines.map((line) => (
                     <li key={line.id} className="flex gap-4">
-                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-steel-900 ring-1 ring-inset ring-white/10">
-                        {line.image ? (
-                          <Image
-                            src={line.image.url}
-                            alt={line.image.altText ?? line.productTitle}
-                            fill
-                            sizes="80px"
-                            className="object-cover"
-                          />
-                        ) : null}
-                      </div>
+                      <CartLineImage line={line} />
 
                       <div className="flex min-w-0 flex-1 flex-col">
                         <div className="flex items-start justify-between gap-2">
