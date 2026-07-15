@@ -19,6 +19,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/data/home-products";
+import { getInventory } from "@/lib/inventory";
 import { resolveCommerce } from "@/lib/shopify/commerce";
 
 // Only known category/product pairs render; anything else 404s.
@@ -70,9 +71,11 @@ export default async function ProductPage({
 
   const category = getCategoryBySlug(categoria);
   const related = getRelatedProducts(product);
-  // Price + availability come from Shopify when the product is linked and the
-  // store is configured; otherwise these fall back to the local editorial data.
+  // Price comes from Shopify (commerce); stock comes through the source-agnostic
+  // inventory provider. Both share one memoized fetch. Each falls back to local
+  // data when Shopify is unconfigured or a fetch fails.
   const commerce = await resolveCommerce(product);
+  const inventory = await getInventory(product);
 
   return (
     <>
@@ -113,9 +116,9 @@ export default async function ProductPage({
                 {formatPrice(commerce.price)}
               </span>
               <StockIndicator
-                available={commerce.available}
-                quantityAvailable={commerce.quantityAvailable}
-                fallbackStatus={commerce.stockStatus}
+                stockStatus={inventory.status}
+                stockQuantity={inventory.quantity}
+                stockAvailable={inventory.available}
               />
             </div>
 
@@ -125,7 +128,10 @@ export default async function ProductPage({
             </p>
 
             <div className="mt-8">
-              <ProductActions product={product} soldOut={!commerce.available} />
+              <ProductActions
+                product={product}
+                soldOut={!inventory.available}
+              />
             </div>
 
             <p className="mt-4 max-w-md text-xs leading-relaxed text-steel-500">

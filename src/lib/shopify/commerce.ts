@@ -13,6 +13,8 @@
  * page always renders.
  */
 
+import { cache } from "react";
+
 import { type Product, type StockStatus } from "@/data/home-products";
 
 import { getProductByHandle } from "./api";
@@ -47,7 +49,13 @@ function mapStatus(available: boolean, local: StockStatus): StockStatus {
   return available ? local : "coming_soon";
 }
 
-export async function resolveCommerce(product: Product): Promise<CommerceData> {
+/**
+ * Memoized per request (React `cache`) so price and inventory can be resolved
+ * separately (page + InventoryProvider) without a second Shopify fetch.
+ */
+export const resolveCommerce = cache(async function resolveCommerce(
+  product: Product,
+): Promise<CommerceData> {
   const local: CommerceData = {
     price: product.price,
     stockStatus: product.stockStatus,
@@ -83,4 +91,4 @@ export async function resolveCommerce(product: Product): Promise<CommerceData> {
     );
     return local;
   }
-}
+});

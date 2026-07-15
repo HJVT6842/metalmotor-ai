@@ -3,11 +3,12 @@ import { cn } from "@/lib/cn";
 import { resolveStockDisplay, type StockTone } from "@/lib/stock";
 
 /**
- * Dynamic availability pill driven exclusively by Shopify data. Replaces the
- * static "Disponible" on the PDP. Keeps the exact visual language of the pill
- * (same size, dot + ring + muted text) — only the text and colour change per
- * stock level. Green/gray/brand tones match the previous `StockPill` tokens;
- * amber/orange are added for the low-stock levels.
+ * Dynamic availability pill. Source-agnostic: it receives only `stockStatus`,
+ * `stockQuantity` and `stockAvailable` (see the inventory layer) and never
+ * knows where the numbers come from (Shopify today, ERP/Supabase/etc. later).
+ * Keeps the exact visual language of the pill (same size, dot + ring + muted
+ * text) — only the text and colour change per stock level. Green/gray/brand
+ * tones match the previous `StockPill` tokens; amber/orange for low stock.
  */
 const TONE: Record<StockTone, { dot: string; text: string; ring: string }> = {
   green: {
@@ -38,20 +39,20 @@ const TONE: Record<StockTone, { dot: string; text: string; ring: string }> = {
 };
 
 export function StockIndicator({
-  available,
-  quantityAvailable,
-  fallbackStatus,
+  stockStatus,
+  stockQuantity,
+  stockAvailable,
   className,
 }: {
-  readonly available: boolean;
-  readonly quantityAvailable: number | null;
-  readonly fallbackStatus: StockStatus;
+  readonly stockStatus: StockStatus;
+  readonly stockQuantity: number | null;
+  readonly stockAvailable: boolean;
   readonly className?: string;
 }) {
   const { label, tone } = resolveStockDisplay(
-    available,
-    quantityAvailable,
-    fallbackStatus,
+    stockAvailable,
+    stockQuantity,
+    stockStatus,
   );
   const t = TONE[tone];
 
