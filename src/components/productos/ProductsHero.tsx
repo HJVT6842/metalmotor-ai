@@ -13,7 +13,7 @@ export function ProductsHero() {
         aria-hidden
       />
 
-      <Container className="relative flex min-h-[72vh] flex-col justify-center py-24 sm:py-32">
+      <Container className="relative flex min-h-[72dvh] flex-col justify-center py-24 sm:py-32">
         <Reveal className="max-w-3xl">
           <p className="mb-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.25em] text-brand-400">
             <span className="h-px w-8 bg-brand-500" aria-hidden />

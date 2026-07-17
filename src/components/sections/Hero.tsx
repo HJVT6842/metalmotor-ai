@@ -8,6 +8,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { EASE_OUT } from "@/components/animations/variants";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 
 const STATS = [
   { value: "+500", label: "Proyectos" },
@@ -38,10 +39,15 @@ const headlineWords = [
 ] as const;
 
 export function Hero() {
+  // Decorative infinite animations run on desktop only. On iOS Safari the
+  // large animated blur layers + moving elements trigger a compositor repaint
+  // bug that flickers the whole viewport; mobile gets the static composition.
+  const isDesktop = useIsDesktop();
+
   return (
     <section
       id="inicio"
-      className="relative flex min-h-[74vh] items-center overflow-hidden bg-steel-950 sm:min-h-[78vh]"
+      className="relative flex min-h-[74dvh] items-center overflow-hidden bg-steel-950 sm:min-h-[78dvh]"
     >
       {/* Crossfading reference banner (parallax + Ken Burns) */}
       <HeroBanner />
@@ -53,36 +59,40 @@ export function Hero() {
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -right-40 -top-40 h-[34rem] w-[34rem] rounded-full bg-brand-600/25 blur-[120px]"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] }}
+        animate={isDesktop ? { scale: [1, 1.15, 1], opacity: [0.5, 0.8, 0.5] } : undefined}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
         className="pointer-events-none absolute -bottom-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-brand-500/15 blur-[120px]"
-        animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.6, 0.4] }}
+        animate={isDesktop ? { scale: [1.1, 1, 1.1], opacity: [0.4, 0.6, 0.4] } : undefined}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Laser beam sweep */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute top-0 h-full w-px bg-gradient-to-b from-transparent via-brand-400 to-transparent"
-        initial={{ left: "-5%", opacity: 0 }}
-        animate={{ left: ["-5%", "105%"], opacity: [0, 0.9, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
-      />
-
-      {/* Industrial particles / sparks */}
-      {PARTICLES.map((p, i) => (
-        <motion.span
-          key={i}
+      {/* Laser beam sweep — desktop only (continuous repaint is costly on iOS). */}
+      {isDesktop ? (
+        <motion.div
           aria-hidden
-          className="pointer-events-none absolute h-1 w-1 rounded-full bg-brand-400"
-          style={{ left: p.x, top: p.y }}
-          animate={{ y: [0, -18, 0], opacity: [0.2, 1, 0.2] }}
-          transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
+          className="pointer-events-none absolute top-0 h-full w-px bg-gradient-to-b from-transparent via-brand-400 to-transparent"
+          initial={{ left: "-5%", opacity: 0 }}
+          animate={{ left: ["-5%", "105%"], opacity: [0, 0.9, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", repeatDelay: 3 }}
         />
-      ))}
+      ) : null}
+
+      {/* Industrial particles / sparks — desktop only. */}
+      {isDesktop
+        ? PARTICLES.map((p, i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="pointer-events-none absolute h-1 w-1 rounded-full bg-brand-400"
+              style={{ left: p.x, top: p.y }}
+              animate={{ y: [0, -18, 0], opacity: [0.2, 1, 0.2] }}
+              transition={{ duration: p.d, repeat: Infinity, ease: "easeInOut", delay: p.delay }}
+            />
+          ))
+        : null}
 
       {/* Bottom fade into next section */}
       <div

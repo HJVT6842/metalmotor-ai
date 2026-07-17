@@ -27,7 +27,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-40 transition-colors duration-300",
         scrolled || open
-          ? "border-b border-white/10 bg-steel-950/80 backdrop-blur-xl"
+          ? "border-b border-white/10 bg-steel-950/95 lg:bg-steel-950/80 lg:backdrop-blur-xl"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -73,7 +73,7 @@ export function Header() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-white/10 bg-steel-950/95 backdrop-blur-xl lg:hidden"
+            className="overflow-hidden border-t border-white/10 bg-steel-950/95 lg:hidden"
           >
             <Container className="flex flex-col gap-1 py-4">
               {NAV_LINKS.map((link) => (

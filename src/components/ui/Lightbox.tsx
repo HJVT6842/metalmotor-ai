@@ -49,7 +49,7 @@ export function Lightbox({ items, index, onClose, onIndexChange }: LightboxProps
     <AnimatePresence>
       {open && item ? (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-steel-950/90 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-steel-950/95 p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

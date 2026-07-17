@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { MediaBadge } from "@/components/ui/MediaBadge";
 import { HERO_SLIDES, resolveHeroSlide } from "@/data/hero-slides";
+import { useIsDesktop } from "@/lib/useIsDesktop";
 
 /** Premium crossfade timing: each frame held, then an 800ms fade to the next. */
 const HOLD_MS = 6000;
@@ -44,6 +45,7 @@ const FRAMES = HERO_SLIDES.map((slide, idx) => {
 export function HeroBanner() {
   const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  const isDesktop = useIsDesktop();
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -61,13 +63,18 @@ export function HeroBanner() {
   });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
+  // Scroll parallax + Ken Burns run on desktop only. On iOS Safari the address
+  // bar collapsing on scroll fires continuous resize/scroll events that make
+  // the scroll-driven transform jitter, and the animated zoom compounds it.
+  const animate = isDesktop && !reduceMotion;
+
   return (
     <div ref={ref} className="absolute inset-0 overflow-hidden">
-      <motion.div style={{ y }} className="absolute inset-0" aria-hidden>
+      <motion.div style={animate ? { y } : undefined} className="absolute inset-0" aria-hidden>
         {/* Ken Burns: subtle continuous zoom across the whole stack. */}
         <motion.div
           className="absolute inset-0"
-          animate={reduceMotion ? undefined : { scale: [1.04, 1.12, 1.04] }}
+          animate={animate ? { scale: [1.04, 1.12, 1.04] } : undefined}
           transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
         >
           {FRAMES.map((frame, idx) => (
