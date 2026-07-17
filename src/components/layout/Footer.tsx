@@ -50,9 +50,9 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-steel-400 hover:text-white">
+                <Link href={link.href} className="text-steel-400 hover:text-white">
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

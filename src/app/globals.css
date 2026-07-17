@@ -107,3 +107,19 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/**
+ * iOS Safari (WebKit) repaints the whole viewport when a `backdrop-filter`
+ * layer is composited during scroll/interaction, which reads as a full-screen
+ * flash. Neutralize it on touch devices — the surfaces underneath are already
+ * near-opaque, so the visual loss is imperceptible while the flicker is gone.
+ * Desktop keeps the blur.
+ */
+@media (hover: none) and (pointer: coarse) {
+  *,
+  *::before,
+  *::after {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
