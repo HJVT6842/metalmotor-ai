@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { WhatsAppCta } from "@/components/WhatsAppCta";
@@ -32,19 +33,19 @@ export function Header() {
       )}
     >
       <Container className="flex h-16 items-center justify-between">
-        <a href="#inicio" aria-label="Metal Motor — inicio">
+        <Link href="/" aria-label="Metal Motor — inicio">
           <Logo variant="horizontal" />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Principal">
           {NAV_LINKS.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-steel-300 transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -77,14 +78,14 @@ export function Header() {
           >
             <Container className="flex flex-col gap-1 py-4">
               {NAV_LINKS.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3.5 text-base font-medium text-steel-200 transition-colors hover:bg-white/5 hover:text-white active:bg-white/10"
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <div className="mt-3">
                 <WhatsAppCta
