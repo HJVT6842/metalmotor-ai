@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>3 · Texto con degradado</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin:0; min-height:100%; background:#0f172a; color:#fff;
+               font-family:-apple-system, system-ui, sans-serif; }
+  main { padding: 28px 20px; min-height: 180vh; }
+  /* Réplica de .text-gradient-brand (background-clip:text) usado en el logo/títulos */
+  .grad { background: linear-gradient(90deg,#fb923c 0%,#f97316 50%,#ea580c 100%);
+          -webkit-background-clip: text; background-clip: text; color: transparent;
+          font-weight: 800; }
+  h1 { font-size: 34px; }
+  .huge { font-size: 60px; line-height:1.1; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prueba 3 — <span class="grad">METALMOTOR</span></h1>
+  <p class="huge"><span class="grad">Corte Láser CNC</span></p>
+  <p style="color:#cbd5e1">Fondo + texto con degradado recortado (background-clip:text), como el logo y los titulares.</p>
+  <p style="color:#cbd5e1">Mira 10 s y haz scroll. ¿Parpadea?</p>
+  <p><a href="./index.html" style="color:#fb923c">← volver al índice</a></p>
+</main>
+</body>
+</html>

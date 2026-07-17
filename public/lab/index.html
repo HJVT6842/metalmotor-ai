@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lab flicker · índice</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin:0; background:#0f172a; color:#fff; font-family: -apple-system, system-ui, sans-serif; }
+  main { padding: 24px 20px 60px; max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 22px; }
+  p { color:#cbd5e1; line-height:1.5; }
+  a.card { display:block; margin:14px 0; padding:18px; border:1px solid rgba(255,255,255,.12);
+           border-radius:14px; color:#fff; text-decoration:none; background:rgba(255,255,255,.03); }
+  a.card b { color:#fb923c; }
+  small { color:#94a3b8; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prueba de parpadeo (bisección)</h1>
+  <p>Abre cada prueba <b>en pestaña privada</b>. En cada una, mira la pantalla unos 10&nbsp;s (quieto y haciendo scroll) y anota si <b>parpadea o no</b>. Luego me dices el resultado de cada número.</p>
+
+  <a class="card" href="./1.html"><b>1 · Base</b> — solo fondo + texto. Nada más.<br><small>Control. Si esta parpadea, es el navegador/pantalla, no el sitio.</small></a>
+  <a class="card" href="./2.html"><b>2 · Botón WhatsApp</b> — animación “ping” infinita + sombra grande fija.<br><small>Anima sin parar en todas las páginas del sitio.</small></a>
+  <a class="card" href="./3.html"><b>3 · Texto con degradado</b> — background-clip:text (el logo).<br><small>Efecto presente en la cabecera de todas las páginas.</small></a>
+  <a class="card" href="./4.html"><b>4 · Rejilla + blobs difuminados</b> — bg-grid + blur grande.<br><small>Fondos decorativos de las secciones/hero.</small></a>
+  <a class="card" href="./5.html"><b>5 · Cabecera pegajosa + scroll largo</b><br><small>Header sticky repintando al hacer scroll.</small></a>
+</main>
+</body>
+</html>
