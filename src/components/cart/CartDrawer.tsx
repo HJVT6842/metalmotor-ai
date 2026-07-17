@@ -81,7 +81,7 @@ export function CartDrawer() {
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70"
             onClick={closeCart}
             aria-hidden
           />
@@ -96,7 +96,7 @@ export function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-0 flex h-full w-full flex-col bg-steel-950/95 shadow-2xl outline-none ring-1 ring-inset ring-white/10 backdrop-blur-xl sm:max-w-md"
+            className="absolute right-0 top-0 flex h-full w-full flex-col bg-steel-950 shadow-2xl outline-none ring-1 ring-inset ring-white/10 sm:max-w-md"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
