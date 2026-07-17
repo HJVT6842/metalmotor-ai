@@ -29,10 +29,17 @@
   --color-steel-700: #334155;
   --color-steel-800: #1e293b;
   --color-steel-900: #0f172a; /* secondary surface */
-  --color-steel-950: #020617; /* background */
+  /*
+   * Background floor raised off near-black (#020617, gray ~7). On ProMotion/LTPO
+   * iPhones a screen that is ~68% near-black flickers when the panel drops its
+   * refresh rate — a display-level glitch absent from screen recordings and
+   * independent of brightness. ~gray 20 sits in the safe zone (darker "dark"
+   * sites like GitHub, gray ~14, don't flicker) while staying deep-industrial.
+   */
+  --color-steel-950: #0f172a; /* background */
 
   /* Semantic aliases */
-  --color-canvas: #020617;
+  --color-canvas: #0f172a;
   --color-surface: #0f172a;
   --color-ink: #ffffff;
   --color-subtle: #cbd5e1;
@@ -46,12 +53,12 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #020617;
+  background-color: #0f172a;
   color-scheme: dark;
 }
 
 body {
-  background-color: #020617;
+  background-color: #0f172a;
   color: #ffffff;
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
