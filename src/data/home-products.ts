@@ -79,7 +79,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Parrillas y discos para el asado perfecto",
     description:
       "Parrillas, discos y accesorios en acero, diseñados para durar y pensados para el ritual del asado.",
-    image: "",
+    image: "/images/productos/bbq/cover.webp",
   },
   {
     slug: "fogones-exterior",
@@ -87,7 +87,8 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Fuego y acero para tus espacios al aire libre",
     description:
       "Fogones, braseros y leñeros que transforman el patio en un punto de encuentro.",
-    image: "",
+    // TEMP: portada reutilizando una foto de producto con FONDO NATURAL (-2); reemplazar por cover.webp propio.
+    image: "/images/productos/fogones-exterior/fogon-multifuncion-60-2.webp",
   },
   {
     slug: "cocina",
@@ -95,7 +96,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Planchas y utensilios de acero para cocinar",
     description:
       "Piezas de acero robusto que llevan la calidad del taller a tu cocina.",
-    image: "",
+    image: "/images/productos/cocina/cover.webp",
   },
   {
     slug: "accesorios-bbq",
@@ -103,7 +104,7 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Los detalles que completan tu asado",
     description:
       "Herramientas, rejillas y complementos fabricados con el mismo acero de nuestras parrillas.",
-    image: "",
+    image: "/images/productos/accesorios-bbq/cover.webp",
   },
   {
     slug: "hogar",
@@ -111,23 +112,30 @@ export const CATEGORIES: readonly ProductCategory[] = [
     tagline: "Diseño en acero para tu espacio",
     description:
       "Piezas de diseño propio, cortadas a láser, que dan carácter a cada rincón.",
-    image: "",
+    image: "/images/productos/hogar/cover.webp",
   },
 ];
 
 /**
  * Builds the convention image paths for a product:
- * `/images/productos/<categorySlug>/<slug>-N.webp` (N = 1..count).
+ * `/images/productos/<categorySlug>/<slug>-N.webp`.
  * Keeps the naming in one place so declaring photos is typo-proof.
+ *
+ * Pass a `count` (paths 1..count in order) OR an explicit `order` of photo
+ * numbers to control the gallery sequence — e.g. `[2, 3, 4, 1, 5]` to lead the
+ * PDP with the natural-background shots and push white-background ones last.
  */
 function imageSet(
   categorySlug: string,
   slug: string,
-  count = 3,
+  order: number | readonly number[] = 3,
 ): readonly string[] {
-  return Array.from(
-    { length: count },
-    (_, i) => `/images/productos/${categorySlug}/${slug}-${i + 1}.webp`,
+  const numbers =
+    typeof order === "number"
+      ? Array.from({ length: order }, (_, i) => i + 1)
+      : order;
+  return numbers.map(
+    (n) => `/images/productos/${categorySlug}/${slug}-${n}.webp`,
   );
 }
 
@@ -218,7 +226,8 @@ export const PRODUCTS: readonly Product[] = [
     deliveryTier: "special",
     stockStatus: "made_to_order",
     price: 189990,
-    images: imageSet("fogones-exterior", "fogon-multifuncion-60", 5),
+    // Gallery leads with natural-background shots (-2,-3,-4); white-background ones (-1,-5) last.
+    images: imageSet("fogones-exterior", "fogon-multifuncion-60", [2, 3, 4, 1, 5]),
     benefits: [
       "Funciona como fogón y parrilla",
       "Estructura desarmable y transportable",
