@@ -126,7 +126,7 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
           {label}
         </h3>
 
-        <p className="mt-1.5 text-xl font-semibold tracking-tight text-white sm:text-2xl">
+        <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums text-white">
           {priceLabel ?? (
             <span className="text-base font-medium text-steel-300">
               Precio a consultar

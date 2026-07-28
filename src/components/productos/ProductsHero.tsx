@@ -5,7 +5,7 @@ import { ProductMedia } from "@/components/productos/ProductMedia";
 import { ArrowRightIcon } from "@/components/ui/icons";
 
 /** Attributes the hero must transmit at a glance — quiet, not a collage. */
-const ATTRS = ["BBQ", "Outdoor", "Acero", "Fabricación nacional"] as const;
+const ATTRS = ["BBQ", "Exterior", "Acero", "Fabricación nacional"] as const;
 
 /**
  * Premium landing hero for the retail line. Editorial two-column composition:
@@ -27,15 +27,15 @@ export function ProductsHero() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Promise */}
           <Reveal className="max-w-xl">
-            <p className="mb-6 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.25em] text-brand-400">
-              <span className="h-px w-8 bg-brand-500" aria-hidden />
+            <p className="mb-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">
+              <span className="h-px w-6 bg-brand-500" aria-hidden />
               Productos MetalMotor
             </p>
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               Productos diseñados y fabricados por MetalMotor.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-steel-300 sm:text-xl">
-              Diseño en acero para el hogar, quinchos y exteriores.
+              Fabricados en acero para el hogar, el quincho y el exterior.
             </p>
 
             <ul className="mt-8 flex flex-wrap gap-2.5" aria-label="Atributos">

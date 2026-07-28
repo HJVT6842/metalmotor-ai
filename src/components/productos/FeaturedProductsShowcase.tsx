@@ -18,7 +18,7 @@ export function FeaturedProductsShowcase() {
       <SectionHeading
         eyebrow="Destacados"
         title="Productos destacados"
-        description="Una selección de piezas fabricadas en nuestro taller: del asado al detalle de diseño."
+        description="Los productos que más nos piden, fabricados en acero en nuestro propio taller."
         align="left"
       />
 
