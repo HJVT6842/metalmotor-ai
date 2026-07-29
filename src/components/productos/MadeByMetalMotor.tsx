@@ -55,17 +55,17 @@ export function MadeByMetalMotor() {
 
         {/* The promise. */}
         <Reveal>
-          <p className="mb-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.25em] text-brand-400">
-            <span className="h-px w-8 bg-brand-500" aria-hidden />
+          <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-400">
+            <span className="h-px w-6 bg-brand-500" aria-hidden />
             Fabricado por MetalMotor
           </p>
           <h2 className="text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-[2.75rem]">
             Respaldado por nuestro taller industrial.
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-steel-300">
-            Cada producto nace del mismo corte láser CNC, la misma soldadura y el
-            mismo acero con que fabricamos a la industria. Diseño propio, hecho en
-            Chile.
+            Usamos el mismo corte láser CNC, la misma soldadura y el mismo acero
+            con que fabricamos para la industria. Cada pieza se diseña y se produce
+            en nuestro taller, en Chile.
           </p>
         </Reveal>
       </div>

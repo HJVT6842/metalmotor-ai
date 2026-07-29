@@ -126,7 +126,7 @@ export function CategoryBlocks() {
       <SectionHeading
         eyebrow="Colecciones"
         title="Explora por categoría"
-        description="Acero fabricado en casa para el asado, el fuego y el hogar. Elige una colección y descubre las piezas."
+        description="Parrillas y fogones para el asado, y piezas en acero para el exterior y el hogar."
         align="left"
       />
 
