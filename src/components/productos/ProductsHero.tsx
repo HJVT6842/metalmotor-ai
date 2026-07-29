@@ -7,19 +7,20 @@ import { ArrowRightIcon } from "@/components/ui/icons";
 /**
  * The retail line, at a glance.
  *
- * TEMPORARY VISUAL — the definitive hero is a single wide editorial photograph
- * of the whole line together (parrilla + fogón + disco + accesorios in one
- * steel-and-fire scene). That shot doesn't exist yet, so we use the strongest
- * premium scene we already have and let the copy + the LINE index carry the
- * breadth: the reader learns "MetalMotor fabrica una línea completa en acero"
- * from the words, not from a single product. When the real photograph lands,
- * swap ONLY `HERO_IMAGE` — the composition, the frame and the layout stay.
+ * DEFINITIVE SLOT, TEMPORARY PHOTO — the hero image lives at its OWN dedicated
+ * path (`/images/productos/hero.webp`), decoupled from any category cover. The
+ * final shot is a single wide editorial photograph of the whole line together
+ * (parrilla + fogón + disco + accesorios in one steel-and-fire scene); until
+ * it's taken, `hero.webp` is a copy of the strongest premium scene we have, and
+ * the copy + the LINE index carry the breadth. To ship the real photo: just
+ * OVERWRITE `/public/images/productos/hero.webp` — no code change. If the file
+ * is ever missing it degrades to the premium <Poster> gradient.
  *
  * (Deliberately NOT a collage/mosaic: one dominant frame reads as a brand
  * statement; tiled category covers would read as a catalog thumbnail sheet.)
  */
 const HERO_IMAGE = {
-  src: "/images/productos/bbq/cover.webp",
+  src: "/images/productos/hero.webp",
   alt: "Productos MetalMotor en acero para el asado, el exterior y el hogar",
 } as const;
 
